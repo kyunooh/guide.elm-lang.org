@@ -2,9 +2,10 @@
     "plugins": [
         "ga",
         "youtube",
-        "sharing",
+        "-sharing",
         "bulk-redirect",
-        "github"
+        "github",
+        "share"
     ],
     "pluginsConfig": {
         "ga": {
