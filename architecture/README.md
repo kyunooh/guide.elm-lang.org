@@ -4,9 +4,9 @@
 
 이 아키텍츠는 Elm에서 자연스럽게 나타났어요. Elm 커뮤니티에서 게임을 만드는 도중 처음 발견하게 되었죠. 그리고 [TodoMVC](https://github.com/evancz/elm-todomvc)와  [dreamwriter](https://github.com/rtfeldman/dreamwriter#dreamwriter) 에서도 발견되었고, 이제는 [NoRedInk](https://www.noredink.com/)와 [CircuitHub](https://www.circuithub.com/) 같은 회사의 상품 코드에서도 사용하고 있어요. 이 아키텍처는 Elm 그 자체의 결과물이에요. 때문에  이 아키텍처를 알든 모르든, 결국 이 아키텍처를 따르게 될 거에요. 이 아키텍처는 적응하기 쉽다는 게 이미 증명되었어요. 새로운 개발자들은 손쉽게 좋은 구조의 코드를 작성했죠.
 
-'Elm 아키텍처'는 Elm에서 아주 쉬울뿐만 아니라, 어떤 프론트엔드던지 유용하답니다. So The Elm Architecture is _easy_ in Elm, but it is useful in any front-end project. In fact, projects like Redux have been inspired by The Elm Architecture, so you may have already seen derivatives of this pattern. Point is, even if you ultimately cannot use Elm at work yet, you will get a lot out of using Elm and internalizing this pattern.
+'Elm 아키텍처'는 Elm에서 아주 쉬울뿐만 아니라, 모든 프론트엔드 프로젝트에서 유용하답니다. 사실 Redux 같은 건 이미 Elm 아키텍처의 영향을 받았어요. 그렇기에 여러분들도 이 패턴에서 파생한 것들을 이미 보셨을 수도 있죠. 요점을 말씀드리자면, 여러분이 Elm을 실제 회사에서 사용할 수 없더라도, Elm 외에 다른 곳에서 이런 패턴을 적용할 수 있다는 것입니다.
 
-## The Basic Pattern
+## 기본적인 패턴
 
 The logic of every Elm program will break up into three cleanly separated parts:
 
