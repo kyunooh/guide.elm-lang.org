@@ -3,7 +3,7 @@
 * [소개](README.md)
 * [설치](install.md)
 * [언어 살펴보기](core_language.md)
-* [Elm의 구조](architecture/README.md)
+* [Elm 아키텍처](architecture/README.md)
   * [User Input](architecture/user_input/README.md)
     * [Buttons](architecture/user_input/buttons.md)
     * [Text Fields](architecture/user_input/text_fields.md)
