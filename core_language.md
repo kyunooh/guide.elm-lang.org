@@ -222,5 +222,5 @@ Elm의 레코드는 JavaScript의 객체와 비슷해요. 하지만 몇 가지 �
 
 Elm은 데이터와 로직을 엄격하게 분리하는 걸 권하지만, `this` 키워드의 경우 주로 이런 분리를 깨뜨리죠. Elm은 이런식으로 객체지향 언어에서 발생하는 구조적인 문제를 피해요.
 
-또한 레코드는 [구조적 타이핑\(structural typing\)](https://en.wikipedia.org/wiki/Structural_type_system "Structural Types")을 지원하여, 필요한 필드가 존재하는 한 레코드를 사용할 수 있어요. 이를 통해 신뢰성을 보장하면서도 유연함을 가질 수 있죠.
+또한 레코드는 [구조적 타이핑\(structural typing\)](https://en.wikipedia.org/wiki/Structural_type_system "Structural Types")을 지원하여, 사용할 필드가 존재한다면 레코드를 사용할 수 있어요. 이를 통해 신뢰성을 보장하면서도 유연함을 가질 수 있죠.
 
