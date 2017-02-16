@@ -6,7 +6,7 @@
 
 ---
 
-Our first example is a simple counter that can be incremented or decremented. I find that it can be helpful to see the entire program in one place, so here it is! We will break it down afterwards.
+첫번째 예제는 증감이 가능한 간단한 카운터 앱이에요. 프로그램 전체를 한 곳에서 작성하는 게 도움이 된다는 걸 깨닫, 아래와 같이 작성했어요. 추후에는 나누어 봅시다.
 
 ```elm
 import Html exposing (Html, button, div, text)
@@ -51,23 +51,23 @@ view model =
     ]
 ```
 
-That's everything!
+위 코드가 전부에요.
 
-> **Note:** This section has `type` and `type alias` declarations. You can read all about these in the upcoming section on [types](http://guide.elm-lang.org/types/index.html). You do not _need_ to deeply understand that stuff now, but you are free to jump ahead if it helps.
+> **공지:** 이 단원은 `타입(type)`과 `타입 별칭(type alias)` 선언에 대한 내용을 담고 있어요. 이에 대해선 [타입\(types\)](http://guide.elm-lang.org/types/index.html)에서 더 자세히 다룰 거에요. 지금 당장 깊게 모든 것을 이해하려 하지 말고, 편안한 마음으로 부담없이 읽으세요.
 
-When writing this program from scratch, I always start by taking a guess at the model. To make a counter, we at least need to keep track of a number that is going up and down. So let's just start with that!
+프로그램 스케치를 작성 할 때, 전 모델\(model\)이 무엇인지 먼저 생각해봐요. 카운터를 만든다면, 일단 증가하고 감소하는 숫자를 관리해야겠죠. 자 그럼 시작하죠.
 
 ```elm
 type alias Model = Int
 ```
 
-Now that we have a model, we need to define how it changes over time. I always start my `UPDATE` section by defining a set of messages that we will get from the UI:
+자 이제 우리는 모델을 생겼으니, 시간이 지남에 따라 어떻게 바뀔지 정해야겠죠. 전 항상 UI에서 보일 메시지를 정의하고 `UPDATE` 부분을 시작해요.
 
 ```elm
 type Msg = Increment | Decrement
 ```
 
-I definitely know the user will be able to increment and decrement the counter. The `Msg` type describes these capabilities as _data_. Important! From there, the `update` function just describes what to do when you receive one of these messages.
+전 사용자가 카운터를 증감시키는 게 가능하다는 걸 알고 있어요. `Msg` 타입은 이런 기능을 데이터로 표현할 수 있죠. 여기서 `update` 기능은 이러한 메시지중 하나를 받았을 때, 수행할 작업을 선택한다는 것이 중요해요.
 
 ```elm
 update : Msg -> Model -> Model
@@ -80,7 +80,7 @@ update msg model =
       model - 1
 ```
 
-If you get an `Increment` message, you increment the model. If you get a `Decrement` message, you decrement the model. Pretty straight-forward stuff.
+만약 `Increment` 메시지를 받았다면 해당 모델은 증가할 것이고, `Decrement` 메시지를 받았다면 감소해요. 참 직관적이죠.
 
 Okay, so that's all good, but how do we actually make some HTML and show it on screen? Elm has a library called `elm-lang/html` that gives you full access to HTML5 as normal Elm functions:
 
