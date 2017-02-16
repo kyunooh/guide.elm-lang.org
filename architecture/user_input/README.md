@@ -12,5 +12,5 @@
 
 ## 함께 따라하세요
 
-지난 단원에서 `elm-repl`을 통해 Elm 표현식에 익숙해졌습니다. 이번 단원에서는 각각의 Elm 파일을 만들 거에요. [온라인 에디터](http://elm-lang.org/try)를 통하여 진행할 수도 있고, Elm이 [설치](../../install.md)되어 있다면, 다음의 [지침을](https://github.com/evancz/elm-architecture-tutorial#run-the-examples) 따라 여러분의 컴퓨터에서 실행도 가능해요.
+지난 단원에서 `elm-repl`을 통해 Elm 표현식에 익숙해졌습니다. 이번 단원에서는 각각의 Elm 파일을 만들 거에요. [온라인 에디터](http://elm-lang.org/try)를 통하여 진행할 수도 있고, Elm이 [설치](../../install.md)되어 있다면, 다음의 [지침](https://github.com/evancz/elm-architecture-tutorial#run-the-examples)을 따라 여러분의 컴퓨터에서 실행도 가능해요.
 
