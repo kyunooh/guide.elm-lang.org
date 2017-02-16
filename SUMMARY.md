@@ -5,7 +5,7 @@
 * [언어 살펴보기](core_language.md)
 * [Elm 아키텍처](architecture/README.md)
   * [사용자 입력](architecture/user_input/README.md)
-    * [Buttons](architecture/user_input/buttons.md)
+    * [버튼\(Buttons\)](architecture/user_input/buttons.md)
     * [Text Fields](architecture/user_input/text_fields.md)
     * [Forms](architecture/user_input/forms.md)
     * [More](architecture/user_input/more.md)
