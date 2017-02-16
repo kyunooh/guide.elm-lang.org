@@ -4,7 +4,7 @@
 * [설치](install.md)
 * [언어 살펴보기](core_language.md)
 * [Elm 아키텍처](architecture/README.md)
-  * [User Input](architecture/user_input/README.md)
+  * [사용자 입력](architecture/user_input/README.md)
     * [Buttons](architecture/user_input/buttons.md)
     * [Text Fields](architecture/user_input/text_fields.md)
     * [Forms](architecture/user_input/forms.md)

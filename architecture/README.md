@@ -8,13 +8,13 @@
 
 ## 기본적인 패턴
 
-The logic of every Elm program will break up into three cleanly separated parts:
+모든 Elm 프로그램의 로직들은 아래와 같이 세개로 깨끗하게 분리되요.
 
-* **Model** — the state of your application
-* **Update** — a way to update your state
-* **View** — a way to view your state as HTML
+* **Model** — 어플리케이션의 상태 the state of your application
+* **Update** — 상태를 수정하는 부분 a way to update your state
+* **View** — HTML로 상태를 표현하는 부분 a way to view your state as HTML
 
-This pattern is so reliable that I always start with the following skeleton and fill in details for my particular case.
+저는 항상 다음과 같이 뼈대를 잡고 점점 채워 나가는 데, 이 방식은 매우 신뢰할 수 있는 패턴이에요.
 
 ```elm
 import Html exposing (..)
@@ -43,5 +43,5 @@ view model =
   ...
 ```
 
-That is really the essence of The Elm Architecture! We will proceed by filling in this skeleton with increasingly interesting logic.
+이게 Elm 아키텍처의 핵심입니다! 이제 점점 더 재미있는 로직으로 뼈대를 채워나가시면 되요. 
 
