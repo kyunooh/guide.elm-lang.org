@@ -82,7 +82,7 @@ update msg model =
 
 만약 `Increment` 메시지를 받았다면 해당 모델은 증가할 것이고, `Decrement` 메시지를 받았다면 감소해요. 참 직관적이죠.
 
-자 모든 게 좋아 보입니다만, 화면에 보여 줄 HTML은 어떻게 만들어야 할까요? Elm엔 `elm-lang/html` 이라고 하는 라이브러리가 있어서, 대부분의 HTML5 일반적인 Elm 함수로 접근할 수 있어요.
+자 모든 게 좋아 보입니다만, 화면에 보여 줄 HTML은 어떻게 만들어야 할까요? Elm엔 `elm-lang/html` 이라고 하는 라이브러리가 있어서, 대부분의 HTML5는 Elm 함수로 접근할 수 있어요.
 
 ```elm
 view : Model -> Html Msg
@@ -90,13 +90,13 @@ view model =
   div []
     [ button [ onClick Decrement ] [ text "-" ]
     , div [] [ text (toString model) ]
-    , button [ onClick Increment ] [ text "+" ]
+    , button [ onClick Increment ] [ text "+" ] 
     ]
 ```
 
 [여기](http://elm-lang.org/examples)에서 기본적인 HTML을 확인 할 수 있어요.
 
-중요한 것은 `view` 함수가 `Html Msg` 값을 제공한다는 것이에요. 이건 This means that it is a chunk of HTML that can produce `Msg` values. And when you look at the definition, you see the `onClick` attributes are set to give out `Increment` and `Decrement` values. These will get fed directly into our `update` function, driving our whole app forward.
+중요한 것은 `view` 함수가 `Html Msg` 값을 만들어준다는 것이에요.즉 `Msg`값들을 HTML 코드들로 생성해낸다는 것이에요. 함수를 보시면, `onClick` 속성에 `Increment`, `Decrement` 값을 넘겨주고 있죠. These will get fed directly into our `update` function, driving our whole app forward.
 
 Another thing to notice is that `div` and `button` are just normal Elm functions. These functions take \(1\) a list of attributes and \(2\) a list of child nodes. It is just HTML with slightly different syntax. Instead of having `<` and `>` everywhere, we have `[` and `]`. We have found that folks who can read HTML have a pretty easy time learning to read this variation. Okay, but why not have it be _exactly_ like HTML? **Since we are using normal Elm functions, we have the full power of the Elm programming language to help us build our views!** We can refactor repetitive code out into functions. We can put helpers in modules and import them just like any other code. We can use the same testing frameworks and libraries as any other Elm code. Everything that is nice about programming in Elm is 100% available to help you with your view. No need for a hacked together templating language!
 
