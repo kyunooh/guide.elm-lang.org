@@ -64,7 +64,7 @@ type alias Model =
   }
 ```
 
-이번엔 모델을 레코드로 표현 했어요\(레코드에 대해서 더 자세히 알고 싶으시다면 [여기](http://guide.elm-lang.org/core_language.html#records)와 [여기](http://elm-lang.org/docs/records)를 참고하세요.\) 지금은 사용자 입력을 레코드에 `content` 필드에 저장합니다.
+이번엔 모델을 레코드로 표현 했어요\(레코드에 대해서 더 자세히 알고 싶으시다면 [여기](http://guide.elm-lang.org/core_language.html#records)와 [여기](http://elm-lang.org/docs/records)를 참고하세요.\) 지금은 사용자 입력을 레코드에 `content` 필드로 저장합니다.
 
 > **공지** **:** 왜 귀찮게 레코드에 하나의 필드만 사용하는 지 의아할 수도 있어요. 그냥 바로 문자열을 사용해도 되는 데 말이죠. 물론 그렇게도 가능하지만, 레코드로 시작하는 건,  앱이 복잡해질 때 필드를 쉽게 추가 할 수 있답니다. 두 개의 텍스트 입력을 받게 될 때, 훨씬 적은 노력을 들여 수정할 수 있어요.
 
