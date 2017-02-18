@@ -61,7 +61,7 @@ view model =
 type alias Model = Int
 ```
 
-자 이제 우리는 모델을 생겼으니, 시간이 지남에 따라 어떻게 바뀔지 정해야겠죠. 전 항상 UI에서 보일 메시지를 정의하고 `UPDATE` 부분을 시작해요.
+자 이제 우리는 모델을 생겼으니, 시간이 지남에 따라 어떻게 바뀔지 정해야겠죠. 전 항상 UI에서 보일 메시지를 정의한 뒤 `UPDATE` 부분을 시작해요.
 
 ```elm
 type Msg = Increment | Decrement
