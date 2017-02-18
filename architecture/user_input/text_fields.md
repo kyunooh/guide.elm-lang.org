@@ -102,7 +102,7 @@ view model =
 
 자식 중 `<input>` 노드가 재밌는데요. `placeholder` 속성을 집어 넣는 것 외에도,  `onInput` 속성에 어떤 메시지가 전달되어야 할지도 선언하고 있죠.
 
-이 `onInput` 함수도 흥미로운데요. 하나의 인자를 받아서 전달하는데요. 이 경우엔 Msg 타입을 선언할 때 만든`Change` 함수가 필요해요.
+이 `onInput` 함수도 흥미로운데요. 하나의 인자를 받아서 전달하는데, 이 경우엔 Msg 타입을 선언할 때 만든`Change` 함수를 전달하죠.
 
 ```elm
 Change : String -> Msg
