@@ -2,7 +2,7 @@
 
 ---
 
-#### [Clone the code](https://github.com/evancz/elm-architecture-tutorial/) or follow along in the [online editor](http://elm-lang.org/examples/field).
+#### [코드를 복사](https://github.com/evancz/elm-architecture-tutorial/)하거나 [온라인 에디터](http://elm-lang.org/examples/field)에서 함께 따라해주세요
 
 ---
 
