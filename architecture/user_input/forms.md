@@ -6,7 +6,7 @@
 
 ---
 
-여기에선 당신의 이름, 비밀번호, 비밀번호 확인을 위한 필드 등이 있는, 기본적인 폼을 만들어 볼 거에요. 가장 기본적인 두 패스워드가 매칭 되는 지 확인하는 기능도 만들 거에요. 아주 쉽게 추가할 수 있으니까요.
+여기에선 당신의 이름, 비밀번호, 비밀번호 확인을 위한 필드 등이 있는, 기본적인 폼을 만들어 볼 거에요. 가장 기본적인 기능인, 입력한 두 패스워드가 같은 지 확인하는 기능도 만들 거에요. 왜냐면 아주 쉽게 추가할 수 있으니까요.
 
 The code is a bit longer in this case, but I still think it is valuable to look through it before you get into the description of what is going on.
 
