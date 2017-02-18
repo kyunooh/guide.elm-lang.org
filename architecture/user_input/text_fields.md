@@ -64,18 +64,18 @@ type alias Model =
   }
 ```
 
-이번엔 모델을 레코드로 표현 했어요\(레코드에 대해서 더 자세히 알고 싶으시다면 [여기](http://guide.elm-lang.org/core_language.html#records)와 [여기](http://elm-lang.org/docs/records)를 참고하세요.\) 지금은 사용자 입력을, 레코드에 `content` 필드에 저장합니다. For now, the record stores the user input in the `content` field.
+이번엔 모델을 레코드로 표현 했어요\(레코드에 대해서 더 자세히 알고 싶으시다면 [여기](http://guide.elm-lang.org/core_language.html#records)와 [여기](http://elm-lang.org/docs/records)를 참고하세요.\) 지금은 사용자 입력을, 레코드에 `content` 필드에 저장합니다.
 
-> **공지** **:** 왜 귀찮게 레코드에 하나의 필드만 사용하는 지 의아할 수도 있어요. 그냥 바로 문자열을 사용해도 되는 데 말이죠. 물론 그렇게도 가능하지만, 레코드로 시작하는 게 앱이 복잡해질 때 필드를 쉽게 추가 할 수 있답니다. 두 개의 텍스트 입력을 받게 될 때, 훨씬 적은 노력을 들여 수정할 수 있어요.
+> **공지** **:** 왜 귀찮게 레코드에 하나의 필드만 사용하는 지 의아할 수도 있어요. 그냥 바로 문자열을 사용해도 되는 데 말이죠. 물론 그렇게도 가능하지만, 레코드로 시작하는 건,  앱이 복잡해질 때 필드를 쉽게 추가 할 수 있답니다. 두 개의 텍스트 입력을 받게 될 때, 훨씬 적은 노력을 들여 수정할 수 있어요.
 
-자 모델이 있으, 이 앱의 메시지는 딱 한 종류 밖에 없어요. 유저가 텍스트 필드의 내용을 변경하는 것 뿐이죠.\`\`\`\`\`\`\`
+자 이제 모델이 있으니, 메시지를 선언하죠. 이 앱의 메시지는 딱 한 종류 밖에 없어요. 유저가 텍스트 필드의 내용을 변경하는 것 뿐이죠.
 
 ```elm
 type Msg
   = Change String
 ```
 
-This means our update function just has to handle this one case:
+이건  update 함수도 그저 한가지 경우만 다룰거라는 걸 의미해요.
 
 ```elm
 update : Msg -> Model -> Model
@@ -85,9 +85,9 @@ update msg model =
       { model | content = newContent }
 ```
 
-When we receive new content, we use the record update syntax to update the contents of `content`.
+새로운 내용을 받았을 때, 레코드를 `content`의 내용을 새로운 내용으로 바꿀 거에요.
 
-Finally we need to say how to view our application:
+마지막으로 `view`를 작성해야 되요.
 
 ```elm
 view : Model -> Html Msg
@@ -98,17 +98,17 @@ view model =
     ]
 ```
 
-We create a `<div>` with two children.
+두개의 자식을 갖는 `<div>` 를 만들어요.
 
-The interesting child is the `<input>` node. In addition to the `placeholder` attribute, it uses `onInput` to declare what messages should be sent when the user types into this input.
+자식 중 `<input>` 노드가 재밌는데요. `placeholder` 속성을 집어 넣는 것 외에도,  `onInput` 속성에 어떤 메시지가 전달되어야 할지도 선언하고 있죠.
 
-This `onInput` function is kind of interesting. It takes one argument, in this case the `Change` function which was created when we declared the `Msg` type:
+이 `onInput` 함수도 흥미로운데요. 하나의 인자를 받아서 전달하는데요. 이 경우엔 Msg 타입을 선언할 때 만든`Change` 함수가 필요해요.
 
 ```elm
 Change : String -> Msg
 ```
 
-This function is used to tag whatever is currently in the text field. So let's say the text field currently holds `yol` and the user types `o`. This triggers an `input` event, so we will get the message `Change "yolo"` in our `update` function.
+이 함수는 현재 텍스트 필드에 있는 내용을 태그하는 데 사용되요. 현재 텍스트 필드에 `yol` 이 있는 상태에서, `o` 를 입력할 때 `input` 이벤트가 발생하므로, 이 트리거를 통해`Change "yolo"` 메시지를 `update` 함수에서 받을 수 있죠. 
 
-So now we have a simple text field that can reverse user input. Neat! Now on to putting a bunch of text fields together into a more traditional form.
+유저 입력을 뒤집는 간단한 텍스트 필드를 만들어 보았는데요. 자 이제 더 많은 텍스트 필드를 좀 더 전통적인 폼 안에 넣어볼게요.
 
