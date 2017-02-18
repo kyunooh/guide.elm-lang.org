@@ -82,7 +82,7 @@ update msg model =
 
 `Increment` 메시지를 받았다면 해당 모델은 증가할 것이고, `Decrement` 메시지를 받았다면 감소해요. 참 직관적이죠?
 
-자 모든 게 좋아 보입니다만, 화면에 보여 줄 HTML은 어떻게 만들어야 할까요? Elm엔 `elm-lang/html` 이라고 하는 라이브러리가 있어서, 대부분의 HTML5를\` Elm 함수로 접근할 수 있어요.
+자 모든 게 좋아 보입니다만, 화면에 보여 줄 HTML은 어떻게 만들어야 할까요? Elm엔 `elm-lang/html` 이라고 하는 라이브러리가 있어서, 대부분의 HTML5를 Elm 함수로 접근할 수 있어요.
 
 ```elm
 view : Model -> Html Msg
