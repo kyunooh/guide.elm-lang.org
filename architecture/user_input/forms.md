@@ -149,12 +149,12 @@ viewValidation model =
 
 일반적인 Elm 코드로 이루어진 HTML 라이브러리의 장점이 보이기 시작하네요. 만약에 모든 코드를 `view` 에 쑤셔넣어다면 보기에 굉장히 이상했을 거에요. Elm에선 다른 코드들 처럼 리팩토링을 할 수 있답니다!
 
-On these same lines, you may notice that the `<input>` nodes all are created with pretty similar code. Say we made each input fancier: there is an outer `<div>` that holds a `<span>` and an `<input>` with certain classes. It would make total sense to break that pattern out into a `viewInput` function so you never have to repeat yourself. This also means you change it in one place and everyone gets the updated HTML.
+같은 줄에서, `<input>` 노드들은 전부 비슷하게 코드로 작성되어 있죠. 좀 더 멋있게 하고 싶다면, 바깥 쪽 `<div>`에 특정 class를 가진 `<span>`과 `<input>`을 담으면 되요. 이걸 또 viewInput 분해하여 만든다면, 반복할 필요도 없죠. 한곳을 수정하는 것 만으로 모든 HTML에 반영할 수 있게 되는 거에요.
 
-> **Exercises:** One cool thing about breaking `viewValidation` out is that it is pretty easy to augment. If you are messing with the code as you read through this \(as you should be!\) you should try to:
+> **연습하기:**  `viewValidation` 을 분리하는 것의 장점은 기능을 늘리는 것이 쉽다는 거에요. 만약 코드를 읽기 어렵게 짜고 있다는 생각이 들면, 코드를 분리하세요. \(꼭 하는 것이 좋습니다!\) 다음을 시도해 보세요.
 >
-> * Check that the password is longer than 8 characters.
-> * Make sure the password contains upper case, lower case, and numeric characters.
+> * 비밀번호가 8자리보다 긴 지 확인하는 기능.
+> * 암호에 대문자, 소문자 및 숫자가 포함되어 있는지 확인하십시오..
 > * Add an additional field for `age` and check that it is a number.
 > * Add a "Submit" button. Only show errors _after_ it has been pressed.
 >
