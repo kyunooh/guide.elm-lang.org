@@ -153,12 +153,12 @@ viewValidation model =
 
 > **연습하기:**  `viewValidation` 을 분리하는 것의 장점은 기능을 늘리는 것이 쉽다는 거에요. 만약 코드를 읽기 어렵게 짜고 있다는 생각이 들면, 코드를 분리하세요. \(꼭 하는 것이 좋습니다!\) 다음을 시도해 보세요.
 >
-> * 비밀번호가 8자리보다 긴 지 확인하는 기능.
-> * 암호에 대문자, 소문자 및 숫자가 포함되어 있는지 확인하십시오..
-> * Add an additional field for `age` and check that it is a number.
-> * Add a "Submit" button. Only show errors _after_ it has been pressed.
->
-> Be sure to use the helpers in [the `String` library](http://package.elm-lang.org/packages/elm-lang/core/latest/String) if you try any of these! Also, we need to learn more before we start talking to servers, so before you try that here, keep reading until HTTP is introduced. It will be significantly easier with proper guidance!
+> * 비밀번호가 8자리보다 긴 지 확인하세요.
+> * 비밀번호에 대문자, 소문자 및 숫자가 포함되어 있는지 확인하세요.
+> * `age` 필드를 추가하고 숫자인지 확인하세요.
+> * "완료" 버튼을 만든 뒤, 버튼을 눌렀을 때만 error를 보여주도록 수정하세요.
+
+위 기능을 구현하게 되면 [String 라이브러리](http://package.elm-lang.org/packages/elm-lang/core/latest/String)의 헬퍼를 사용해야해요! 또한 서버와의 통신을 배우기 전에, 더 많은 것으 밸워야 하기 때문에, HTTP 소개 전까지 계속 이 부분을 읽으세요. 훨씬 쉽게 이해가 될 거에요!
 
 
 
