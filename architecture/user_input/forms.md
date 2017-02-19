@@ -8,7 +8,7 @@
 
 여기에선 당신의 이름, 비밀번호, 비밀번호 확인을 위한 필드 등이 있는, 기본적인 폼을 만들어 볼 거에요. 가장 기본적인 기능인, 입력한 두 패스워드가 같은 지 확인하는 기능도 만들 거에요. 왜냐면 아주 쉽게 추가할 수 있으니까요.
 
-이번 코드는 좀 더 길긴 하지만 여전히 보기 불편하진 않다고 생각하요. 이번에도 코드를 한번 쭉 보고, 설명으로 들어가봅시다. 
+이번 코드는 좀 더 길긴 하지만 여전히 보기 불편하진 않다고 생각하요. 이번에도 코드를 한번 쭉 보고, 설명으로 들어가봅시다.
 
 ```elm
 import Html exposing (..)
@@ -78,9 +78,9 @@ viewValidation model =
     div [ style [("color", color)] ] [ text message ]
 ```
 
-This is pretty much exactly how our [text field example](text_fields.md) looked, just with more fields. Let's walk through how it came to be!
+필드가 좀 더 많아 진 것 빼곤 [텍스트 필드 예제](text_fields.md)와 비슷해 보이는데요. 어떻게 동작 되는지 살펴 볼게요!
 
-As always, you start out by guessing at the `Model`. We know there are going to be three text fields, so let's just go with that:
+언제나 처럼, `Model` 을 구상하는 거로 시작해요. 이번엔 세개의 필드가 있겠죠. 바로 시작하죠.
 
 ```elm
 type alias Model =
@@ -90,7 +90,7 @@ type alias Model =
   }
 ```
 
-Great, seems reasonable. We expect that each of these fields can be changed separately, so our messages should account for each of those scenarios.
+잘 구성한 것 같군요. 각 필드는 개별적으로 변경 되기 때문에, 메시지도 각각 나누어 져요.
 
 ```elm
 type Msg
@@ -99,7 +99,7 @@ type Msg
     | PasswordAgain String
 ```
 
-This means our `update` is pretty mechanical. Just update the relevant field:
+메시지가 각각 나누어져 있어서, `update` 도 기계적으로 구성되겠네요. 관련 필드별로 수정되게 끔 하죠.
 
 ```elm
 update : Msg -> Model -> Model
@@ -115,7 +115,7 @@ update msg model =
       { model | passwordAgain = password }
 ```
 
-We get a little bit fancier than normal in our `view` though.
+일반적인 `view` 보단, 살짝 전문가 같아 보이는 걸 해봅시다.
 
 ```elm
 view : Model -> Html Msg
@@ -128,9 +128,9 @@ view model =
     ]
 ```
 
-It starts out normal: We create a `<div>` and put a couple `<input>` nodes in it. Each one has an `onInput` attribute that will tag any changes appropriately for our `update` function. \(This is all building off of the text field example in the previous section.\)
+처음엔 평범하게 시작하네요. `<div>`를 만들고, 몇개의 `<input>` 노드를 그 안에 만들어요. 각 노드는 `onInput` 속성을 갖고, 해당하는 `update` 함수를 설정해줘요. \(전부 이전 단원의 텍스트 필드 예제를 바탕으로 만들어 진 거에요.\)
 
-But for the last child we do not directly use an HTML function. Instead we call the `viewValidation` function, passing in the current model.
+하지만 마지막은 직접적으로 HTML 함수를 사용하지 않아요. 대신 현재의 모델이 전달되는 `viewValidation` 함수를 호출해요.
 
 ```elm
 viewValidation : Model -> Html msg
@@ -145,9 +145,9 @@ viewValidation model =
     div [ style [("color", color)] ] [ text message ]
 ```
 
-This function first compares the two passwords. If they match, you want green text and a positive message. If they do not match, you want red text and a helpful message. With that info, we produce a `<div>` filled with a colorful message explaining the situation.
+이 함수는 두 비밀번호를 비교한 뒤, 매칭 된다면 초록색으로 가능하다는 메시지를, 매칭되지 않는다면 빨간색으로 도움이 되는 메시지를 만들어요. 그리고 그 정보로 화려한 메시지를 가진 `<div>`를 만들죠.
 
-This starts to show the benefits of having our HTML library be normal Elm code. It would have looked really weird to jam all that code into our `view`. In Elm, you just refactor like you would with any other code!
+일반적인 Elm 코드로 이루어진 HTML 라이브러리의 장점이 보이기 시작하네요. 만약에 모든 코드를 `view` 에 쑤셔넣어다면 보기에 굉장히 이상했을 거에요. Elm에선 다른 코드들 처럼 리팩토링을 할 수 있답니다!
 
 On these same lines, you may notice that the `<input>` nodes all are created with pretty similar code. Say we made each input fancier: there is an outer `<div>` that holds a `<span>` and an `<input>` with certain classes. It would make total sense to break that pattern out into a `viewInput` function so you never have to repeat yourself. This also means you change it in one place and everyone gets the updated HTML.
 
