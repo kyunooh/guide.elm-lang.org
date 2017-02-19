@@ -158,7 +158,5 @@ viewValidation model =
 > * `age` 필드를 추가하고 숫자인지 확인하세요.
 > * "완료" 버튼을 만든 뒤, 버튼을 눌렀을 때만 error를 보여주도록 수정하세요.
 
-위 기능을 구현하게 되면 [String 라이브러리](http://package.elm-lang.org/packages/elm-lang/core/latest/String)의 헬퍼를 사용해야해요! 또한 서버와의 통신을 배우기 전에, 더 많은 것으 밸워야 하기 때문에, HTTP 소개 전까지 계속 이 부분을 읽으세요. 훨씬 쉽게 이해가 될 거에요!
-
-
+위 기능을 구현하게 되면 [String 라이브러리](http://package.elm-lang.org/packages/elm-lang/core/latest/String)의 헬퍼를 사용해야해요! 또한 서버와의 통신을 배우기 전에, 더 많은 것으 밸워야 하기 때문에, HTTP 소개 전까지 계속 이 부분을 읽으세요. 그렇다면 앞으로도 훨씬 쉽게 이해가 될 거에요!
 
