@@ -1,7 +1,8 @@
-# More About User Input
+# 사용자 입력 보충설명
 
-We only covered buttons and text fields, but there are other crazier inputs that you will need eventually.
+버튼과 텍스트 필드만 설명했지만, 결국엔 훨씬 더 복잡한 입력을 다루게 될 거에요. 
 
-So if you want to see examples of radio buttons and check boxes, visit [the Elm examples page](http://elm-lang.org/examples) which has a bunch of small examples you can mess around with. It is all variations on stuff we have learned in this tutorial already, so playing with these examples is a great way to practice and become more comfortable with what you have learned so far. Maybe try incorporating check boxes into the form example?
+여러분이 만약 라디오 버튼\(radio buttons\)이나 체크박스\(check box\)같은 예제들 보고 싶다면  [Elm 예제 페이지](http://elm-lang.org/examples)를 참고하세요. 계속해서 볼만한 예제들이 많이 있어요. 여러분이 이미 배운 것들의 변형일 분이므로, 이 예제들을 가지고 놀다보면 Elm에 익숙해질 거에요. 체크박스를 폼 예제안에 포함시키는 것도 시도해 볼 수 있겠죠?
 
-That said, I want to keep up the momentum of this tutorial and keep introducing new concepts, so next we will be looking at how to work with things like HTTP and web sockets!
+이 튜토리얼을 통해 추진력을 얻고, 앞으로 나올 새로운 개념을 계속해서 익혀 나가세요. 다음으론 HTTP나 Web Socket을 다루는 방법에 대해 살펴 볼 거에요!
+
