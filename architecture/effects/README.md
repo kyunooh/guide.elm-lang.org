@@ -4,7 +4,7 @@
 
 ![](beginnerProgram.svg)
 
-From our perspective, we just receive messages and produce new `Html` to get rendered on screen. The “Elm Runtime” is sitting there behind the scenes. When it gets `Html` it figures out how to render it on screen [really fast](http://elm-lang.org/blog/blazing-fast-html-round-two). When a user clicks on something, it figures out how to pipe that into our program as a `Msg`. So the Elm Runtime is in charge of _doing_ stuff. We just transform data.
+위와 같은 같은 관점에서 본다면,  From our perspective, we just receive messages and produce new `Html` to get rendered on screen. The “Elm Runtime” is sitting there behind the scenes. When it gets `Html` it figures out how to render it on screen [really fast](http://elm-lang.org/blog/blazing-fast-html-round-two). When a user clicks on something, it figures out how to pipe that into our program as a `Msg`. So the Elm Runtime is in charge of _doing_ stuff. We just transform data.
 
 This section builds on that pattern, giving you the ability to make HTTP requests or subscribe to messages from web sockets. Think of it like this:
 
