@@ -4,7 +4,7 @@
 
 ![](beginnerProgram.svg)
 
-위와 같은 같은 관점에서 본다면,  그저 메시지를 받고 새로운 렌더링 된 HTML을 화면에 제공해주는 것 뿐이에요. "Elm Runtime"은 뒤에 숨어 이런 처리를 해주는 것이고요. HTML을 [really fast](http://elm-lang.org/blog/blazing-fast-html-round-two)   kFrom our perspective, we just receive messages and produce new `Html` to get rendered on screen.  “Elm Runtime” is sitting there behind the scenes. When it gets `Html` it figures out how to render it on screen [really fast](http://elm-lang.org/blog/blazing-fast-html-round-two). When a user clicks on something, it figures out how to pipe that into our program as a `Msg`. So the Elm Runtime is in charge of _doing_ stuff. We just transform data.
+위와 같은 같은 관점에서 본다면, 그저 메시지를 받고 새로운 렌더링 된 HTML을 화면에 제공해주는 것 뿐이에요. "Elm Runtime"은 뒤에 숨어 이런 처리를 해주는 것이고요. HTML을 렌더링해 가져오는 과정이 [무척 빠르게 동작하죠.](http://elm-lang.org/blog/blazing-fast-html-round-two) 사용자가 클릭과 같은 동작을 하였을 때 Msg가 전달되어 변화를 파악하고, Elm Runtime 은 이런 과정을 처리해줍니다. 우리는 그냥 데이터만 변화시켜주면 되는 거죠.
 
 This section builds on that pattern, giving you the ability to make HTTP requests or subscribe to messages from web sockets. Think of it like this:
 
