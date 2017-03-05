@@ -1,13 +1,14 @@
-# Random
+# 랜덤\(Random\)
 
 ---
-#### [Clone the code](https://github.com/evancz/elm-architecture-tutorial/) or follow along in the [online editor](http://elm-lang.org/examples/random).
+
+#### [Clone the code](https://github.com/evancz/elm-architecture-tutorial/\) or follow along in the [online editor]\(http://elm-lang.org/examples/random).
+
 ---
 
 We are about to make an app that "rolls dice", producing a random number between 1 and 6.
 
 When I write code with effects, I usually break it into two phases. Phase one is about getting something on screen, just doing the bare minimum to have something to work from. Phase two is filling in details, gradually approaching the actual goal. We will use this process here too.
-
 
 ## Phase One - The Bare Minimum
 
@@ -56,7 +57,6 @@ Here we specify both the initial model and some commands we'd like to run immedi
 
 At this point, it is possible to wire it all up and take a look. You can click the `<button>`, but nothing happens. Let's fix that!
 
-
 ## Phase Two - Adding the Cool Stuff
 
 The obvious thing missing right now is the randomness! When the user clicks a button we want to command Elm to reach into its internal random number generator and give us a number between 1 and 6. The first step I would take towards that goal would be adding a new kind of message:
@@ -98,20 +98,21 @@ That is it. Now we can click and see the number flip to some new value!
 
 So the big lessons here are:
 
-  - Write your programs bit by bit. Start with a simple skeleton, and gradually add the tougher stuff.
-  - The `update` function now produces a new model *and* a command.
-  - You cannot just get random values willy-nilly. You create a command, and Elm will go do some work behind the scenes to provide it for you. In fact, any time our program needs to get unreliable values (randomness, HTTP, file I/O, database reads, etc.) you have to go through Elm.
+* Write your programs bit by bit. Start with a simple skeleton, and gradually add the tougher stuff.
+* The `update` function now produces a new model _and_ a command.
+* You cannot just get random values willy-nilly. You create a command, and Elm will go do some work behind the scenes to provide it for you. In fact, any time our program needs to get unreliable values \(randomness, HTTP, file I/O, database reads, etc.\) you have to go through Elm.
 
 At this point, the best way to improve your understanding of commands is just to see more of them! They will appear prominently with the `Http` and `WebSocket` libraries, so if you are feeling shaky, the only path forward is practicing with randomness and playing with other examples of commands!
 
 > **Exercises:** Here are some that build on stuff that has already been introduced:
 >
->   - Instead of showing a number, show the die face as an image.
->   - Add a second die and have them both roll at the same time.
+> * Instead of showing a number, show the die face as an image.
+> * Add a second die and have them both roll at the same time.
 >
 > And here are some that require new skills:
 >
->   - Instead of showing an image of a die face, use the `elm-lang/svg` library to draw it yourself.
->   - After you have learned about tasks and animation, have the die flip around randomly before they settle on a final value.
+> * Instead of showing an image of a die face, use the `elm-lang/svg` library to draw it yourself.
+> * After you have learned about tasks and animation, have the die flip around randomly before they settle on a final value.
+
 
 
