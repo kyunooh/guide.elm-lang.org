@@ -62,7 +62,7 @@ init =
   ...
 ```
 
-처음 세 부분은 거의 똑같아 보이지만, 몇가지 새로운 사항들이 있어요.The first three sections are almost exactly the same, but there are a few new things overall:
+처음 세 부분은 거의 똑같아 보이지만, 몇가지 새로운 사항들이 있어요.
 
 1. 이제 `update` 함수는 새로운 모델을 반환해주는 것 이상의 일을 해요. 새로운 모델과 실행할 명령도 같이 반환하죠. 이 명령은 `update` 함수에 들어갈 `Msg` 값을 제공해요.
 
