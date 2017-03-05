@@ -6,23 +6,23 @@
 
 위와 같은 같은 관점에서 본다면, 그저 메시지를 받고 새로운 렌더링 된 HTML을 화면에 제공해주는 것 뿐이에요. "Elm Runtime"은 뒤에 숨어 이런 처리를 해주는 것이고요. HTML을 렌더링해 가져오는 과정이 [무척 빠르게 동작하죠.](http://elm-lang.org/blog/blazing-fast-html-round-two) 사용자가 클릭과 같은 동작을 하였을 때 Msg가 전달되어 변화를 파악하고, Elm Runtime 은 이런 과정을 처리해줍니다. 우리는 그냥 데이터만 변화시켜주면 되는 거죠.
 
-이 단원은 위와 같은This section builds on that pattern, giving you the ability to make HTTP requests or subscribe to messages from web sockets. Think of it like this:
+이 단원은 Http 요청을 받거나, 웹소켓(web sockets)을 통한 메시지를 구독하는 등의 패턴을 기반으로 진행합니다. 다음과 같이 생각하시면 되죠.
 
 ![](program.svg)
 
-Instead of just producing `Html`, we will now be producing commands and subscriptions:
+`Html`을 제공하는 대신에, 명령(commands)와 구독(subscriptions)을 제공할 거에요.
 
-* **Commands** — A `Cmd` lets you _do_ stuff: generate a random number, send an HTTP request, etc.
+* **명령(Commands)** — `Cmd`는 랜덤 숫자 생성이나, HTTP 요청등의 _행위_를 맡아요.
 
-* **Subscriptions** — A `Sub` lets you register that you are interested in something: tell me about location changes, listen for web socket messages, etc.
+* **구독(Subscriptions)** — `Sub`엔 위치 변경이라던가, 웹 소켓 메시지 등의 관심사를 등록해요. 
 
-If you squint, commands and subscriptions are pretty similar to `Html` values. With `Html`, we never touch the DOM by hand. Instead we represent the desired HTML as _data_ and let the Elm Runtime do some clever stuff to make it render [really fast](http://elm-lang.org/blog/blazing-fast-html-round-two). It is the same with commands and subscriptions. We create data that _describes_ what we want to do, and the Elm Runtime does the dirty work.
+코드를 대충 보면, 명령과 구독은 `Html` 값과 굉장히 비슷합니다. `Html`을 사용하면, DOM을 손수 건드릴 일이 없어요. HTML로 _데이터_ 등을 표현하지 않고, Elm Runtime이 이런과정을 [무척 빠르게](http://elm-lang.org/blog/blazing-fast-html-round-two) 렌더링하죠. 명령과 구독도 마찬가지로 동작해요. 우리가 _구독_하게 할 데이터를 만들고 Elm Runtime에서 복잡한 작업들을 처리해주죠.
 
-Don’t worry if it seems a bit confusing for now, the examples will help! So first let’s look at how to fit these concepts into the code we have seen before.
+복잡한가요? 지금은 혼란하고 어려운 개념 같지만, 예제를 통해 배워 나갈 수 있을 거에요. 우선 이런 개념들이 코드에 어떻게 적용되는지부터 살펴 볼게요.
 
-## Extending the Architecture Skeleton
+## 설계로부터 확장해나가기
 
-So far our architecture skeleton has focused on creating `Model` types and `update` and `view` functions. To handle commands and subscriptions, we need to extend the basic architecture skeleton a little bit:
+자 지금까지의 아키텍처는 `Model`타입과 `update`, `view` 함수에 초점을 맞췄었어요. 명령과 구독을 처리하기 위해선 기본적인 패턴을 조금 확장 시킬 필요가 있어요.
 
 ```elm
 -- MODEL
@@ -62,26 +62,26 @@ init =
   ...
 ```
 
-The first three sections are almost exactly the same, but there are a few new things overall:
+처음 세 부분은 거의 똑같아 보이지만, 몇가지 새로운 사항들이 있어요.The first three sections are almost exactly the same, but there are a few new things overall:
 
-1. The `update` function now returns more than just a new model. It returns a new model and some commands you want to run. These commands are all going to produce `Msg` values that will get fed right back into our `update` function.
+1. 이제 `update` 함수는 새로운 모델을 반환해주는 것 이상의 일을 해요. 새로운 모델과 실행할 명령도 같이 반환하죠. 이 명령은 `update` 함수에 들어갈 `Msg` 값을 제공해요.
 
-2. There is a `subscriptions` function. This function lets you declare any event sources you need to subscribe to given the current model. Just like with `Html Msg` and `Cmd Msg`, these subscriptions will produce `Msg` values that get fed right back into our `update` function.
+2. `구독(subscriptions)` 함수를 봐볼게요. 이 함수엔 현재의 모델이 구독해야할 그 어떤 이벤트든 선언할 수 있어요. `Html Msg` 와 `Cmd Msg`처럼, 구독 함수는 `update` 함수에 들어갈 `Msg` 값을 제공해요.
 
-3. So far `init` has just been the initial model. Now it produces both a model and some commands, just like the new `update`. This lets us provide a starting value _and_ kick off any HTTP requests or whatever that are needed for initialization.
+3. 지금까지 `init` 은 초기화 된 모델이었죠. 이제는 새로운 `update` 함수처럼, 모델과 명령, 둘 다를 제공해요. 초기화가 필요한 HTTP 요청이라던가, 시작시 필요한 그 어떤 값이든 초기화시킬 수 있어요.
 
-Now it is totally okay if this does not really make sense yet! That only really happens when you start seeing it in action, so lets hop right into the examples!
+아직 완벽하게 이해되지 않더라도 괜찮아요! 실제로 동작하는 것을 본다면 이해하실 수 있을 거에요. 자 그런 의미에서 예제를 통해 확인해볼게요!
 
-> **Aside:** One crucial detail here is that commands and subscriptions are _data_. When you create a command, you do not actually _do_ it. Same with commands in real life. Let's try it. Eat an entire watermelon in one bite! Did you do it? No! You kept reading before you even _thought_ about buying a tiny watermelon.
+> ** 조언 :** 이 부분에서 중요한 사항은 명령과 구독이 _data_ 라는 것이에요. 명령을 만들때 실제로 무언가 _동작_ 되는 것이 아니랍니다. 실제 상황에서의 명령과 같아요. 자 보세요. 누군가 "수박 한 통을 전부 한입에 먹어봐!"라고 했을 때, 이미 그것을 했을까요? 아니죠! 심지어 당신이 '작은 수박을 사야지'라고 _생각_하기도 전부터, 그 말을 듣고 있는 중인거에요. 행동하는 것이 아니라는 거죠!
 >
-> Point is, commands and subscriptions are data. You hand them to Elm to actually run them, giving Elm a chance to log all of this information. In the end, effects-as-data means Elm can:
+> 요점은, 명령과 구독이 데이터라는 것이에요. 실제로 Elm을 다룰 때, 모든 정보에 대한 기록들을 Elm이 넘겨받도록 해요. 이런 과정을 통해 엘름이 다음과 같은 것들을 할 수 있게 되죠.
 >
-> * Have a general purpose time-travel debugger.
-> * Keep the "same input, same output" guarantee for all Elm functions.
-> * Avoid setup/teardown phases when testing `update` logic.
-> * Cache and batch effects, minimizing HTTP connections or other resources.
+> * 시간여행(time-travel) 디버거
+> * 모든 Elm 함수가 "같은 입력엔, 같은 출력"을 갖게하도록 유지함
+> * `update` 로직을 테스트할 때, setup/teardown 구문등을 피함
+> * 효과를 캐시하거나 배치(batch)처리, HTTP 요청과 기타 다른 자원을 최소화 함
 >
-> So without going too crazy on details, pretty much all the nice guarantees and tools you have in Elm come from the choice to treat effects as data! I think this will make more sense as you get deeper into Elm.
+> 세부 구현들을 신경쓰지 않으면서 Elm 코드가 동작을 보장할 수 있는 것은, 효과들을 데이터로 초점을 맞추는 데에서 비롯되었어요! Elm에 대해 깊이 들어갈수록 이런 이유를 잘 이해하게 될 거에요.
 
 
 
