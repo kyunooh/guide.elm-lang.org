@@ -6,7 +6,7 @@
 
 ---
 
-We are about to make an app that "rolls dice", producing a random number between 1 and 6.
+이번엔 1에서 6까지 중 숫자 하나를 반환하는 "주사위 굴리기" 앱을 만들거에요.
 
 When I write code with effects, I usually break it into two phases. Phase one is about getting something on screen, just doing the bare minimum to have something to work from. Phase two is filling in details, gradually approaching the actual goal. We will use this process here too.
 
