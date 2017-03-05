@@ -10,7 +10,7 @@
     * [폼\(Forms\)](architecture/user_input/forms.md)
     * [보충설명](architecture/user_input/more.md)
   * [효과](architecture/effects/README.md)
-    * [Random](architecture/effects/random.md)
+    * [랜덤\(Random\)](architecture/effects/random.md)
     * [HTTP](architecture/effects/http.md)
     * [Time](architecture/effects/time.md)
     * [Web Sockets](architecture/effects/web_sockets.md)
