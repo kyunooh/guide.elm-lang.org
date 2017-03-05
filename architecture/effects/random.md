@@ -20,7 +20,7 @@ type alias Model =
   }
 ```
 
-For now we will just track `dieFace` as an integer between 1 and 6. Then I would quickly sketch out the `view` function because it seems like the easiest next step.
+지금은 일단 `dieFace(주사위의 면)`을 1부터 6까지의 정수라고 생각할거에요. 그리고 나서 빠르게 `view` 함수의 뼈대를 잡고 맘 편하게 다음단계로 넘어갈게요.
 
 ```elm
 view : Model -> Html Msg
@@ -31,7 +31,7 @@ view model =
     ]
 ```
 
-So this is typical. Same stuff we have been doing with the user input examples of The Elm Architecture. When you click our `<button>` it is going to produce a `Roll` message, so I guess it is time to take a first pass at the `update` function as well.
+Elm 아키텍처의 사용자 입력 단원 예제에서 본 전형적인 형태에요. `<button>` 클릭하면  `Roll` 메시지를 전달하고, `update` 함수에 전달되겠죠.
 
 ```elm
 type Msg = Roll
@@ -43,9 +43,9 @@ update msg model =
       (model, Cmd.none)
 ```
 
-Now the `update` function has the same overall shape as before, but the return type is a bit different. Instead of just giving back a `Model`, it produces both a `Model` and a command. The idea is: **we still want to step the model forward, but we also want to do some stuff.** In our case, we want to ask Elm to give us a random value. For now, I just fill it in with [`Cmd.none`](http://package.elm-lang.org/packages/elm-lang/core/latest/Platform-Cmd#none) which means "I have no commands, do nothing." We will fill this in with the good stuff in phase two.
+이 `update` 함수는 이전과 같은 형태로 보이지만, 반환 타입이 살짝 달라요. 이전엔 모델만 반환했어요. 하지만 지금은 `모델`과 `명령`, 둘 다를 반환하죠. "**모델을 반환할 건데, 거기에 '무엇'을 더 하고 싶어**"라고 생각하시면 되요. 이 예제의 경우엔, '무엇'이 Elm에게 랜덤값을 요청하는 거죠. 일단 [`Cmd.none`](https://www.gitbook.com/book/kyunooh/elm/edit#) 으로 채웠는데요. 이 의미는 "우리는 명령할 게 없어, 아무것도 하지마"를 뜻해요. 두번째 단계에서 '무엇'을 채울거에요. 
 
-Finally, I would create an `init` value like this:
+마지막으로 아래와 같이 `init` 값을 만들거에요.
 
 ```elm
 init : (Model, Cmd Msg)
@@ -53,9 +53,9 @@ init =
   (Model 1, Cmd.none)
 ```
 
-Here we specify both the initial model and some commands we'd like to run immediately when the app starts. This is exactly the kind of stuff that `update` is producing now too.
+앱이 시작될 때 즉시 실행될 때, 초기화 되어야 할 모델과 명령을 명시했어요. 이건 현재 `update`가 하고 있는 일과 거의 비슷해요. 
 
-At this point, it is possible to wire it all up and take a look. You can click the `<button>`, but nothing happens. Let's fix that!
+지금까지 모든것을 연결될 수 있도록 하였어요. 동작되진 않지만 `<button>`을 클릭할 수도 있죠. 자 그럼 동작이 되도록 바꿔볼게요!
 
 ## Phase Two - Adding the Cool Stuff
 
