@@ -9,7 +9,7 @@
     * [텍스트 필드\(Text Fields\)](architecture/user_input/text_fields.md)
     * [폼\(Forms\)](architecture/user_input/forms.md)
     * [보충설명](architecture/user_input/more.md)
-  * [Effects](architecture/effects/README.md)
+  * [효과](architecture/effects/README.md)
     * [Random](architecture/effects/random.md)
     * [HTTP](architecture/effects/http.md)
     * [Time](architecture/effects/time.md)
