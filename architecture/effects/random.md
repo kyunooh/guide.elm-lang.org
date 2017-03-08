@@ -59,7 +59,7 @@ init =
 
 ## 두번째 단계 - 동작 추가하기
 
-랜덤에 관한 걸 놓치고 있었네요! 유저가 버튼을 클릭 했을 때, Elm에게 명령을 내려 1부터 6사이의 난수를 생성해야 해요. 그러기 위해 새로운 종류의 메시지를 추가할 거에요. 
+랜덤에 관한 걸 놓치고 있었네요! 유저가 버튼을 클릭 했을 때, Elm에게 명령을 내려 1부터 6사이의 난수를 생성해야 해요. 그러기 위해 새로운 종류의 메시지를 추가할 거에요.
 
 ```elm
 type Msg
@@ -67,7 +67,7 @@ type Msg
   | NewFace Int
 ```
 
-We still have `Roll` from before, but now we add `NewFace` for when Elm hands us our new random number. That is enough to start filling in `update`:
+`Roll`은 그대로 두고, 난수를 받을 때 사용할 `NewFace`를 추가했어요. 이것만으로 `update`를 채우기 위한 준비는 끝났어요.
 
 ```elm
 update : Msg -> Model -> (Model, Cmd Msg)
