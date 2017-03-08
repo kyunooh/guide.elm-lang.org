@@ -57,9 +57,9 @@ init =
 
 지금까지 모든것을 연결될 수 있도록 하였어요. 동작이 않돼지만 `<button>`을 클릭할 수도 있죠. 자 그럼 동작하도록 바꿔 볼게요!
 
-## Phase Two - Adding the Cool Stuff
+## 두번째 단계 - 동작 추가하기
 
-The obvious thing missing right now is the randomness! When the user clicks a button we want to command Elm to reach into its internal random number generator and give us a number between 1 and 6. The first step I would take towards that goal would be adding a new kind of message:
+랜덤에 관한 걸 놓치고 있었네요! 유저가 버튼을 클릭 했을 때, Elm에게 명령을 내려 1부터 6사이의 난수를 생성해야 해요. 그러기 위해 새로운 종류의 메시지를 추가할 거에요. 
 
 ```elm
 type Msg
