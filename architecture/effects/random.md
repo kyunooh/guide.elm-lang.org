@@ -80,39 +80,39 @@ update msg model =
       (Model newFace, Cmd.none)
 ```
 
-There are two new things here. **First**, there is now a branch for `NewFace` messages. When a `NewFace` comes in, we just step the model forward and do nothing. **Second**, we have added a real command to the `Roll` branch. This uses a couple functions from [the `Random` library](http://package.elm-lang.org/packages/elm-lang/core/latest/Random). Most important is `Random.generate`:
+두 가지 새로운 게 보이는데요. **첫번째는** `NewFace` 메시지 부분,** 두번째는** 이제 진짜 `Roll` 명령어를 추가했다는 거죠. [`Random` 라이브러리](http://package.elm-lang.org/packages/elm-lang/core/latest/Random)에서 두가지 함수를 사용했는데, 가장 중요한 것은 `Random.generate` 이에요. 
 
 ```elm
 Random.generate : (a -> msg) -> Random.Generator a -> Cmd msg
 ```
 
-This function takes two arguments. The first is a function to tag random values. In our case we want to use `NewFace : Int -> Msg` to turn the random number into a message for our `update` function. The second argument is a "generator" which is like a recipe for producing certain types of random values. You can have generators for simple types like `Int` or `Float` or `Bool`, but also for fancy types like big custom records with lots of fields. In this case, we use one of the simplest generators:
+이 함수는 두개의 인자를 받아요. 첫번째 인자는 랜덤 값의 태그를 지정하는 것인데요. 위 경우에선 `NewFace : Int -> Msg` 를 사용하여, 난수를 `update` 함수에 전달했어요. 두번째 인자는 특정 유형의 임의 값을 지정하는 "생성자" 인데요. `Int`, `Float`, `Bool` 과 같은 간단한 타입을 사용할 수도 있지만, 필드가 많은 레코드에서도 사용할 수 있어요. 이 예제에서는 간단한 생성자를 사용하였어요.
 
 ```elm
 Random.int : Int -> Int -> Random.Generator Int
 ```
 
-You provide a lower and upper bound on the integer, and now you have a generator that produces integers in that range!
+정수에 상한과 하한을 정한 뒤, 자 이제 지정된 범위의 생성자를 갖게 되었습니다.
 
-That is it. Now we can click and see the number flip to some new value!
+이제 모두 끝났어요. 버튼을 클릭해보시고 새로운 값이 나오는 지 확인해 보세요!
 
-So the big lessons here are:
+이 단원에서 중요한 교훈이 있어요.
 
-* Write your programs bit by bit. Start with a simple skeleton, and gradually add the tougher stuff.
-* The `update` function now produces a new model _and_ a command.
-* You cannot just get random values willy-nilly. You create a command, and Elm will go do some work behind the scenes to provide it for you. In fact, any time our program needs to get unreliable values \(randomness, HTTP, file I/O, database reads, etc.\) you have to go through Elm.
+* 프로그램을 조금씩 조금씩 작성하세요. 일단 간단한 골격을 잡고, 점진적으로 발전시키세요.
+* `update` 함수에서 새로운 모델과 명령을 만들수 있어요. 
+* 그냥 랜덤 값을 얻을 순 없어요. 명령을 만들면, Elm은 안보이는 곳에서 그것을 처리하여 제공해요. 사실, 프로그램에서 신뢰할 수 없는 값\(랜덤 값, HTTP, file I/O, 데이터베이스 읽기 등\)은 Elm을 통해서 처리하게 돼요.
 
-At this point, the best way to improve your understanding of commands is just to see more of them! They will appear prominently with the `Http` and `WebSocket` libraries, so if you are feeling shaky, the only path forward is practicing with randomness and playing with other examples of commands!
+이 시점에서, 명령에 대한 이해를 향상시키는 가장 좋은 방법은 예제들을 더 많이 보는거에요!  HTTP 와 웹소켓 라이브러리에서 많이 사용되어지는 데요. 만약 어렵게 느껴지신다면, 랜덤과 같이 명령에 관한 더 많은 예제를 통해 연습해보시는 게 좋아요!
 
-> **Exercises:** Here are some that build on stuff that has already been introduced:
+> **연습문제:** 이미 소개 된 것들을 바탕으로 다음을 진행해보세요.
 >
-> * Instead of showing a number, show the die face as an image.
-> * Add a second die and have them both roll at the same time.
+> * 숫자를 보여주는 대신 이미지를 이용해 주사위의 면을 표시해 보세요.
+> * 주사위를 하나 더 추가해서, 두 주사위를 동시에 굴릴 수 있도록 해보세요
 >
-> And here are some that require new skills:
+> 다음은 새로운 기술이 필요해요. 
 >
-> * Instead of showing an image of a die face, use the `elm-lang/svg` library to draw it yourself.
-> * After you have learned about tasks and animation, have the die flip around randomly before they settle on a final value.
+> * 이미지로 표현하는 대신 `elm-lang/svg` 라이브러리를 통해 직접 그려보세요.
+> * 작업과 애니메이션을 배운 뒤에, 최종 값을 보여주기 전에 아무렇게나 빙글 돌도록 해보세요.
 
 
 
