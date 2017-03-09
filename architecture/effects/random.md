@@ -2,7 +2,7 @@
 
 ---
 
-#### [코드를 클론 ](https://github.com/evancz/elm-architecture-tutorial/\) or follow along in the [online editor]\(http://elm-lang.org/examples/random)하거나 [온라인 에디터](http://elm-lang.org/examples/random)를 이용하세요.
+#### [코드를 클론 ](https://github.com/evancz/elm-architecture-tutorial/\) or follow along in the [online editor]\(http://elm-lang.org/examples/random)하거나 [온라인 에디터](http://elm-lang.org/examples/random)에서 함께 따라해주세요.
 
 ---
 
