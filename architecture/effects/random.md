@@ -2,7 +2,7 @@
 
 ---
 
-#### [코드를 클론 하세요](https://github.com/evancz/elm-architecture-tutorial/\) or follow along in the [online editor]\(http://elm-lang.org/examples/random).
+#### [코드를 클론 ](https://github.com/evancz/elm-architecture-tutorial/\) or follow along in the [online editor]\(http://elm-lang.org/examples/random)하거나 [온라인 에디터](http://elm-lang.org/examples/random)를 이용하세요.
 
 ---
 
@@ -80,7 +80,7 @@ update msg model =
       (Model newFace, Cmd.none)
 ```
 
-두 가지 새로운 게 보이는데요. **첫번째는** `NewFace` 메시지 부분,** 두번째는** 이제 진짜 `Roll` 명령어를 추가했다는 거죠. [`Random` 라이브러리](http://package.elm-lang.org/packages/elm-lang/core/latest/Random)에서 두가지 함수를 사용했는데, 가장 중요한 것은 `Random.generate` 이에요. 
+두 가지 새로운 게 보이는데요. **첫번째는** `NewFace` 메시지 부분,** 두번째는** 이제 진짜 `Roll` 명령어를 추가했다는 거죠. [`Random` 라이브러리](http://package.elm-lang.org/packages/elm-lang/core/latest/Random)에서 두가지 함수를 사용했는데, 가장 중요한 것은 `Random.generate` 이에요.
 
 ```elm
 Random.generate : (a -> msg) -> Random.Generator a -> Cmd msg
@@ -109,7 +109,7 @@ Random.int : Int -> Int -> Random.Generator Int
 > * 숫자를 보여주는 대신 이미지를 이용해 주사위의 면을 표시해 보세요.
 > * 주사위를 하나 더 추가해서, 두 주사위를 동시에 굴릴 수 있도록 해보세요
 >
-> 다음은 새로운 기술이 필요해요. 
+> 다음은 새로운 기술이 필요해요.
 >
 > * 이미지로 표현하는 대신 `elm-lang/svg` 라이브러리를 통해 직접 그려보세요.
 > * 작업과 애니메이션을 배운 뒤에, 최종 값을 보여주기 전에 아무렇게나 빙글 돌도록 해보세요.
