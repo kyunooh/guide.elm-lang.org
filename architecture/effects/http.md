@@ -6,13 +6,13 @@
 
 ---
 
-유저가 새로운 이미지를 요청했을 때, 임의의 이미지를 가져오는 앱을 만들어 볼 거에요.
+유저가 새로운 gif를 요청했을 때, 임의의 gif를 가져오는 앱을 만들어 볼 거에요.
 
 랜덤 예제를 읽었다고 가정하에 진행할 거에요. 이전 단원에서, 앱을 작성하는 두단계의 과정을 배웠고, 간단한 종류의 명령을 보았어요. 이 단원에서는  같은 과정으로 좀 더 멋있는 종류의 명령을 해볼 거에요. 그렇기 때문에 이전 단원을 아직 안보셨다면, 되돌아 가시길 권해요. 맹세코 목표에 가장 빨리 도달하는 방법은 탄탄한 기초를 쌓는 거에요!
 
 ...
 
-자 이제 다 읽으셨나요? 좋군요. 그럼 임의의 이미지를 가져오도록 해보죠!
+자 이제 다 읽으셨나요? 좋군요. 그럼 임의의 gif를 가져오도록 해보죠!
 
 ## 첫번째 단계 - 최소한의 코드
 
@@ -53,7 +53,7 @@ view model =
     ]
 ```
 
-모델의 경우 어떤 종류의 이미지인지 지정하기 위해 `topic` 을 추가했어요. 사실 전 "cats"라고 하드코딩 하고 싶진 않고, 나중에 사용자가 주제를 정할 수 있게 끔도 하고 싶어요. 또한 임의의 이미지 URL을 가르키는 `gifUrl` 도 추가했어요.
+모델의 경우 어떤 종류의 gif인지 지정하기 위해 `topic` 을 추가했어요. 사실 전 "cats"라고 하드코딩 하고 싶진 않고, 나중에 사용자가 주제를 정할 수 있게 끔도 하고 싶어요. 또한 임의의 gif URL을 가르키는 `gifUrl` 도 추가했어요.
 
 랜덤 예제에서 했듯이 임시로 `init` 과 `update` 함수를 만들었어요. 지금은 사실 아무 명령도 제공하지 않지만, 요점은 화면이 있다는 거에요!
 
@@ -67,9 +67,7 @@ type Msg
   | NewGif (Result Http.Error String)
 ```
 
-We add a case for `NewGif` that holds a `Result`. You can read more about results [here](/error_handling/result.md), but the key idea is that it captures the two possible outcomes of an HTTP request. It either \(1\) succeeded with the URL of a random gif or \(2\) failed with some HTTP error \(server is down, bad URL, etc.\)
-
-That is enough to start filling in `update`:
+결과\(`Result`\)를 가지는 `NewGif` 메시지를 추가했습니다. 결과에 관한 자세한건 [여기](/error_handling/result.md)를 참고하세요. 핵심은 HTTP요청에서 가능한 두가지 결과를 받을 수 있다는 거에요. 성공적으로 임의의 gif URL을 받아오는 것, 또는 HTTP 에러가 발생하는 경우죠.\(서버가 죽었거나, URL이 잘못된 경우 등\) 이제 `update`를 작성해도 되겠군요.
 
 ```elm
 update : Msg -> Model -> (Model, Cmd Msg)
@@ -85,11 +83,11 @@ update msg model =
       (model, Cmd.none)
 ```
 
-So I added branches for our new messages. When `NewGif` holds a success, we update the `gifUrl` field to have the new URL. When `NewGif` holds an error, we ignore it, giving back the same model and doing nothing.
+새로운 메시지에 대한 경우를 추가했어요. `NewGif`가 성공적이면 `gifUrl`을 새로운 URL로 변경해주고, `NewGif`에서 에러가 발생한다면 무시하고 같은 모델을 돌려주도록 처리해요. 
 
-I also changed the `MorePlease` branch a bit. We need an HTTP command, so I called the `getRandomGif` function. The trick is that I made that function up. It does not exist yet. That is the next step!
+또한 `MorePlease`도 살짝 바꿨는데요. `getRandomGif`라는 함수를 호출 할 HTTP 명령이 필요해요. 여기선 일단 호출하도록만 하고, 아직 함수를 만들진 않았으니, 존재하지 않는 함수에요. 이제부터 만들거랍니다! 
 
-Defining `getRandomGif` might look something like this:
+`getRandomGif`는 다음과 같이 정의해요.
 
 ```elm
 getRandomGif : String -> Cmd Msg
@@ -108,13 +106,13 @@ decodeGifUrl =
   Json.at ["data", "image_url"] Json.string
 ```
 
-With that added, the "More" button actually goes and fetches a random gif. Check it out [here](http://elm-lang.org/examples/http)! But how does `getRandomGif` work exactly?
+추가된 "More" 버튼을 통해 이제 실재 임의의 gif를 가져와요. [여기](http://elm-lang.org/examples/http)서 확인해보세요! 그럼 `getRandomGif`는 과연 어떻게 동작하는 걸까요? 
 
-It starts out simple, we define `url` to be some giphy endpoint for random gifs. Next we create an HTTP `request` with [`Http.get`](http://package.elm-lang.org/packages/elm-lang/http/latest/Http#get). Finally, we turn it into a command with [`Http.send`](http://package.elm-lang.org/packages/elm-lang/http/latest/Http#send). Let’s break those steps down a bit more:
+간단하게 시작해보죠. 임의의 gif를 가져오기 위해 giphy의 url을 정의해요.그 다음엔 [`Http.get`](http://package.elm-lang.org/packages/elm-lang/http/latest/Http#get)을 이용해 HTTP 요청\(`request` \)을 만들어주고,  최종적으론 [`Http.send`](http://package.elm-lang.org/packages/elm-lang/http/latest/Http#send) 를 사용하여, 명령으로 전환해줘요. 자 이걸 쪼개서 파헤쳐 봅시다.
 
 * `Http.get : String -> Json.Decoder value -> Http.Request value`
 
-  This function takes a URL and a JSON decoder. This is our first time seeing a JSON decoder \(and we will cover them in depth [later](/interop/json.md)\), but for now, you really just need a high-level understanding. It turns JSON into Elm. In our case, we defined `decodeGifUrl` which tries to find a string value at `json.data.image_url`. Between the URL and the JSON decoder, we create an `Http.Request`. This is similar to a `Random.Generator` like we saw in [the previous example](random.md). It does not actually _do_ anything. It just describes how to make an HTTP request.
+  이 함수는 Url과 JSON 디코더를 받아요. 이번에 JSON디코더를 처음 보셨겠죠.\( [나중에](/interop/json.md) 좀 더 깊게 살펴볼 거에요\) 하지만 지금은 상위 레벨의 개념만 이해하시면 되요. JSON을 Elm코드로 변환된 건데, 위의 경우엔 `decodeGifUrl`이 `json.data.image_url`의 문자열 값을 찾아요.  URL과 JSON 디코더 사이에 `Http.Request` 를 만들었죠. 이건 [이전 예제에서 본](random.md) Random.Generator와 비슷한 거에요. 이건 실제로 그 어떤 동작도 하지 않고, 그저 HTTP request를 만드는 방법인 것 뿐이죠. This function takes a URL and a JSON decoder. This is our first time seeing a JSON decoder \(and we will cover them in depth [later](/interop/json.md)\), but for now, you really just need a high-level understanding. It turns JSON into Elm. In our case, we defined `decodeGifUrl` which tries to find a string value at `json.data.image_url`. Between the URL and the JSON decoder, we create an `Http.Request`. This is similar to a `Random.Generator` like we saw in [the previous example](random.md). It does not actually _do_ anything. It just describes how to make an HTTP request.
 
 * `Http.send : (Result Error value -> msg) -> Http.Request value -> Cmd msg`
 
