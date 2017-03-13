@@ -83,9 +83,9 @@ update msg model =
       (model, Cmd.none)
 ```
 
-새로운 메시지에 대한 경우를 추가했어요. `NewGif`가 성공적이면 `gifUrl`을 새로운 URL로 변경해주고, `NewGif`에서 에러가 발생한다면 무시하고 같은 모델을 돌려주도록 처리해요. 
+새로운 메시지에 대한 경우를 추가했어요. `NewGif`가 성공적이면 `gifUrl`을 새로운 URL로 변경해주고, `NewGif`에서 에러가 발생한다면 무시하고 같은 모델을 돌려주도록 처리해요.
 
-또한 `MorePlease`도 살짝 바꿨는데요. `getRandomGif`라는 함수를 호출 할 HTTP 명령이 필요해요. 여기선 일단 호출하도록만 하고, 아직 함수를 만들진 않았으니, 존재하지 않는 함수에요. 이제부터 만들거랍니다! 
+또한 `MorePlease`도 살짝 바꿨는데요. `getRandomGif`라는 함수를 호출 할 HTTP 명령이 필요해요. 여기선 일단 호출하도록만 하고, 아직 함수를 만들진 않았으니, 존재하지 않는 함수에요. 이제부터 만들거랍니다!
 
 `getRandomGif`는 다음과 같이 정의해요.
 
@@ -106,7 +106,7 @@ decodeGifUrl =
   Json.at ["data", "image_url"] Json.string
 ```
 
-추가된 "More" 버튼을 통해 이제 실재 임의의 gif를 가져와요. [여기](http://elm-lang.org/examples/http)서 확인해보세요! 그럼 `getRandomGif`는 과연 어떻게 동작하는 걸까요? 
+추가된 "More" 버튼을 통해 이제 실재 임의의 gif를 가져와요. [여기](http://elm-lang.org/examples/http)서 확인해보세요! 그럼 `getRandomGif`는 과연 어떻게 동작하는 걸까요?
 
 간단하게 시작해보죠. 임의의 gif를 가져오기 위해 giphy의 url을 정의해요.그 다음엔 [`Http.get`](http://package.elm-lang.org/packages/elm-lang/http/latest/Http#get)을 이용해 HTTP 요청\(`request` \)을 만들어주고,  최종적으론 [`Http.send`](http://package.elm-lang.org/packages/elm-lang/http/latest/Http#send) 를 사용하여, 명령으로 전환해줘요. 자 이걸 쪼개서 파헤쳐 봅시다.
 
@@ -116,7 +116,11 @@ decodeGifUrl =
 
 * `Http.send : (Result Error value -> msg) -> Http.Request value -> Cmd msg`
 
-  Once we have an HTTP request, we can turn it into a command with `Http.send`. This is just like how we used `Random.generate` to create a command with a random generator. The first argument is a way to turn the result of the HTTP request into a message for our `update` function. In this case, we create a `NewGif` message.
+  HTTP 요청을 `Http.send`로 바꿀 수 있어요. 이건 `Random.generate`를 이용해서 임의의 생성자를 만든 것과 비슷해요. 첫번째 인자는  update함수의 메시지로 Http request의 결과를 전해줘요. 위의 경우엔 `NewGif` 메시지를 만들죠.
+
+* Once we have an HTTP request, we can turn it into a command with `Http.send`. This is just like how we used `Random.generate` to create a command with a random generator. The first argument is a way to turn the result of the HTTP request into a message for our `update` function. In this case, we create a `NewGif` message.
+
+사실 이 단원은 매우 간단하게 설명했지만, 핵심은 첫번째로 HTTP 요청을 만들고, 그걸 Elm 명령어로 만들면 실제로 동작한다는 거에요. 여러분은 이 기본 패턴을 이용해 꾀 많은 것을 할 수 있어요.  [l나중에 n](/interop/json.md)JSON Decoder를 살펴볼 것이고, 그 어떤 이상한 JSON 이든 사용할 수 있어요.
 
 This has been a very quick introduction, but the key idea is that you must \(1\) create an HTTP request and \(2\) turn that into a command so Elm will actually _do_ it. You can go pretty far using the basic pattern here, and we will be looking into JSON decoders [later on](/interop/json.md), which will let you deal with whatever crazy JSON you run into.
 
