@@ -112,23 +112,19 @@ decodeGifUrl =
 
 * `Http.get : String -> Json.Decoder value -> Http.Request value`
 
-  이 함수는 Url과 JSON 디코더를 받아요. 이번에 JSON디코더를 처음 보셨겠죠.\( [나중에](/interop/json.md) 좀 더 깊게 살펴볼 거에요\) 하지만 지금은 상위 레벨의 개념만 이해하시면 되요. JSON을 Elm코드로 변환된 건데, 위의 경우엔 `decodeGifUrl`이 `json.data.image_url`의 문자열 값을 찾아요.  URL과 JSON 디코더 사이에 `Http.Request` 를 만들었죠. 이건 [이전 예제에서 본](random.md) Random.Generator와 비슷한 거에요. 이건 실제로 그 어떤 동작도 하지 않고, 그저 HTTP request를 만드는 방법인 것 뿐이죠. This function takes a URL and a JSON decoder. This is our first time seeing a JSON decoder \(and we will cover them in depth [later](/interop/json.md)\), but for now, you really just need a high-level understanding. It turns JSON into Elm. In our case, we defined `decodeGifUrl` which tries to find a string value at `json.data.image_url`. Between the URL and the JSON decoder, we create an `Http.Request`. This is similar to a `Random.Generator` like we saw in [the previous example](random.md). It does not actually _do_ anything. It just describes how to make an HTTP request.
+  이 함수는 Url과 JSON 디코더를 받아요. 이번에 JSON디코더를 처음 보셨겠죠.\( [나중에](/interop/json.md) 좀 더 깊게 살펴볼 거에요\) 하지만 지금은 상위 레벨의 개념만 이해하시면 되요. JSON이 Elm코드로 변환된 건데, 위의 경우엔 `decodeGifUrl`이 `json.data.image_url`의 문자열 값을 찾아요.  URL과 JSON 디코더 사이에 `Http.Request` 를 만들었죠. 이건 [이전 예제에서 본](random.md) Random.Generator와 비슷한 거에요. 이건 실제로 그 어떤 동작도 하지 않고, 그저 HTTP request를 만드는 방법인 것 뿐이죠.
 
 * `Http.send : (Result Error value -> msg) -> Http.Request value -> Cmd msg`
 
   HTTP 요청을 `Http.send`로 바꿀 수 있어요. 이건 `Random.generate`를 이용해서 임의의 생성자를 만든 것과 비슷해요. 첫번째 인자는  update함수의 메시지로 Http request의 결과를 전해줘요. 위의 경우엔 `NewGif` 메시지를 만들죠.
 
-* Once we have an HTTP request, we can turn it into a command with `Http.send`. This is just like how we used `Random.generate` to create a command with a random generator. The first argument is a way to turn the result of the HTTP request into a message for our `update` function. In this case, we create a `NewGif` message.
+사실 이 단원은 매우 간단하게 설명했지만, 핵심은 첫번째로 HTTP 요청을 만들고, 그걸 Elm 명령어로 만들면 실제로 동작한다는 거에요. 여러분은 이 기본 패턴을 이용해 꾀 많은 것을 할 수 있어요.  [나중에](/interop/json.md) JSON Decoder를 살펴볼 것이고, 그 어떤 이상한 JSON 이든 사용할 수 있어요.
 
-사실 이 단원은 매우 간단하게 설명했지만, 핵심은 첫번째로 HTTP 요청을 만들고, 그걸 Elm 명령어로 만들면 실제로 동작한다는 거에요. 여러분은 이 기본 패턴을 이용해 꾀 많은 것을 할 수 있어요.  [l나중에 n](/interop/json.md)JSON Decoder를 살펴볼 것이고, 그 어떤 이상한 JSON 이든 사용할 수 있어요.
-
-This has been a very quick introduction, but the key idea is that you must \(1\) create an HTTP request and \(2\) turn that into a command so Elm will actually _do_ it. You can go pretty far using the basic pattern here, and we will be looking into JSON decoders [later on](/interop/json.md), which will let you deal with whatever crazy JSON you run into.
-
-> **Exercises:** To get more comfortable with this code, try augmenting it with skills we learned in previous sections:
+> **연습문제:** 코드와 더 친해지기 위해, 이전 단원에서 배웠던 것들을 사용해 예제를 더욱 발전시켜보세요.
 >
-> * Show a message explaining why the image didn't change when you get an [`Http.Error`](http://package.elm-lang.org/packages/elm-lang/http/latest/Http#Error).
-> * Allow the user to modify the `topic` with a text field.
-> * Allow the user to modify the `topic` with a drop down menu.
+> * [`Http.Error`](http://package.elm-lang.org/packages/elm-lang/http/latest/Http#Error) 를 받았을 때, 왜 이미지를 바꾸지 못했는지 설명해주는 메시지를 보여주세요.
+> * 사용자가 텍스트 필드를 통해서 `topic`을 변경할 수 있도록 바꾸세요.
+> * 사용자가 드롭다운 메뉴를 이용해 `topic`을 변경할 수 있도록 바꾸세요.
 
 
 
