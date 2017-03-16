@@ -1,14 +1,16 @@
-# Time
+# 시간
 
 ---
-#### [Clone the code](https://github.com/evancz/elm-architecture-tutorial/) or follow along in the [online editor](http://elm-lang.org/examples/time).
+
+#### [코드를 클론하](https://github.com/evancz/elm-architecture-tutorial/)거나 [온라인 에디터](http://elm-lang.org/examples/time)에서 따라해 주세요.
+
 ---
 
-We are going to make a simple clock.
+간단한 시계를 만들어 보죠.
 
-So far we have focused on commands. With the randomness example, we *asked* for a random value. With the HTTP example, we *asked* for info from a server. That pattern does not really work for a clock. In this case, we want to sit around and hear about clock ticks whenever they happen. This is where **subscriptions** come in.
+랜덤 값을 이용한 예제, 서버와 통신하는 HTTP 예제를 통해 지금까지는 명령에 집중했었는데요. 시계 예제에서는 이전 패턴들로는 만들 수가 없어요. 시계가 틱톡 할때 마다 시계도 움직여야겠죠? 이 틱톡을 알아채는 게 바로 **구독\(subscriptions\)**이에요.   
 
-The code is not too crazy here, so I am going to include it in full. After you read through, we will come back to normal words that explain it in more depth.
+코드가 그리 복잡하지 않기 때문에 모든 코드를 한 곳에서 작성했어요. 코드 전체를 살펴 본 뒤 각각을 깊게 들어가 볼게요. 
 
 ```elm
 import Html exposing (Html)
@@ -75,7 +77,6 @@ view model =
       [ circle [ cx "50", cy "50", r "45", fill "#0B79CE" ] []
       , line [ x1 "50", y1 "50", x2 handX, y2 handY, stroke "#023963" ] []
       ]
-
 ```
 
 There is nothing new in the `MODEL` or `UPDATE` sections. Same old stuff. The `view` function is kind of interesting. Instead of using HTML, we use the `Svg` library to draw some shapes. It works just like HTML though. You provide a list of attributes and a list of children for every node.
@@ -90,8 +91,10 @@ The first argument is a time interval. We chose to get ticks every second. The s
 
 That is all there is to setting up a subscription! These messages will be fed to your `update` function whenever they become available.
 
-
 > **Exercises:**
 >
->   - Add a button to pause the clock, turning the `Time` subscription off.
->   - Make the clock look nicer. Add an hour and minute hand. Etc.
+> * Add a button to pause the clock, turning the `Time` subscription off.
+> * Make the clock look nicer. Add an hour and minute hand. Etc.
+
+
+
