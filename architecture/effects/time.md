@@ -2,7 +2,7 @@
 
 ---
 
-#### [코드를 클론하](https://github.com/evancz/elm-architecture-tutorial/)거나 [온라인 에디터](http://elm-lang.org/examples/time)에서 따라해 주세요.
+#### [코드를 클론](https://github.com/evancz/elm-architecture-tutorial/)하거나 [온라인 에디터](http://elm-lang.org/examples/time)에서 따라해 주세요.
 
 ---
 

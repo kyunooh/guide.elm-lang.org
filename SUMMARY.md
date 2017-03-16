@@ -12,7 +12,7 @@
   * [효과](architecture/effects/README.md)
     * [랜덤\(Random\)](architecture/effects/random.md)
     * [HTTP](architecture/effects/http.md)
-    * [Time](architecture/effects/time.md)
+    * [시간](architecture/effects/time.md)
     * [Web Sockets](architecture/effects/web_sockets.md)
   * [More](architecture/more.md)
 * [Types](types/README.md)
