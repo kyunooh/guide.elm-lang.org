@@ -1,18 +1,19 @@
-# Web Sockets
+# 웹 소켓\(Web Sockets\)
 
 ---
-#### [Clone the code](https://github.com/evancz/elm-architecture-tutorial/) or follow along in the [online editor](http://elm-lang.org/examples/websockets).
+
+#### [코드를 클론](https://github.com/evancz/elm-architecture-tutorial/)하거나 [온라인 에디터](http://elm-lang.org/examples/websockets)에서 함께 따라해 주세요.
+
 ---
 
-We are going to make a simple chat app. There will be a text field so you can type things in and a region that shows all the messages we have received so far. Web sockets are great for this scenario because they let us set up a persistent connection with the server. This means:
+이번엔 간단한 채팅햅을 만들어 볼게요. 채팅 입력을 할 수 있는 텍스트 필드와 받은 메시지 들이 보여지는 화면을 만들거에요. `웹 소켓`은 서버와 지속적인 연결을 해주기 때문에 이 예제에 적합해요. 이 의미는 다음과 같아요.
 
-  1. You can send messages cheaply whenever you want.
-  2. The server can send *you* messages whenever it feels like it.
+1. 여러분은 언제든지 적은 비용으로 메시지를 보낼 수 있어요. 
+2. 서버는 메시지를 받을 때마다 여러분에게 메시지를 보낼 수 있어요.
 
-In other words, `WebSocket` is one of the rare libraries that makes use of both commands and subscriptions.
+즉 웹 소켓은 명령과 구독 두가지 다를 하는 몇 안되는 라이브러리중 하나에요.
 
-This program happens to be pretty short, so here is the full thing:
-
+이 프로그램은 생각보다 짧아서, 아래 코드가 전부에요.
 
 ```elm
 import Html exposing (..)
@@ -87,7 +88,7 @@ viewMessage msg =
   div [] [ text msg ]
 ```
 
-The interesting parts are probably the uses of `WebSocket.send` and `WebSocket.listen`.
+흠미로운 부분은  Websocket.send 와 WebSocket.listen을 사용한 부분인데요.
 
-For simplicity we will target a simple server that just echos back whatever you type. So you will not be able to have the most exciting conversations in the basic version, but that is why we have exercises on these examples!
+예제를 간단하게 진행하기 위해, 입력한 메시지를 그냥 다시 반환해주는 간단한 서버로 잡았어요. 따라서 위 버전에서는 막 흥미로운 채팅은 불가능 하겠지만 이 예제는 연습용으론 충분하죠!
 
