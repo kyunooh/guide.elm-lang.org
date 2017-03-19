@@ -1,6 +1,6 @@
-# Reading Types
+# 읽기 타입\(Reading Types\)
 
-In the [Core Language](../core_language.md) section of this book, we ran a bunch of code in the REPL. Well, we are going to do it again, but now with an emphasis on the types that are getting spit out. So type `elm repl` in your terminal again. You should see this:
+[언어 살펴보기](../core_language.md) 단원에서 REPL에서 코드를 실행시켜 보았죠. 이번에도 다시 한번 코드를 돌려볼 건데요.  강조하는 부분을 좀 다르게 해서 진행해 볼 예정이에요. 자 `elm repl` 을 터미널에서 다시 한번 입력해주시면, 아래와 갈은 화면이 나올 거에요.
 
 ```elm
 ---- elm repl 0.17.0 -----------------------------------------------------------
@@ -8,7 +8,6 @@ In the [Core Language](../core_language.md) section of this book, we ran a bunch
 --------------------------------------------------------------------------------
 >
 ```
-
 
 ## Primitives and Lists
 
@@ -25,7 +24,7 @@ False : Bool
 3 : Int
 ```
 
-In these three examples, the REPL tells us the resulting value along with what *type* of value it happens to be. The value `"hello"` is a `String`. The value `3` is an `Int`. Nothing too crazy here.
+In these three examples, the REPL tells us the resulting value along with what _type_ of value it happens to be. The value `"hello"` is a `String`. The value `3` is an `Int`. Nothing too crazy here.
 
 Let's see what happens with lists holding different types of values:
 
@@ -40,8 +39,7 @@ Let's see what happens with lists holding different types of values:
 [] : List a
 ```
 
-In the first case, we have a `List` filled with `String` values. In the second, the `List` is filled with `Float` values. In the third case the list is empty, so we do not actually know what kind of values are in the list. So the type `List a` is saying "I know I have a list, but it could be filled with anything". The lower-case `a` is called a *type variable*, meaning that there are no constraints in our program that pin this down to some specific type. In other words, the type can vary based on how it is used.
-
+In the first case, we have a `List` filled with `String` values. In the second, the `List` is filled with `Float` values. In the third case the list is empty, so we do not actually know what kind of values are in the list. So the type `List a` is saying "I know I have a list, but it could be filled with anything". The lower-case `a` is called a _type variable_, meaning that there are no constraints in our program that pin this down to some specific type. In other words, the type can vary based on how it is used.
 
 ## Functions
 
@@ -53,7 +51,7 @@ Let's see the type of some functions:
 <function> : String -> Int
 ```
 
-The function `String.length` has type `String -> Int`. This means it *must* take in a `String` argument, and it will definitely return an integer result. So let's try giving it an argument:
+The function `String.length` has type `String -> Int`. This means it _must_ take in a `String` argument, and it will definitely return an integer result. So let's try giving it an argument:
 
 ```elm
 > String.length "Supercalifragilisticexpialidocious"
@@ -72,12 +70,11 @@ What happens when you do not give a `String` though?
 -- error!
 ```
 
-A `String -> Int` function *must* get a `String` argument!
-
+A `String -> Int` function _must_ get a `String` argument!
 
 ### Anonymous Functions
 
-Elm has a feature called *anonymous functions*. Basically, you can create a function without naming it, like this:
+Elm has a feature called _anonymous functions_. Basically, you can create a function without naming it, like this:
 
 ```elm
 > \n -> n / 2
@@ -98,7 +95,6 @@ We start with a `Float -> Float` function and give it a `Float` argument. The re
 > **Notes:** The backslash that starts an anonymous function is supposed to look like a lambda `λ` if you squint. This is a possibly ill-conceived wink to the intellectual history that led to languages like Elm.
 >
 > Also, when we wrote the expression `(\n -> n / 2) 128`, it is important that we put parentheses around the anonymous function. After the arrow, Elm is just going to keep reading code as long as it can. The parentheses put bounds on this, indicating where the function body ends.
-
 
 ### Named Functions
 
@@ -131,7 +127,7 @@ You can think of it as a convenient shorthand for:
 <function> : Float -> Float
 ```
 
-This is true for all functions, no matter how many arguments they have. So now let's take that a step farther and think about what it means for functions with *multiple* arguments:
+This is true for all functions, no matter how many arguments they have. So now let's take that a step farther and think about what it means for functions with _multiple_ arguments:
 
 ```elm
 > divide x y = x / y
@@ -141,7 +137,7 @@ This is true for all functions, no matter how many arguments they have. So now l
 1.5 : Float
 ```
 
-That seems fine, but why are there *two* arrows in the type for `divide`?! To start out, it is fine to think that "all the arguments are separated by arrows, and whatever is last is the result of the function". So `divide` takes two arguments and returns a `Float`.
+That seems fine, but why are there _two_ arrows in the type for `divide`?! To start out, it is fine to think that "all the arguments are separated by arrows, and whatever is last is the result of the function". So `divide` takes two arguments and returns a `Float`.
 
 To really understand why there are two arrows in the type of `divide`, it helps to convert the definition to use anonymous functions.
 
@@ -169,14 +165,14 @@ All of these are totally equivalent. We just moved the arguments over, turning t
 
 After you expand `divide`, you actually provide the arguments one at a time. Replacing `x` and `y` are actually two different steps.
 
-Let's break that down a bit more to see how the types work. In evaluation step #3 we saw the following function:
+Let's break that down a bit more to see how the types work. In evaluation step \#3 we saw the following function:
 
 ```elm
 > (\y -> 3 / y)
 <function> : Float -> Float
 ```
 
-It is a `Float -> Float` function, just like `half`. Now in step #2 we saw a fancier function:
+It is a `Float -> Float` function, just like `half`. Now in step \#2 we saw a fancier function:
 
 ```elm
 > (\x -> (\y -> x / y))
@@ -185,7 +181,7 @@ It is a `Float -> Float` function, just like `half`. Now in step #2 we saw a fan
 
 Well, we are starting with `\x -> ...` so we know the type is going to be something like `Float -> ...`. We also know that `(\y -> x / y)` has type `Float -> Float`.
 
-So if you actually wrote down all the parentheses in the type, it would instead say **`Float -> (Float -> Float)`**. You provide arguments one at a time. So when you replace `x`, the result is actually *another function*.
+So if you actually wrote down all the parentheses in the type, it would instead say `Float -> (Float -> Float)`. You provide arguments one at a time. So when you replace `x`, the result is actually _another function_.
 
 It is the same with all functions in Elm:
 
@@ -207,14 +203,11 @@ Because all functions in Elm work this way, you do not need to give all the argu
 <function> : String -> String
 ```
 
-This is called *partial application*. It lets us use [the `|>` operator][pipe] to chain functions together in a nice way, and it is why function types have so many arrows!
-
-[pipe]: http://package.elm-lang.org/packages/elm-lang/core/latest/Basics#|&gt;
-
+This is called _partial application_. It lets us use [the `|>` operator](http://package.elm-lang.org/packages/elm-lang/core/latest/Basics#|&gt;) to chain functions together in a nice way, and it is why function types have so many arrows!
 
 ## Type Annotations
 
-So far we have just let Elm figure out the types, but it also lets you write a *type annotation* on the line above a definition if you want. So when you are writing code, you can say things like this:
+So far we have just let Elm figure out the types, but it also lets you write a _type annotation_ on the line above a definition if you want. So when you are writing code, you can say things like this:
 
 ```elm
 half : Float -> Float
@@ -236,4 +229,7 @@ askVegeta powerLevel =
 
 People can make mistakes in type annotations, so what happens if they say the wrong thing? Well, the compiler does not make mistakes, so it still figures out the type on its own. It then checks that your annotation matches the real answer. In other words, the compiler will always verify that all the annotations you add are correct.
 
-> **Note:** Some folks feel that it is odd that the type annotation goes on the line above the actual definition. The reasoning is that it should be easy and noninvasive to add a type annotation *later*. This way you can turn a sloppy prototype into higher-quality code just by adding lines.
+> **Note:** Some folks feel that it is odd that the type annotation goes on the line above the actual definition. The reasoning is that it should be easy and noninvasive to add a type annotation _later_. This way you can turn a sloppy prototype into higher-quality code just by adding lines.
+
+
+
