@@ -16,7 +16,7 @@
     * [웹 소켓\(Web sockets\)](architecture/effects/web_sockets.md)
   * [보충설명](architecture/more.md)
 * [타입\(Types\)](types/README.md)
-  * [Reading Types](types/reading_types.md)
+  * [읽기 타입\(Reading Types\)](types/reading_types.md)
   * [Type Aliases](types/type_aliases.md)
   * [Union Types](types/union_types.md)
 * [Error Handling and Tasks](error_handling/README.md)
