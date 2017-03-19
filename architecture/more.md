@@ -9,9 +9,9 @@
 
 지금까지 배운 것들로 굉장히 많은 것을 할 수 있어요. 하지만 아직 Elm에 중요한 개념들을 다 배운 건 아니에요. 예를 들어서, union 타입은 언어 전체적으로 중요하지만 아직 다룬 적이 없어요!
 
-You can go quite far with this knowledge, but there are many important aspects of Elm itself that we have not covered yet. For example, union types are one of the most important features in the whole language and we have not focused on them at all!
 
-So we are going to take a break from The Elm Architecture for a couple chapters to get a better understanding of Elm itself. We will come back to The Elm Architecture in a few chapters and focus on code reuse in larger applications. In the meantime, when a function gets so big it feels unmanageable in practice, make a helper function! Elm makes refactoring easy, so it is best to improve architecture as needed rather than preemptively. More about that later though!
 
-P.S. Best not to skip ahead. You can build a bigger house if you have a strong foundation!
+자 이제 Elm을 더 잘 이해하기 위해서 Elm 아키텍처에서 머무르며 쉴텐데요. 앞으로 몇몇 챕터에서 Elm 아키텍처를 다시 보면서, 더 큰 어플리케이션과 재사용 가능한 거에 초점을 맞춰서 진행할 거에요. 그동안 기능이 너무 커지면 보통 관리가 잘 안되기 마련이었는데요. 이럴 땐 헬퍼\(helper\) 함수를 만들면 돼요! Elm은 리팩토링이 쉽기 때문에, 우선적으로 아키텍처를 향상시켜 두는 게 좋아요. 이것에 대해선 나중에 더 자세히 설명해 드릴게요!
+
+추신. 건너뛰지 마세요. 더 큰 집을 짓기 위해선 튼튼한 기반이 필요해요!
 
