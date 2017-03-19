@@ -14,7 +14,7 @@
     * [HTTP](architecture/effects/http.md)
     * [시간\(Time\)](architecture/effects/time.md)
     * [웹 소켓\(Web sockets\)](architecture/effects/web_sockets.md)
-  * [More](architecture/more.md)
+  * [보충설명](architecture/more.md)
 * [Types](types/README.md)
   * [Reading Types](types/reading_types.md)
   * [Type Aliases](types/type_aliases.md)
