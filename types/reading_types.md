@@ -11,7 +11,7 @@
 
 ## 원시 타입과 리스트\(Primitives and Lists\)
 
-Let's enter some simple expressions and see what happens:
+자 간단한 표현문을 입력하고, 어떻게 동작하는 지 확인해 보세요. 
 
 ```elm
 > "hello"
@@ -24,9 +24,9 @@ False : Bool
 3 : Int
 ```
 
-In these three examples, the REPL tells us the resulting value along with what _type_ of value it happens to be. The value `"hello"` is a `String`. The value `3` is an `Int`. Nothing too crazy here.
+이 예제에서는 REPL이 값의 타입이 무엇인지 함께 알려줘요. `"hello"` 는 `String`이고, `3`은 `Int`라고 알려주죠. 복잡하지 않아요.
 
-Let's see what happens with lists holding different types of values:
+이번엔 값들이 다른 타입을 가진 리스트를 만들어 볼게요.
 
 ```elm
 > [ "Alice", "Bob" ]
@@ -39,17 +39,19 @@ Let's see what happens with lists holding different types of values:
 [] : List a
 ```
 
-In the first case, we have a `List` filled with `String` values. In the second, the `List` is filled with `Float` values. In the third case the list is empty, so we do not actually know what kind of values are in the list. So the type `List a` is saying "I know I have a list, but it could be filled with anything". The lower-case `a` is called a _type variable_, meaning that there are no constraints in our program that pin this down to some specific type. In other words, the type can vary based on how it is used.
+첫번째 경우엔 `List`가 `String` 값을 가지죠. 두번째 `List`엔 `Float`를 가지고요. 세번째 경우엔 빈 리스트 인데, 이 경우엔 어떤 종류의 값들을 가지는 지 사실 알 수가 없죠. List a의 의미는 "난 내가 리스트인 걸 알아 하지만 그 어떤 것으로든 채울수 있어."에요. 소문자 `a`는 타입 변수\(type variable\)라고 부르는데, 이 의미는 특정 유형으로 고정시키지 않겠다는 거에요. 즉, 어떻게 사용하느냐에 따라 타입이 바뀔 수 있다는 거죠. 
 
-## Functions
+## 함수\(Functions\)
 
-Let's see the type of some functions:
+자 이제 몇몇 함수의 타입을 봐볼게요.
 
 ```elm
 > import String
 > String.length
 <function> : String -> Int
 ```
+
+`String.length` 함수는 `String -> Int` 타입을 가져요. 이 의미는 `String` 인자를 받아서 정수형으로 반환한다는 의미에요. 자 인자를 넘겨보죠.
 
 The function `String.length` has type `String -> Int`. This means it _must_ take in a `String` argument, and it will definitely return an integer result. So let's try giving it an argument:
 
