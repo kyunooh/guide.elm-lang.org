@@ -11,7 +11,7 @@
 
 ## 원시 타입과 리스트\(Primitives and Lists\)
 
-자 간단한 표현문을 입력하고, 어떻게 동작하는 지 확인해 보세요. 
+자 간단한 표현문을 입력하고, 어떻게 동작하는 지 확인해 보세요.
 
 ```elm
 > "hello"
@@ -39,7 +39,7 @@ False : Bool
 [] : List a
 ```
 
-첫번째 경우엔 `List`가 `String` 값을 가지죠. 두번째 `List`엔 `Float`를 가지고요. 세번째 경우엔 빈 리스트 인데, 이 경우엔 어떤 종류의 값들을 가지는 지 사실 알 수가 없죠. List a의 의미는 "난 내가 리스트인 걸 알아 하지만 그 어떤 것으로든 채울수 있어."에요. 소문자 `a`는 타입 변수\(type variable\)라고 부르는데, 이 의미는 특정 유형으로 고정시키지 않겠다는 거에요. 즉, 어떻게 사용하느냐에 따라 타입이 바뀔 수 있다는 거죠. 
+첫번째 경우엔 `List`가 `String` 값을 가지죠. 두번째 `List`엔 `Float`를 가지고요. 세번째 경우엔 빈 리스트 인데, 이 경우엔 어떤 종류의 값들을 가지는 지 사실 알 수가 없죠. List a의 의미는 "난 내가 리스트인 걸 알아 하지만 그 어떤 것으로든 채울수 있어."에요. 소문자 `a`는 타입 변수\(type variable\)라고 부르는데, 이 의미는 특정 유형으로 고정시키지 않겠다는 거에요. 즉, 어떻게 사용하느냐에 따라 타입이 바뀔 수 있다는 거죠.
 
 ## 함수\(Functions\)
 
@@ -51,18 +51,16 @@ False : Bool
 <function> : String -> Int
 ```
 
-`String.length` 함수는 `String -> Int` 타입을 가져요. 이 의미는 `String` 인자를 받아서 정수형으로 반환한다는 의미에요. 자 인자를 넘겨보죠.
-
-The function `String.length` has type `String -> Int`. This means it _must_ take in a `String` argument, and it will definitely return an integer result. So let's try giving it an argument:
+`String.length` 함수는 `String -> Int` 타입을 가져요. 이 의미는 `String` 매개변수를 받아서 정수형으로 반환한다는 의미에요. 자 매개변수를 넘겨보죠.
 
 ```elm
 > String.length "Supercalifragilisticexpialidocious"
 34 : Int
 ```
 
-The important thing to understand here is how the type of the result `Int` is built up from the initial expression. We have a `String -> Int` function and give it a `String` argument. This results in an `Int`.
+초기의 표현식이 어떻게 `Int` 타입의 결과가 나왔는지 이해하는 게 중요해요. `String -> Int` 함수는 `String` 을 매개변수로 받고, 결과는 `Int` 인거죠.
 
-What happens when you do not give a `String` though?
+`String` 이 아니면 어떻게 될까요?
 
 ```elm
 > String.length [1,2,3]
@@ -72,18 +70,20 @@ What happens when you do not give a `String` though?
 -- error!
 ```
 
-A `String -> Int` function _must_ get a `String` argument!
+`String -> Int` 함수는 _꼭_ `String` 매개변수여야 합니다!
 
-### Anonymous Functions
+### 익명 함수\(Anonymous Functions\)
 
-Elm has a feature called _anonymous functions_. Basically, you can create a function without naming it, like this:
+Elm은 _익명 함수_로 불리는 특징이 있어요. 다음과 같이 이름이 없는 함수를 만들 수 있죠.
 
 ```elm
 > \n -> n / 2
 <function> : Float -> Float
 ```
 
-Between the backslash and the arrow, you list the arguments of the function, and on the right of the arrow, you say what to do with those arguments. In this example, it is saying: I take in some argument I will call `n` and then I am going to divide it by two.
+백슬래쉬\(backslash\)와 화살표\(arrow\)사이는 함수에 매개변수들을 열거해요. 그리고 화살표 오른쪽 부분은 매개변수를 이용해 어떤 동작을 할 지 적는거죠. 이 예제에서는, "난 몇개의 인자를 취할 거고, 이 인자를 `n` 이라 부를거야. 그리고 난 이걸 2로 나눌래."라고 말하는 거에요.
+
+익명 함수를 직접 사용할 수 있어요. 아래는 `128`을 매개변수로 두고, 익명 함수를 사용한 예제에요.
 
 We can use anonymous functions directly. Here is us using our anonymous function with `128` as the argument:
 
@@ -92,11 +92,11 @@ We can use anonymous functions directly. Here is us using our anonymous function
 64 : Float
 ```
 
-We start with a `Float -> Float` function and give it a `Float` argument. The result is another `Float`.
+`Float -> Float` 함수여서, `Float`를 매개변수로 주고, 결과는 또다른 `Float`이 돼요. 
 
-> **Notes:** The backslash that starts an anonymous function is supposed to look like a lambda `λ` if you squint. This is a possibly ill-conceived wink to the intellectual history that led to languages like Elm.
+> **알고 넘어가기:** 백슬래시로 시작하는 이유는 lambda `λ` 처럼 보이기 때문이에요. \(억지스러워 보이는 건 착각\) 제대로 고려하지 않고 만든 것 같지만, Elm과 같은 뿌리의 언어들이 갖는 역사속에서 만들어 진거에요.
 >
-> Also, when we wrote the expression `(\n -> n / 2) 128`, it is important that we put parentheses around the anonymous function. After the arrow, Elm is just going to keep reading code as long as it can. The parentheses put bounds on this, indicating where the function body ends.
+> 또한 `(\n -> n / 2) 128`을 작성할 때, 익명 함수가 괄호로 둘러 쌓여 있다는 게 중요해요. Elm은 화살표 뒷부분을 다 읽어들이고, 괄호가 함수의 끝을 알려주는 기준점이 되는거에요.
 
 ### Named Functions
 
