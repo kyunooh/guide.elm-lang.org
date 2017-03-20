@@ -92,15 +92,15 @@ We can use anonymous functions directly. Here is us using our anonymous function
 64 : Float
 ```
 
-`Float -> Float` 함수여서, `Float`를 매개변수로 주고, 결과는 또다른 `Float`이 돼요. 
+`Float -> Float` 함수여서, `Float`를 매개변수로 주고, 결과는 또다른 `Float`이 돼요.
 
 > **알고 넘어가기:** 백슬래시로 시작하는 이유는 lambda `λ` 처럼 보이기 때문이에요. \(억지스러워 보이는 건 착각\) 제대로 고려하지 않고 만든 것 같지만, Elm과 같은 뿌리의 언어들이 갖는 역사속에서 만들어 진거에요.
 >
 > 또한 `(\n -> n / 2) 128`을 작성할 때, 익명 함수가 괄호로 둘러 쌓여 있다는 게 중요해요. Elm은 화살표 뒷부분을 다 읽어들이고, 괄호가 함수의 끝을 알려주는 기준점이 되는거에요.
 
-### Named Functions
+### 이름을 갖는 함수\(Named Function\)
 
-In the same way that we can name a value, we can name an anonymous function. So rebellious!
+같은 방법으로 값에 이름을 줄 수도 있어요. 익명함수에 이름을 줄수도 있죠. 유연하죠!
 
 ```elm
 > oneHundredAndTwentyEight = 128.0
@@ -112,6 +112,8 @@ In the same way that we can name a value, we can name an anonymous function. So 
 > half oneHundredAndTwentyEight
 64 : Float
 ```
+
+결국엔 아무것도 명명되지 않은 것처럼 동작해요. 
 
 In the end, it works just like when nothing was named. You have a `Float -> Float` function, you give it a `Float`, and you end up with another `Float`.
 
