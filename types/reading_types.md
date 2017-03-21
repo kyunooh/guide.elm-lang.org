@@ -113,7 +113,7 @@ We can use anonymous functions directly. Here is us using our anonymous function
 64 : Float
 ```
 
-결국엔, 명명되지 않은 것과 같이 동작해요. 여러분이 `Float -> Float` 함수를 썼다면, `Float` 를 넘겨주고 다른 `Float`을 최종적으로 받죠. 
+결국엔, 명명되지 않은 것과 같이 동작해요. 여러분이 `Float -> Float` 함수를 썼다면, `Float` 를 넘겨주고 다른 `Float`을 최종적으로 받죠.
 
 모든 함수들이 이렇게 정의 되어지는 건, 사실 비밀이 숨어있기 때문인데요! 다음을 보시면 아시겠지만 사실 익명 함수에 이름만 주는 것 뿐이죠.
 
@@ -122,7 +122,7 @@ We can use anonymous functions directly. Here is us using our anonymous function
 <function> : Float -> Float
 ```
 
-다음 과 같은 형태로도 생각할 수 있어요.
+다음과 같은 형태로도 생각할 수 있어요.
 
 ```elm
 > half = \n -> n / 2
