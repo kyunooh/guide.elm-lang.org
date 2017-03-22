@@ -165,7 +165,7 @@ We can use anonymous functions directly. Here is us using our anonymous function
   1.5                          -- Step 5 - 그냥 수학적으로 계산
 ```
 
- `divide`를 확장한 뒤, 매개변수를 하나씩 넘겨주어서, 각각 `x`와 `y`를 바꿔 치는 거죠.
+`divide`를 확장한 뒤, 매개변수를 하나씩 넘겨주어서, 각각 `x`와 `y`를 바꿔 치는 거죠.
 
 자 타입이 동작하는 방법에 대해서 더 자세히 알아 볼게요. `step 3`  의 코드를 따라 쳐보면,
 
@@ -183,13 +183,9 @@ We can use anonymous functions directly. Here is us using our anonymous function
 
 자, `\x -> ...` 같은 형태는 `Float -> ...`으로 동작하는 걸 알고 있죠. 또한 `(\y -> x / y)`도 `Float -> Float` 타입을 가지겠죠.
 
-Well, we are starting with `\x -> ...` so we know the type is going to be something like `Float -> ...`. We also know that `(\y -> x / y)` has type `Float -> Float`.
+여러분이 만약 실제로 괄호를 쓴다면, `Float -> (Float -> Float)`이 될거에요. 여기서 여러분이 매개변수를 한개씩 넘기면, 즉 `x`가 매개변수로 변경 되었을 때 실제론 이미 다른 함수가 되어버리는 거에요.
 
-그렇기 때문에 여러분이 만약 
-
-So if you actually wrote down all the parentheses in the type, it would instead say `Float -> (Float -> Float)`. You provide arguments one at a time. So when you replace `x`, the result is actually _another function_.
-
-It is the same with all functions in Elm:
+이건 Elm에 존재하는 함수에서도 마찬가지에요. 
 
 ```elm
 > import String
@@ -197,9 +193,9 @@ It is the same with all functions in Elm:
 <function> : Int -> String -> String
 ```
 
-This is really `Int -> (String -> String)` because you are providing the arguments one at a time.
+여러분이 매개변수를 한개씩 넘기기 때문에 이건 사실 `Int -> (String -> String)`이죠.
 
-Because all functions in Elm work this way, you do not need to give all the arguments at once. It is possible to say things like this:
+Elm에선 모두 함수가 이런식으로 동작하기 때문에, 여러분은 매개변수를 한번에 모두 넘겨줄 필요가 없어요. 다음과 같이 쓸 수 있다는 거죠.
 
 ```elm
 > divide 128
