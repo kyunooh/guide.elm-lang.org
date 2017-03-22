@@ -129,7 +129,7 @@ We can use anonymous functions directly. Here is us using our anonymous function
 <function> : Float -> Float
 ```
 
-This is true for all functions, no matter how many arguments they have. So now let's take that a step farther and think about what it means for functions with _multiple_ arguments:
+함수의 매개변수가 얼마든지 상관 없이 쓸 수 있어요. _복수_의 매개변수를 사용해서 작성해볼게요.
 
 ```elm
 > divide x y = x / y
@@ -139,9 +139,9 @@ This is true for all functions, no matter how many arguments they have. So now l
 1.5 : Float
 ```
 
-That seems fine, but why are there _two_ arrows in the type for `divide`?! To start out, it is fine to think that "all the arguments are separated by arrows, and whatever is last is the result of the function". So `divide` takes two arguments and returns a `Float`.
+되는 것 같긴 한데, 왜 `divide`타입에 화살표가 두개 일까요?! 일단 "모든 매개변수는 화살표로 나눠지고, 마지막은 함수의 결과"라고 생각하시면 편해요.  `divide`는 두개의 매개변수를 받고 Float를 리턴하는 거죠.
 
-To really understand why there are two arrows in the type of `divide`, it helps to convert the definition to use anonymous functions.
+왜 `divide`의 화살표가 두개인지 이해를 제대로 하기 위해선, 익명함수가 어떻게 변형되어 정의 되는 지 아는 게 도움이 되요.
 
 ```elm
 > divide x y = x / y
@@ -154,34 +154,38 @@ To really understand why there are two arrows in the type of `divide`, it helps 
 <function> : Float -> Float -> Float
 ```
 
-All of these are totally equivalent. We just moved the arguments over, turning them into anonymous functions one at a time. So when we run an expression like `divide 3 2` we are actually doing a bunch of evaluation steps:
+위에 세개는 모두 동일해요. 그냥 매개변수를 하나씩 익명변수로 바꿔본 건데요. `divide 3 2` 와 같은 같은 표현식은 사실 다음과 같은 과정을 거쳐서 동작해요.
 
 ```elm
   divide 3 2
-  (divide 3) 2                 -- Step 1 - Add the implicit parentheses
-  ((\x -> (\y -> x / y)) 3) 2  -- Step 2 - Expand `divide`
-  (\y -> 3 / y) 2              -- Step 3 - Replace x with 3
-  3 / 2                        -- Step 4 - Replace y with 2
-  1.5                          -- Step 5 - Do the math
+  (divide 3) 2                 -- Step 1 - 암시적으로 괄호가 추가됨
+  ((\x -> (\y -> x / y)) 3) 2  -- Step 2 - `divide`를 확장
+  (\y -> 3 / y) 2              -- Step 3 - x 를 3으로 변경
+  3 / 2                        -- Step 4 - 3을 2로 변경
+  1.5                          -- Step 5 - 그냥 수학적으로 계산
 ```
 
-After you expand `divide`, you actually provide the arguments one at a time. Replacing `x` and `y` are actually two different steps.
+ `divide`를 확장한 뒤, 매개변수를 하나씩 넘겨주어서, 각각 `x`와 `y`를 바꿔 치는 거죠.
 
-Let's break that down a bit more to see how the types work. In evaluation step \#3 we saw the following function:
+자 타입이 동작하는 방법에 대해서 더 자세히 알아 볼게요. `step 3`  의 코드를 따라 쳐보면,
 
 ```elm
 > (\y -> 3 / y)
 <function> : Float -> Float
 ```
 
-It is a `Float -> Float` function, just like `half`. Now in step \#2 we saw a fancier function:
+`half`처럼 `Float -> Float` 함수죠. 좀 더 복잡한 `step 2` 도 봐보죠.
 
 ```elm
 > (\x -> (\y -> x / y))
 <function> : Float -> Float -> Float
 ```
 
+자, `\x -> ...` 같은 형태는 `Float -> ...`으로 동작하는 걸 알고 있죠. 또한 `(\y -> x / y)`도 `Float -> Float` 타입을 가지겠죠.
+
 Well, we are starting with `\x -> ...` so we know the type is going to be something like `Float -> ...`. We also know that `(\y -> x / y)` has type `Float -> Float`.
+
+그렇기 때문에 여러분이 만약 
 
 So if you actually wrote down all the parentheses in the type, it would instead say `Float -> (Float -> Float)`. You provide arguments one at a time. So when you replace `x`, the result is actually _another function_.
 
