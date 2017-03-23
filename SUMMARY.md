@@ -17,7 +17,7 @@
   * [보충설명](architecture/more.md)
 * [타입\(Types\)](types/README.md)
   * [타입 읽어보기\(Reading Types\)](types/reading_types.md)
-  * [Type Aliases](types/type_aliases.md)
+  * [타입 별명\(Type Aliases\)](types/type_aliases.md)
   * [Union Types](types/union_types.md)
 * [Error Handling and Tasks](error_handling/README.md)
   * [Maybe](error_handling/maybe.md)
