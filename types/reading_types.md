@@ -207,9 +207,9 @@ Elm에선 모두 함수가 이런식으로 동작하기 때문에, 여러분은 
 
 이건 부분 적용\(partial application\)이라고 부르는데요. [`|>` 연산자](http://package.elm-lang.org/packages/elm-lang/core/latest/Basics#|>)를 이용해서 함수를 연결하여 사용할 수 있어요. 이게 함수 타입이 많은 화살표를 가진 이유에요!
 
-## Type Annotations
+## 타입 어노테이션\(Type Annotations\)
 
-So far we have just let Elm figure out the types, but it also lets you write a _type annotation_ on the line above a definition if you want. So when you are writing code, you can say things like this:
+지금까지는 Elm이 타입을 알아내도록 했지만, 타입을 어노테이션을 사용해서 원하는 타입을 정의할 수도 있어요. 다음과 같이 작성하면 되요.
 
 ```elm
 half : Float -> Float
@@ -229,9 +229,11 @@ askVegeta powerLevel =
     "It is " ++ toString powerLevel ++ "."
 ```
 
-People can make mistakes in type annotations, so what happens if they say the wrong thing? Well, the compiler does not make mistakes, so it still figures out the type on its own. It then checks that your annotation matches the real answer. In other words, the compiler will always verify that all the annotations you add are correct.
+사람들이 타입 어노테이션을 사용할 때 실수할 수도 있는데요. 하지만 컴파일러는 실수하지 않기 때문에, 여전히 해당 타입이 무엇인지 알아낼 수 있어요. 컴파일러는 타입 어노테이션이 제대로 작성 되었는 지 확인하죠. 즉, 컴파일러가 여러분이 추가한 타입 어노테이션을 검사해줘요.
 
-> **Note:** Some folks feel that it is odd that the type annotation goes on the line above the actual definition. The reasoning is that it should be easy and noninvasive to add a type annotation _later_. This way you can turn a sloppy prototype into higher-quality code just by adding lines.
+
+
+> **더 알아보기:** 어떤 사람들은 타입 어노테이션이 실제 정의하는 라인 위에 있다는 걸 이상하게 생각해요. 위에 타입 어노테이션을 적는 이유는 나중에 타입 어노테이션을 적는 게 쉽고 확장성이 없기 때문이에요. 그냥 라인 한줄을 추가하는 것 뿐인 이 방법은 조잡한 프로토타입 코드를 좋은 품질의 코드로 바꿔줘요.
 
 
 
