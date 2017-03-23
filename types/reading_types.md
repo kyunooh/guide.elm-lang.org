@@ -88,8 +88,6 @@ Elm은 _익명 함수_로 불리는 특징이 있어요. 다음과 같이 이름
 
 익명 함수를 직접 사용할 수 있어요. 아래는 `128`을 매개변수로 두고, 익명 함수를 사용한 예제에요.
 
-We can use anonymous functions directly. Here is us using our anonymous function with `128` as the argument:
-
 ```elm
 > (\n -> n / 2) 128
 64 : Float
