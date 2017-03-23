@@ -185,7 +185,7 @@ We can use anonymous functions directly. Here is us using our anonymous function
 
 여러분이 만약 실제로 괄호를 쓴다면, `Float -> (Float -> Float)`이 될거에요. 여기서 여러분이 매개변수를 한개씩 넘기면, 즉 `x`가 매개변수로 변경 되었을 때 실제론 이미 다른 함수가 되어버리는 거에요.
 
-이건 Elm에 존재하는 함수에서도 마찬가지에요. 
+이건 Elm에 존재하는 함수에서도 마찬가지에요.
 
 ```elm
 > import String
@@ -205,7 +205,7 @@ Elm에선 모두 함수가 이런식으로 동작하기 때문에, 여러분은 
 <function> : String -> String
 ```
 
-This is called _partial application_. It lets us use [the `|>` operator](http://package.elm-lang.org/packages/elm-lang/core/latest/Basics#|>) to chain functions together in a nice way, and it is why function types have so many arrows!
+이건 부분 적용\(partial application\)이라고 부르는데요. [`|>` 연산자](http://package.elm-lang.org/packages/elm-lang/core/latest/Basics#|>)를 이용해서 함수를 연결하여 사용할 수 있어요. 이게 함수 타입이 많은 화살표를 가진 이유에요!
 
 ## Type Annotations
 
