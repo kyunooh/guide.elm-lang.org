@@ -2,7 +2,7 @@
 
 타입 별명은 그냥 여러분의 타입 어노테이션을 읽기 쉽게 만들어 준다고 생각하시면 되요.
 
-여러분이 점점 더 복잡한 프로그램을 만들다 보면, 복잡한 데이터로 큰 작업들을 하게 되죠. 예를 들어, 강아지를 위한 트위터를 만든 뒤 유저의 정보를  보여줘야 할지도 모르죠. 이때 유저의 약력이 있는 지 없는 지 확인하려면 다음과 같이 작성하겠죠.
+여러분이 점점 더 복잡한 프로그램을 만들다 보면, 복잡한 데이터로 큰 작업들을 하게 되요. 예를 들어, 강아지를 위한 트위터를 만든 뒤 유저의 정보를  보여줘야 할지도 모르죠. 이때 유저의 약력이 있는 지 없는 지 확인하려면 다음과 같이 작성하겠죠.
 
 ```elm
 hasBio : { name : String, bio : String, pic : String } -> Bool
@@ -40,19 +40,17 @@ addBio bio user =
   { user | bio = bio }
 ```
 
-만약 User 타입 별칭이 없는 상태로 타입 어노테이션을 작성해봤다고 생각해보세요. 분명히 난잡하죠!
+만약 User 타입 별명이 없는 상태로 타입 어노테이션을 작성해봤다고 생각해보세요. 분명히 난잡하죠!
 
-타입 별직은 그냥 
+타입 별칭은 그냥 이쁘게 보이는 용도가 아니고, 좀 더 분명하게 생각할 수 있도록 도와줘요. Elm 프로그램을 작성할 때 함수를 작성하기 전에, 몇개의 타입 별명을 작성하는 게 가장 좋아요. 전반적으로 효율적이게 작업할 수 있게 되고, 어떤 종류의 데이터를 작업하고 있는지 명확해지죠. 또 다른 요소들을 추가 할때에도, 컴파일러가 기존 코드에 어떤 영향을 끼칠 지 감지 할 수 있어요. 제 생각엔 Elm으로 작성하는 분들 대부분이 이런 방식으로 작업할거라고 생각해요.
 
-Type aliases are not just about cosmetics though. They can help you think more clearly. When writing Elm programs, it is often best to _start_ with the type alias before writing a bunch of functions. I find it helps direct my progress in a way that ends up being more efficient overall. Suddenly you know exactly what kind of data you are working with. If you need to add stuff to it, the compiler will tell you about any existing code that is affected by it. I think most experienced Elm folks use a similar process when working with records especially.
-
-> **Note:** When you create a type alias specifically for a record, it also generates a _record constructor_. So our `User` type alias will also generate this function:
+> **더 알아보기:** 여러분이 레코드를 위한 타입 별명을 만드실 때, 레코드 생성자 또한 만들어져요. 그렇기 때문에 User 타입 별칭은 아래와 같이 생성되요.
 >
 > ```elm
 > User : String -> String -> String -> User
 > ```
 >
-> The arguments are in the order they appear in the type alias declaration. You may want to use this sometimes.
+> 매개 변수들은 별명을 선언할 때와 같은 순서로 정렬되어요. 때때론 이것을 사용할 때도 있어요.
 
 
 
