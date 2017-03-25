@@ -18,7 +18,7 @@
 * [타입\(Types\)](types/README.md)
   * [타입 읽어보기\(Reading Types\)](types/reading_types.md)
   * [타입 별명\(Type Aliases\)](types/type_aliases.md)
-  * [Union Types](types/union_types.md)
+  * [유니온 타입\(Union Types\)](types/union_types.md)
 * [Error Handling and Tasks](error_handling/README.md)
   * [Maybe](error_handling/maybe.md)
   * [Result](error_handling/result.md)

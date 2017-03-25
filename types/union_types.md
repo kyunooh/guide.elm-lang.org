@@ -1,16 +1,14 @@
+# 유니온 타입\(Union Types\)
 
-# Union Types
+많은 언어들 이상한 형태의 데이터를 처리하다가 문제가 발생하죠.내부에서 제공되는 타입들로  모든 것을 표현해야 하죠. 그 때문에 여러분 스스로 `null` 이나 논리값, 문자열 등등을 사용하다가 오류가 발생하기가 쉽죠.
 
-Many languages have trouble expressing data with weird shapes. They give you a small set of built-in types, and you have to represent everything with them. So you often find yourself using `null` or booleans or strings to encode details in a way that is quite error prone.
+Elm의 유니온 타입은 복잡한 자료를 좀 더 자열스럽게 다룰 수 있게 해줘요. 두가지 구체적인 예시를 살펴보면서 어떻게 유니온 타입을 사용하는 지 알아볼게요.
 
-Elm's *union types* let you represent complex data much more naturally. We will go through a couple concrete examples to build some intuition about how and when to use union types.
-
-> **Note:** Union types are sometimes called [tagged unions](https://en.wikipedia.org/wiki/Tagged_union). Some communities call them [ADTs](https://en.wikipedia.org/wiki/Algebraic_data_type).
-
+> 더 알아보기**:** 유니온 타입은 때때로 [tagged](https://en.wikipedia.org/wiki/Tagged_union)Union types are sometimes called [tagged unions](https://en.wikipedia.org/wiki/Tagged_union). Some communities call them [ADTs](https://en.wikipedia.org/wiki/Algebraic_data_type).
 
 ## Filtering a Todo List
 
-> **Problem:** We are creating a [todo list](http://evancz.github.io/elm-todomvc/) full of tasks. We want to have three views: show *all* tasks, show only *active* tasks, and show only *completed* tasks. How do we represent which of these three states we are in?
+> **Problem:** We are creating a [todo list](http://evancz.github.io/elm-todomvc/) full of tasks. We want to have three views: show _all_ tasks, show only _active_ tasks, and show only _completed_ tasks. How do we represent which of these three states we are in?
 
 Whenever you have weird shaped data in Elm, you want to reach for a union type. In this case, we would create a type `Visibility` that has three possible values:
 
@@ -72,13 +70,12 @@ The `case` is saying, look at the structure of `visibility`. If it is `All`, jus
 
 The cool thing about `case` expressions is that all the branches are checked by the compiler. This has some nice benefits:
 
- 1. If you mistype `Compleet` by accident, you get a hint about the typo.
- 2. If you forget to handle a case, the compiler will figure it out and tell you.
+1. If you mistype `Compleet` by accident, you get a hint about the typo.
+2. If you forget to handle a case, the compiler will figure it out and tell you.
 
 So say you want to add `Recent` as a fourth possible `Visibility` value. The compiler will find all the `case` expressions in your code that work with `Visibility` values and remind you to handle the new possibility! This means you can change and extend `Visibility` without the risk of silently creating bugs in existing code.
 
 > **Exercise:** Imagine how you would solve this same problem in JavaScript. Three strings? A boolean that can be `null`? What would the definition of `keep` look like? What sort of tests would you want to write to make sure adding new code later was safe.
-
 
 ## Anonymous Users
 
@@ -102,7 +99,7 @@ Named "AzureDiamond" : User
 Named "abraham-lincoln" : User
 ```
 
-So creating the type `User` also created constructors named `Anonymous` and `Named`. If you want to create a `User` you *must* use one of these two constructors. This guarantees that all the possible `User` values are things like:
+So creating the type `User` also created constructors named `Anonymous` and `Named`. If you want to create a `User` you _must_ use one of these two constructors. This guarantees that all the possible `User` values are things like:
 
 ```elm
   Anonymous
@@ -126,7 +123,7 @@ userPhoto user =
       "users/" ++ name ++ ".png"
 ```
 
-There are two possible cases when we have a `User`. If they are `Anonymous` we show a dummy picture. If they are `Named` we construct the URL of their photo. This `case` is slightly fancier than the one we saw before. Notice that the second branch has a lower case variable `name`. This means that when we see a value like `Named "AzureDiamond"`, the `name` variable will be bound to `"AzureDiamond"` so we can do other things with it. This is called *pattern matching*.
+There are two possible cases when we have a `User`. If they are `Anonymous` we show a dummy picture. If they are `Named` we construct the URL of their photo. This `case` is slightly fancier than the one we saw before. Notice that the second branch has a lower case variable `name`. This means that when we see a value like `Named "AzureDiamond"`, the `name` variable will be bound to `"AzureDiamond"` so we can do other things with it. This is called _pattern matching_.
 
 Now imagine we have a bunch of users in a chat room and we want to show their pictures.
 
@@ -146,12 +143,11 @@ The nice thing about creating a type like `User` is that no one in your whole co
 
 > **Exercise:** Think about how you would solve this problem in some other language. A string where empty string means they are anonymous? A string that can be null? How much testing would you want to do to make sure that everyone handles these special cases correctly?
 
-
 ## Widget Dashboard
 
 > **Problem:** You are creating a dashboard with three different kinds of widgets. One shows recent log data, one shows time plots, and one shows scatter plots. How do you represent a widget?
 
-Alright, we are getting a bit fancier now. In Elm, you want to start by solving each case individually. (As you get more experience, you will see that Elm *wants* you to build programs out of small, reusable parts. It is weird.) So I would create representations for each of our three scenarios, along with `view` functions to actually turn them into HTML or SVG or whatever:
+Alright, we are getting a bit fancier now. In Elm, you want to start by solving each case individually. \(As you get more experience, you will see that Elm _wants_ you to build programs out of small, reusable parts. It is weird.\) So I would create representations for each of our three scenarios, along with `view` functions to actually turn them into HTML or SVG or whatever:
 
 ```elm
 type alias LogsInfo =
@@ -193,7 +189,7 @@ Again, union types are there to put together a bunch of different types!
 <function> : ScatterInfo -> Widget
 ```
 
-So we created a `Widget` type that can only be created with these constructor functions. You can think of these constructors as *tagging* the data so we can tell it apart at runtime. Now we can write something to render a widget like this:
+So we created a `Widget` type that can only be created with these constructor functions. You can think of these constructors as _tagging_ the data so we can tell it apart at runtime. Now we can write something to render a widget like this:
 
 ```elm
 view : Widget -> Html msg
@@ -213,14 +209,13 @@ One nice thing about this approach is that there is no mystery about what kind o
 
 > **Takeaways:**
 >
->   - Solve each subproblem first.
->   - Use union types to put together all the solutions.
->   - Creating a union type generates a bunch of *constructors*.
->   - These constuctors *tag* data so that we can differentiate it at runtime.
->   - A `case` expression lets us tear data apart based on these tags.
-> 
+> * Solve each subproblem first.
+> * Use union types to put together all the solutions.
+> * Creating a union type generates a bunch of _constructors_.
+> * These constuctors _tag_ data so that we can differentiate it at runtime.
+> * A `case` expression lets us tear data apart based on these tags.
+>
 > The same strategies can be used if you are making a game and have a bunch of different bad guys. Goombas should update one way, but Koopa Troopas do something totally different. Solve each problem independently, and then use a union type to put them all together.
-
 
 ## Linked Lists
 
@@ -248,8 +243,8 @@ Node 64 (Node 128 Empty) : IntList
 
 Now we did two new things here:
 
-  1. The `Node` constructor takes *two* arguments instead of one. This is fine. In fact, you can have them take as many arguments as you want.
-  2. Our union type is *recursive*. An `IntList` may hold another `IntList`. Again, this is fine if you are using union types.
+1. The `Node` constructor takes _two_ arguments instead of one. This is fine. In fact, you can have them take as many arguments as you want.
+2. Our union type is _recursive_. An `IntList` may hold another `IntList`. Again, this is fine if you are using union types.
 
 The nice thing about our `IntList` type is that now we can only build valid linked lists. Every linked list needs to start with `Empty` and the only way to add a new value is with `Node`.
 
@@ -282,14 +277,14 @@ If we get an `Empty` value, the sum is 0. If we have a `Node` we add the first e
 On each line, we see one evaluation step. When we call `sum` it transforms the list based on whether it is looking at a `Node` or an `Empty` value.
 
 > **Note:** This is the first recursive function we have written together! Notice that `sum` calls itself to get the sum. It can be tricky to get into the mindset of writing recursive functions, so I wanted to share one weird trick. **Pretend you are already done.**
-> 
+>
 > I always start with a `case` and all of the branches listed but not filled in. From there, I solve each branch one at a time, pretending that nothing else exists. So with `sum` I'd look at `Empty ->` and say, an empty list has to sum to zero. Then I'd look at the `Node n remainingNumbers ->` branch and think, well, I know I have a number, a list, and a `sum` function that definitely already exists and totally works. I can just use that and add a number to it!
 
 ## Generic Data Structures
 
 > **Problem:** The last section showed linked lists that only worked for integers. That is pretty lame. How can we make linked lists that hold any kind of value?
 
-Everything is going to be pretty much the same, except we are going to introduce a *type variable* in our definition of lists:
+Everything is going to be pretty much the same, except we are going to introduce a _type variable_ in our definition of lists:
 
 ```elm
 > type List a = Empty | Node a (List a)
@@ -313,11 +308,9 @@ Everything else is the same. You pattern match on lists with `case` and you writ
 
 > **Exercise:** This is exactly how the `List` type in Elm works, so take a look at [the `List` library](http://package.elm-lang.org/packages/elm-lang/core/latest/List) and see if you can implement some of those functions yourself.
 
-
 ## Additional Examples
 
 We have seen a couple scenarios, but the best way to get more comfortable is to use union types more! So here are two examples that are kind of fun.
-
 
 ### Binary Trees
 
@@ -334,7 +327,6 @@ Node "hi" Empty Empty : Tree String
 ```
 
 A tree is either empty or it is a node with a value and two children. Check out [this example](http://elm-lang.org/examples/binary-tree) for more info on this. If you can do all of the exercises at the end of that link, consider yourself a capable user of union types!
-
 
 ### Languages
 
@@ -353,3 +345,4 @@ false = And T (Not T)
 ```
 
 Once we have modeled the possible values we can define functions like `eval` which evaluates any `Boolean` to `True` or `False`. See [this example](http://elm-lang.org/examples/boolean-expressions) for more about representing boolean expressions.
+
