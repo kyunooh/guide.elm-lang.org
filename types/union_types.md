@@ -189,7 +189,7 @@ type alias ScatterInfo =
 <function> : ScatterInfo -> Widget
 ```
 
-자  `Widget` 타입은 해당 생성자 함수를 이용한 곳에서만 사용할 수 있어요. 생성자가 태깅\(tagging\)되었다고 생각하시고, 런타임과는 분리되었다고 말할 수 있죠. 이제 
+자  `Widget` 타입은 해당 생성자 함수를 이용한 곳에서만 사용할 수 있어요. 생성자가 태깅\(tagging\)되었다고 생각하시고, 런타임과는 분리되었다고 말할 수 있죠. 이제 다음과 같이 작성해서 위젯을 렌더 할 수 있어요
 
 So we created a `Widget` type that can only be created with these constructor functions. You can think of these constructors as _tagging_ the data so we can tell it apart at runtime. Now we can write something to render a widget like this:
 
