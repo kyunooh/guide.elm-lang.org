@@ -8,11 +8,9 @@ Elm의 유니온 타입은 복잡한 자료를 좀 더 자연스럽게 다룰 �
 
 ## 투두 리스트 분류하기\(Filtering a Todo List\)
 
-> **문제: **업무를 관리 할  [투두 리스트\(todo iist\)](http://evancz.github.io/elm-todomvc/)를 만드는 중이에요. 세개의 뷰를 만들 건데요. 모든 업무들을 보여 주는 뷰, 작업중인 업무를 보여주는 뷰, 완료된 업무만을 보여주는 뷰로 구성할 거에요. 어떻게 세개의 상태를 표현할 수 있을까요?
+> **문제:  **작업 관리 할  [투두 리스트\(todo iist\)](http://evancz.github.io/elm-todomvc/)를 만드는 중이에요. 세개의 뷰를 만들 건데요. 모든 작업들을 보여 주는 뷰, 진행중인 작업 보여주는 뷰, 완료된 작업만을 보여주는 뷰로 구성할 거에요. 어떻게 세개의 상태를 표현할 수 있을까요?
 
-
-
-Whenever you have weird shaped data in Elm, you want to reach for a union type. In this case, we would create a type `Visibility` that has three possible values:
+Elm에서 일반적이지 않은 형태의 데이터를 다룰때는, 유니언 타입을 사용하게 되요. 이 경우엔 세개의 값을 가지는 `Visibillity`를 만들거에요.
 
 ```elm
 > type Visibility = All | Active | Completed
@@ -27,7 +25,7 @@ Active : Visibility
 Completed : Visibility
 ```
 
-Now that we have these three cases defined, we want to create a function `keep` that will properly filter our tasks. It should work like this:
+이제 우리는 세가지 경우를 정의 했고, `keep` 함수를 만들어 적당하게 작업을 걸러볼 거에요. 다음과 같이 작성하시면 되요.
 
 ```elm
 type alias Task = { task : String, complete : Bool }
@@ -52,7 +50,7 @@ tasks =
 -- keep Complete tasks == [buy]
 ```
 
-So the `keep` function needs to look at its first argument, and depending on what it is, filter the list in various ways. We use a `case` expression to do this. It is like an `if` on steroids:
+`keep` 함수는 첫번째 매개 변수에 따라서 작업을 다양하게 나누어요. `if`와 비슷한 `case` 표현식을 사용해서 작성해 볼게요.
 
 ```elm
 keep : Visibility -> List Task -> List Task
@@ -68,12 +66,14 @@ keep visibility tasks =
       List.filter (\task -> task.complete) tasks
 ```
 
-The `case` is saying, look at the structure of `visibility`. If it is `All`, just give back all the tasks. If it is `Active`, keep only the tasks that are not complete. If it is `Completed`, keep only the tasks that are complete.
+`case` 는 `visibility`의 구조를 보고, `All`이라면 그냥 모든 작업들을 보여주고, `Active`라면 진행중인 작업이면서 완료되지 않은 작업들, `Completed`라면 완료된 작업들만 보여줘요.
 
-The cool thing about `case` expressions is that all the branches are checked by the compiler. This has some nice benefits:
+case 표현식의 장점은 각 가지들이 컴파일러에 의해 확인된다는 거에요. 이건 다음과 같은 장접을 같죠.
 
-1. If you mistype `Compleet` by accident, you get a hint about the typo.
-2. If you forget to handle a case, the compiler will figure it out and tell you.
+1. 만약 Compleet 같은 오타가 났을 때, 이에 대한 힌트를 얻을 수 있죠.
+2. case 처리를 깜빡했을 때도 컴파일러가 알려줘요.
+
+네번째 `Visibility` 값으로 Recent를 추가한다면, 컴파일러는 모든 `case` 표현식에서 `Visibility`값을 찾아 새로운 것이 추가되었다고 알려주겠죠! 이건 `Visibility`를 수정하거나 확장할 때 기존 코드에 있는 버그에 대한 잠재 위험을 없앨 수 있다는 거에요.
 
 So say you want to add `Recent` as a fourth possible `Visibility` value. The compiler will find all the `case` expressions in your code that work with `Visibility` values and remind you to handle the new possibility! This means you can change and extend `Visibility` without the risk of silently creating bugs in existing code.
 
