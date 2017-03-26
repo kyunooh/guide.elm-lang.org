@@ -123,7 +123,7 @@ userPhoto user =
       "users/" ++ name ++ ".png"
 ```
 
-위와 같이 `Anonymous` 일 때 보여줄 임시 사진과 `Named` 일때 가져올 사진 두가지 가능성이 있게 되요. 위 `case` 는 이전보다 간단하죠. 두번째 분기엔 `name` 이라는 소문자 변수가 있어요. 이 의미는 `Named "AzureDiamond"`와 같은 값이 있을 때 `name` 변수는 "AzureDiamond"가 되는 것이에요. 이런 걸 패턴 매칭\(pattern matching\)이라고 불러요. 
+위와 같이 `Anonymous` 일 때 보여줄 임시 사진과 `Named` 일때 가져올 사진 두가지 가능성이 있게 되요. 위 `case` 는 이전보다 간단하죠. 두번째 분기엔 `name` 이라는 소문자 변수가 있어요. 이 의미는 `Named "AzureDiamond"`와 같은 값이 있을 때 `name` 변수는 "AzureDiamond"가 되는 것이에요. 이런 걸 패턴 매칭\(pattern matching\)이라고 불러요.
 
 자 이제 어느정도 유저가 있고 그들의 사진이 있는 채팅방을 상상해보세요.
 
@@ -139,17 +139,15 @@ photos =
 -- [ "anon.png", "users/catface420.png", "users/AzureDiamond.png", "anon.png" ]
 ```
 
-`User` 와 같은 타입을 만들면 좋은 점은, 코드 베이스에서 익명인 유저가 있을 있다는 경우를 "잊어버릴 수" 없다는 거에요. 유저를 사용하는 누구나 `case` 에서 이 정보를 알아낼 수 있어요. 또한 모든 `case` 에서 모든 가능성에 대해서 보장해 주죠.
-
-The nice thing about creating a type like `User` is that no one in your whole codebase can ever "forget" that some users may be anonymous. Anyone who can get a hold of a `User` needs to use a `case` to get any information out of it, and the compiler guarantees every `case` and handles all possible scenarios!
+`User` 와 같은 타입을 만들면 좋은 점은, 코드 베이스에서 익명인 유저가 있을 있다는 경우를 "잊어버릴 수" 없다는 거에요. 유저를 사용하는 누구나 `case` 에서 이 정보를 알아낼 수 있어요. 또한 모든 `case` 에서 모든 가능성에 대해서 보장해 주죠!
 
 > **더 생각해보기:** 다른 언어에서는 이런 문제를 어떻게 해결 할 수 있을지 생각해보세요. 문자열이 이면 빈 문자열이면 익명을 의미할까요? 문자열이 null이면 어떻게 할까요? 이런 모든 케이스에 대해서 테스팅하는 게 과연 가능할까요?
 
 ## 위젯 대시보드\(Widget Dashboard\)
 
-> **문제:** You are creating a dashboard with three different kinds of widgets. One shows recent log data, one shows time plots, and one shows scatter plots. How do you represent a widget?
+> **문제:** 여러분은 서로 다른 위젯 세개를 갖는 대시보드를 만드는 중이에요. 하나는 최근 로그를 보여주고, 하나는 타임 플롯을 보여주고, 하나는 스캐터 플롯을 보여줄때, 이 위젯들을 어떻게 표현해야 할까요?
 
-Alright, we are getting a bit fancier now. In Elm, you want to start by solving each case individually. \(As you get more experience, you will see that Elm _wants_ you to build programs out of small, reusable parts. It is weird.\) So I would create representations for each of our three scenarios, along with `view` functions to actually turn them into HTML or SVG or whatever:
+좋아요, 이제 좀 더 깊게 들어가 볼게요. Elm에선 각각의 상황의 문제를 개별적으로 생각하고 문제 해결을 시작해요.\(이상해 보이겠지만 여러분이 좀 더 경험이 많아지다면, 점점 작은 부분으로 나누고 재사용 가능한 Elm 프로그램을 만들어 나가게 될거에요.\) 그렇기 때문에 우리는 세 시나리오를 각각 만들거에요. `view` 함수 또한 각각 HTML이나 SVG와 같은 것으로 변환되겠죠.
 
 ```elm
 type alias LogsInfo =
@@ -172,11 +170,11 @@ type alias ScatterInfo =
 -- viewScatter : ScatterInfo -> Html msg
 ```
 
-At this point, you have created all the helper functions needed to work with these three cases totally independent from each other. Someone can come along later and say, "I need a nice way to show scatter plots" and use just that part of the code.
+여기서 요점은 세가지 경우에 대해 모든 helper 함수가 각각 완벽하게 독립적으로 만들어졌다는 거에요. 누군가 나중에 "스캐터 플롯을 보여줄 멋진 방법이 필요해"라고 말했을 때 그냥 코드 일부를 사용하면 되죠.
 
-So the question is really: how do I put these three standalone things together for my particular scenario?
+하지만 진짜 문제는 "특정 경우에 이 각각의 것을 함께 쓸 수 있을까요?"에요.
 
-Again, union types are there to put together a bunch of different types!
+다시 한번 말씀하지만 다른 타을 유니언 타입으로 집어 넣을 수 있어요!
 
 ```elm
 > type Widget = Logs LogsInfo | TimePlot TimeInfo | ScatterPlot ScatterInfo
@@ -190,6 +188,8 @@ Again, union types are there to put together a bunch of different types!
 > ScatterPlot
 <function> : ScatterInfo -> Widget
 ```
+
+자  `Widget` 타입은 해당 생성자 함수를 이용한 곳에서만 사용할 수 있어요. 생성자가 태깅\(tagging\)되었다고 생각하시고, 런타임과는 분리되었다고 말할 수 있죠. 이제 
 
 So we created a `Widget` type that can only be created with these constructor functions. You can think of these constructors as _tagging_ the data so we can tell it apart at runtime. Now we can write something to render a widget like this:
 
