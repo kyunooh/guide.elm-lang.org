@@ -73,7 +73,7 @@ case 표현식의 장점은 각 가지들이 컴파일러에 의해 확인된다
 1. 만약 Compleet 같은 오타가 났을 때, 이에 대한 힌트를 얻을 수 있죠.
 2. case 처리를 깜빡했을 때도 컴파일러가 알려줘요.
 
-네번째 `Visibility` 값으로 Recent를 추가한다면, 컴파일러는 모든 `case` 표현식에서 `Visibility`값을 찾아 새로운 것이 추가되었다고 알려주겠죠! 이건 `Visibility`를 수정하거나 확장할 때 기존 코드에 있는 버그에 대한 잠재 위험을 없앨 수 있다는 거에요.
+네번째 `Visibility` 값으로 Recent를 추가한다면, 컴파일러는 모든 `case` 표현식에서 `Visibility`값을 찾아 새로운 것이 추가되었다고 알려주겠죠! 이건 `Visibility`를 수정하거나 확장할 때, 기존 코드에 있는 버그에 대한 잠재 위험을 없앨 수 있다는 거에요.
 
 So say you want to add `Recent` as a fourth possible `Visibility` value. The compiler will find all the `case` expressions in your code that work with `Visibility` values and remind you to handle the new possibility! This means you can change and extend `Visibility` without the risk of silently creating bugs in existing code.
 
