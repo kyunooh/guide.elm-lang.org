@@ -2,13 +2,15 @@
 
 많은 언어들 이상한 형태의 데이터를 처리하다가 문제가 발생하죠.내부에서 제공되는 타입들로  모든 것을 표현해야 하죠. 그 때문에 여러분 스스로 `null` 이나 논리값, 문자열 등등을 사용하다가 오류가 발생하기가 쉽죠.
 
-Elm의 유니온 타입은 복잡한 자료를 좀 더 자열스럽게 다룰 수 있게 해줘요. 두가지 구체적인 예시를 살펴보면서 어떻게 유니온 타입을 사용하는 지 알아볼게요.
+Elm의 유니온 타입은 복잡한 자료를 좀 더 자연스럽게 다룰 수 있게 해줘요. 두가지 구체적인 예시를 살펴보면서 어떻게 유니온 타입을 사용하는 지 알아볼게요.
 
-> 더 알아보기**:** 유니온 타입은 때때로 [tagged](https://en.wikipedia.org/wiki/Tagged_union)Union types are sometimes called [tagged unions](https://en.wikipedia.org/wiki/Tagged_union). Some communities call them [ADTs](https://en.wikipedia.org/wiki/Algebraic_data_type).
+더 알아보기**:** 유니온 타입은 때때로 [태그가 지정된 \(tagged unions\)](https://en.wikipedia.org/wiki/Tagged_union)라고 불려요. 몇몇 커뮤니티에선 [ADT](https://en.wikipedia.org/wiki/Algebraic_data_type)라고 부르죠.
 
-## Filtering a Todo List
+## 투두 리스트 분류하기\(Filtering a Todo List\)
 
-> **Problem:** We are creating a [todo list](http://evancz.github.io/elm-todomvc/) full of tasks. We want to have three views: show _all_ tasks, show only _active_ tasks, and show only _completed_ tasks. How do we represent which of these three states we are in?
+> **문제: **업무를 관리 할  [투두 리스트\(todo iist\)](http://evancz.github.io/elm-todomvc/)를 만드는 중이에요. 세개의 뷰를 만들 건데요. 모든 업무들을 보여 주는 뷰, 작업중인 업무를 보여주는 뷰, 완료된 업무만을 보여주는 뷰로 구성할 거에요. 어떻게 세개의 상태를 표현할 수 있을까요?
+
+
 
 Whenever you have weird shaped data in Elm, you want to reach for a union type. In this case, we would create a type `Visibility` that has three possible values:
 
