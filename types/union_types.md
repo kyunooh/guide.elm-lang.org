@@ -110,7 +110,7 @@ Named "abraham-lincoln" : User
   ...
 ```
 
-이제 우리는 사용자를 표현할 수 있어요. 자 이젠 사용자들의 포스트 옆에 표시될 사진들을 가져와 볼게요. 다시 한번 `User`타입을 이용한 `case` 표현식을 사용해야되요. 
+이제 우리는 사용자를 표현할 수 있어요. 자 이젠 사용자들의 포스트 옆에 표시될 사진들을 가져와 볼게요. 다시 한번 `User`타입을 이용한 `case` 표현식을 사용해야되요.
 
 ```elm
 userPhoto : User -> String
@@ -123,11 +123,9 @@ userPhoto user =
       "users/" ++ name ++ ".png"
 ```
 
+위와 같이 `Anonymous` 일 때 보여줄 임시 사진과 `Named` 일때 가져올 사진 두가지 가능성이 있게 되요. 위 `case` 는 이전보다 간단하죠. 두번째 분기엔 `name` 이라는 소문자 변수가 있어요. 이 의미는 `Named "AzureDiamond"`와 같은 값이 있을 때 `name` 변수는 "AzureDiamond"가 되는 것이에요. 이런 걸 패턴 매칭\(pattern matching\)이라고 불러요. 
 
-
-There are two possible cases when we have a `User`. If they are `Anonymous` we show a dummy picture. If they are `Named` we construct the URL of their photo. This `case` is slightly fancier than the one we saw before. Notice that the second branch has a lower case variable `name`. This means that when we see a value like `Named "AzureDiamond"`, the `name` variable will be bound to `"AzureDiamond"` so we can do other things with it. This is called _pattern matching_.
-
-Now imagine we have a bunch of users in a chat room and we want to show their pictures.
+자 이제 어느정도 유저가 있고 그들의 사진이 있는 채팅방을 상상해보세요.
 
 ```elm
 activeUsers : List User
@@ -141,13 +139,15 @@ photos =
 -- [ "anon.png", "users/catface420.png", "users/AzureDiamond.png", "anon.png" ]
 ```
 
+`User` 와 같은 타입을 만들면 좋은 점은, 코드 베이스에서 익명인 유저가 있을 있다는 경우를 "잊어버릴 수" 없다는 거에요. 유저를 사용하는 누구나 `case` 에서 이 정보를 알아낼 수 있어요. 또한 모든 `case` 에서 모든 가능성에 대해서 보장해 주죠.
+
 The nice thing about creating a type like `User` is that no one in your whole codebase can ever "forget" that some users may be anonymous. Anyone who can get a hold of a `User` needs to use a `case` to get any information out of it, and the compiler guarantees every `case` and handles all possible scenarios!
 
-> **Exercise:** Think about how you would solve this problem in some other language. A string where empty string means they are anonymous? A string that can be null? How much testing would you want to do to make sure that everyone handles these special cases correctly?
+> **더 생각해보기:** 다른 언어에서는 이런 문제를 어떻게 해결 할 수 있을지 생각해보세요. 문자열이 이면 빈 문자열이면 익명을 의미할까요? 문자열이 null이면 어떻게 할까요? 이런 모든 케이스에 대해서 테스팅하는 게 과연 가능할까요?
 
-## Widget Dashboard
+## 위젯 대시보드\(Widget Dashboard\)
 
-> **Problem:** You are creating a dashboard with three different kinds of widgets. One shows recent log data, one shows time plots, and one shows scatter plots. How do you represent a widget?
+> **문제:** You are creating a dashboard with three different kinds of widgets. One shows recent log data, one shows time plots, and one shows scatter plots. How do you represent a widget?
 
 Alright, we are getting a bit fancier now. In Elm, you want to start by solving each case individually. \(As you get more experience, you will see that Elm _wants_ you to build programs out of small, reusable parts. It is weird.\) So I would create representations for each of our three scenarios, along with `view` functions to actually turn them into HTML or SVG or whatever:
 
