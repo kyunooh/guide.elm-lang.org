@@ -189,9 +189,7 @@ type alias ScatterInfo =
 <function> : ScatterInfo -> Widget
 ```
 
-자  `Widget` 타입은 해당 생성자 함수를 이용한 곳에서만 사용할 수 있어요. 생성자가 태깅\(tagging\)되었다고 생각하시고, 런타임과는 분리되었다고 말할 수 있죠. 이제 다음과 같이 작성해서 위젯을 렌더 할 수 있어요
-
-So we created a `Widget` type that can only be created with these constructor functions. You can think of these constructors as _tagging_ the data so we can tell it apart at runtime. Now we can write something to render a widget like this:
+자  `Widget` 타입은 해당 생성자 함수를 이용한 곳에서만 사용할 수 있어요. 생성자가 태깅\(tagging\)되었다고 생각하시고, 런타임과는 분리되었다고 말할 수 있죠. 이제 다음과 같이 작성해서 위젯을 렌더 할 수 있어요.
 
 ```elm
 view : Widget -> Html msg
@@ -207,7 +205,7 @@ view widget =
       viewScatter info
 ```
 
-One nice thing about this approach is that there is no mystery about what kind of widgets are supported. There are exactly three. If someone wants to add a fourth, they modify the `Widget` type. This means you can never be surprised by the data you get, even if someone on a different team is messing with your code.
+이 방식의 좋은 점중 하나는 어떤 종류의 위젯을 지원하는 지에 대한 의문을 가질 필요가 없다는 거에요. 정확히 세개 뿐이죠. 만약 다른 누군가가 네번째를 추가한다면, `Widget` 타입을 수정하면 되요. 이 의미는 다른 팀의 누군가가 여러분의 코드를 망치는 것에 대해 놀랄 일이 사라진 다는 거에요.
 
 > **Takeaways:**
 >
