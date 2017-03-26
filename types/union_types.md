@@ -73,17 +73,15 @@ case 표현식의 장점은 각 가지들이 컴파일러에 의해 확인된다
 1. 만약 Compleet 같은 오타가 났을 때, 이에 대한 힌트를 얻을 수 있죠.
 2. case 처리를 깜빡했을 때도 컴파일러가 알려줘요.
 
-네번째 `Visibility` 값으로 Recent를 추가한다면, 컴파일러는 모든 `case` 표현식에서 `Visibility`값을 찾아 새로운 것이 추가되었다고 알려주겠죠! 이건 `Visibility`를 수정하거나 확장할 때, 기존 코드에 있는 버그에 대한 잠재 위험을 없앨 수 있다는 거에요.
+네번째 `Visibility` 값으로 Recent를 추가한다면, 컴파일러는 모든 `case` 표현식에서 `Visibility`값을 찾아 새로운 것이 추가되었다고 알려주겠죠! 이건 `Visibility`를 수정하거나 확장할 때, 기존 코드를 수정할 때 생기는 버그의 잠재 위험을 없앨 수 있다는 거에요.
 
-So say you want to add `Recent` as a fourth possible `Visibility` value. The compiler will find all the `case` expressions in your code that work with `Visibility` values and remind you to handle the new possibility! This means you can change and extend `Visibility` without the risk of silently creating bugs in existing code.
+> **생각해보기:** 자바스크립트에선 이런 문제가 어떻게 처리될 지 상상해보세요. 세개의 문자열? null이 될수도 있는 논리값? `keep` 함수는 어떻게 정의 될까요? 코드를 추가할 때 생길 문제를 대비하여 어떤 종류의 테스트 코드를 짜야할까요?
 
-> **Exercise:** Imagine how you would solve this same problem in JavaScript. Three strings? A boolean that can be `null`? What would the definition of `keep` look like? What sort of tests would you want to write to make sure adding new code later was safe.
+## 익명 사용자\(Anonymous Users\)
 
-## Anonymous Users
+> **문제:** 채팅방이 있는데요. 몇몇은 로그인을 하여 사용하고 몇몇은 익명 사용자에요. 어떻게 사용자들을 표현해야 할까요?
 
-> **Problem:** We have a chat room where people can post whatever they want. Some users are logged in and some are anonymous. How should we represent a user?
-
-Again, whenever there is weird shaped data, you want to reach for a union type. For this case, we want one where users are either anonymous or named:
+자 다시 일반적이지 않은 형태의 자료네요. 유니언 타입을 사용해야겠어요. 이 경우에는 익명 유저와 이름이 있는 유저로 구분할게요.
 
 ```elm
 > type User = Anonymous | Named String
@@ -101,7 +99,7 @@ Named "AzureDiamond" : User
 Named "abraham-lincoln" : User
 ```
 
-So creating the type `User` also created constructors named `Anonymous` and `Named`. If you want to create a `User` you _must_ use one of these two constructors. This guarantees that all the possible `User` values are things like:
+`User` 타입을 만들고 각각 `Anonymous`와 `Named` 라고 이름을 붙입니다. 이제 여러분인 `User` 타입을 사용하려면 이 두개중 하나를 선택해서 사용해야 겠죠. 이제 모든 User의 값들은 다음과 같은 형식을 가진다고 보장할 수 있어요.
 
 ```elm
   Anonymous
@@ -112,7 +110,7 @@ So creating the type `User` also created constructors named `Anonymous` and `Nam
   ...
 ```
 
-Now that we have a representation of a user, lets say we want to get a photo of them to show next to their posts. Again, we need to use a `case` expression to work with our `User` type:
+이제 우리는 사용자를 표현할 수 있어요. 자 이젠 사용자들의 포스트 옆에 표시될 사진들을 가져와 볼게요. 다시 한번 `User`타입을 이용한 `case` 표현식을 사용해야되요. 
 
 ```elm
 userPhoto : User -> String
@@ -124,6 +122,8 @@ userPhoto user =
     Named name ->
       "users/" ++ name ++ ".png"
 ```
+
+
 
 There are two possible cases when we have a `User`. If they are `Anonymous` we show a dummy picture. If they are `Named` we construct the URL of their photo. This `case` is slightly fancier than the one we saw before. Notice that the second branch has a lower case variable `name`. This means that when we see a value like `Named "AzureDiamond"`, the `name` variable will be bound to `"AzureDiamond"` so we can do other things with it. This is called _pattern matching_.
 
