@@ -207,7 +207,7 @@ view widget =
 
 이 방식의 좋은 점중 하나는 어떤 종류의 위젯을 지원하는 지에 대한 의문을 가질 필요가 없다는 거에요. 정확히 세개 뿐이죠. 만약 다른 누군가가 네번째를 추가한다면, `Widget` 타입을 수정하면 되요. 이 의미는 다른 팀의 누군가가 여러분의 코드를 망치는 것에 대해 놀랄 일이 사라진 다는 거에요.
 
-> **Takeaways:**
+> **알고 넘어가기:**
 >
 > * Solve each subproblem first.
 > * Use union types to put together all the solutions.
