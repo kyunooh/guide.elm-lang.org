@@ -209,15 +209,15 @@ view widget =
 
 > **알고 넘어가기:**
 >
-> * Solve each subproblem first.
-> * Use union types to put together all the solutions.
-> * Creating a union type generates a bunch of _constructors_.
-> * These constuctors _tag_ data so that we can differentiate it at runtime.
-> * A `case` expression lets us tear data apart based on these tags.
+> * 각각의 문제를 먼저 해결하세요.
+> * 유니언 타입을 이용해서 해결책을 모으세요.
+> * 유니언 타입을 만들면 생성자가 많이 생겨요. Creating a union type generates a bunch of _constructors_.
+> * 이 생성자들은 런타임에서 데이터를 구분할 수 있도록 태깅해요. 
+> * `case` 표현식을 이용하면 태그를 기반으로 데이터를 구분할수 있어요.
 >
-> The same strategies can be used if you are making a game and have a bunch of different bad guys. Goombas should update one way, but Koopa Troopas do something totally different. Solve each problem independently, and then use a union type to put them all together.
+> 위와 같은 방법으로 게임을 만든다면, 서로 다른 특성만 가진 사람들로만 이루어 져도 괜찮아요. Goombas가 한쪽 작업을 하고 있을 때 Koopa Troopas는 완전 다른 일을 해요. 하지만 각각 서로의 문제들이 해결되면, 유니언 타입을 이용해서 이들을 묶을 수 있어요.
 
-## Linked Lists
+## 링크트 리스트\(Linked Lists\)
 
 > **Problem:** You are stuck on a bus speeding down the highway. If the bus slows down, it will blow up. The only way to save yourself and everyone on the bus is to reimplement linked lists in Elm. HURRY, WE ARE RUNNING OUT OF GAS!
 
