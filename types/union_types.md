@@ -332,7 +332,7 @@ Node "hi" Empty Empty : Tree String
 
 ### 언어\(Languages\)
 
-만약 좀 더 미친듯이 사용해보고 싶다면 프로그래밍 언어를 데이터로 모델링 해볼 수 도 있어요. 아래는 [불린 대수 \(Boolean algebra\)](https://en.wikipedia.org/wiki/Boolean_algebra#Operations)를 이용한 예제에요. 
+만약 좀 더 미친듯이 사용해보고 싶다면 프로그래밍 언어를 데이터로 모델링 해볼 수 도 있어요. 아래는 [불린 대수 \(Boolean algebra\)](https://en.wikipedia.org/wiki/Boolean_algebra#Operations)를 이용한 예제에요.
 
 ```elm
 type Boolean
@@ -346,7 +346,5 @@ true = Or T F
 false = And T (Not T)
 ```
 
-값을 모델링 하면 `eval`같은 함수를 정의해서, `True`나 `False` 를 `Boolean` 으로 받는 것도 가능해져요. 자세한 것은 [이 예제를 참고](http://elm-lang.org/examples/boolean-expressions)를 참고하세요.
-
-
+값을 모델링 하면 `eval`같은 함수를 정의하고, `True`나 `False` 를 `Boolean` 으로 받는 것도 가능해져요. 자세한 것은 [이 예제를 참고](http://elm-lang.org/examples/boolean-expressions)를 참고하세요.
 
