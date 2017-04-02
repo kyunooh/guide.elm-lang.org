@@ -243,7 +243,7 @@ Node 64 (Node 128 Empty) : IntList
 
 이번엔 두가지 새로운 것이데요. 보이는
 
-1.  `Node` 생성자는 한개가 아닌 두개의 매개변수를 사용하지만 괜찮아요. 사실 매개변수는 원하는 만큼 사용할 수 있어요.
+1. `Node` 생성자는 한개가 아닌 두개의 매개변수를 사용하지만 괜찮아요. 사실 매개변수는 원하는 만큼 사용할 수 있어요.
 2. 유니언 타입은 재귀적이에요. 유니언 타입을 사용한다면 `IntList` 안에 또다른 `IntList`를 넣어도 괜찮아요.
 
 만들어진 `IntList` 장점 중 하나는 검증된 연결 리스트만 빌드된다는 거에요. 모든 연결 리스트는 `Empty`로 시작하고, 새로운 값을 추가할 수 있는 방법은 `Node`를 사용하는 것 뿐이에요.
@@ -302,21 +302,21 @@ Node "hi" Empty : List String
 Node 1.618 (Node 6.283 Empty) : List Float
 ```
 
+Node 생정자의 재밌는 부분중 하나는 데이터 타입을 `Int`나 `IntList` 등으로 고정하는 대신 `a`와 `List a`를 사용했나든 거에요. 이로써 여러분은 같은 타입을 갖는 값들 어떤 것이든 리스트에 추가할 수 있게 되는거죠.
 
-
-The fancy part comes in the `Node` constructor. Instead of pinning the data to `Int` and `IntList`, we say that it can hold `a` and `List a`. Basically, you can add a value as long as it is the same type of value as everything else in the list.
+나머지도 비슷해요. case를 이용해서 패턴 매치를 하고, 재귀함 수를 작성하겠죠. 유일한 다른 점은 방금 만든 리스트는 어떤 타입이든 사용할 수 있다는 거죠.
 
 Everything else is the same. You pattern match on lists with `case` and you write recursive functions. The only difference is that our lists can hold anything now!
 
-> **Exercise:** This is exactly how the `List` type in Elm works, so take a look at [the `List` library](http://package.elm-lang.org/packages/elm-lang/core/latest/List) and see if you can implement some of those functions yourself.
+> **연습문제:** 이건 Elm의 List와 동일하게 동작하요. 그럼 한번 [`List` 라이브러리](http://package.elm-lang.org/packages/elm-lang/core/latest/List)를 살펴보고 여러분도 직접 함수를 구현할 수 있을 지 확인해 보세요.
 
-## Additional Examples
+## 추가 예제
 
-We have seen a couple scenarios, but the best way to get more comfortable is to use union types more! So here are two examples that are kind of fun.
+지금까지 몇가지 예제를 살펴보았는데요. 유니온 타입에 익숙해질 수 있는 방법은 역시 직접 사용해보는 거에요! 자 여기 몇가지 예제를 더 준비해 보았어요.
 
-### Binary Trees
+### 이진 트리\(Binary Trees\)
 
-[Binary trees](https://en.wikipedia.org/wiki/Binary_tree) are almost exactly the same as linked lists:
+[이진 트리](https://en.wikipedia.org/wiki/Binary_tree)는 연결 리스트와 거의 비슷해요.:
 
 ```elm
 > type Tree a = Empty | Node a (Tree a) (Tree a)
@@ -328,11 +328,11 @@ We have seen a couple scenarios, but the best way to get more comfortable is to 
 Node "hi" Empty Empty : Tree String
 ```
 
-A tree is either empty or it is a node with a value and two children. Check out [this example](http://elm-lang.org/examples/binary-tree) for more info on this. If you can do all of the exercises at the end of that link, consider yourself a capable user of union types!
+트리는 는 비어있거나 두개의 자식 값을 가질 수 있죠.  더 자세히 알고 싶으시다면 [이 예제](http://elm-lang.org/examples/binary-tree)를 확인하세요. 여러분이 이 예제 끝의 문제들을 전부 해결할 수 있다면, 여러분은 충분히 유니언 타입을 잘 사용하는 거라 볼 수 있어요!
 
-### Languages
+### 언어\(Languages\)
 
-We can even model a programming language as data if we want to go really crazy! In this case, it is one that only deals with [Boolean algebra](https://en.wikipedia.org/wiki/Boolean_algebra#Operations):
+만약 좀 더 미친듯이 사용해보고 싶다면 프로그래밍 언어를 데이터로 모델링 해볼 수 도 있어요. 아래는 [불린 대수 \(Boolean algebra\)](https://en.wikipedia.org/wiki/Boolean_algebra#Operations)를 이용한 예제에요. 
 
 ```elm
 type Boolean
@@ -346,5 +346,7 @@ true = Or T F
 false = And T (Not T)
 ```
 
-Once we have modeled the possible values we can define functions like `eval` which evaluates any `Boolean` to `True` or `False`. See [this example](http://elm-lang.org/examples/boolean-expressions) for more about representing boolean expressions.
+값을 모델링 하면 `eval`같은 함수를 정의해서, `True`나 `False` 를 `Boolean` 으로 받는 것도 가능해져요. 자세한 것은 [이 예제를 참고](http://elm-lang.org/examples/boolean-expressions)를 참고하세요.
+
+
 
