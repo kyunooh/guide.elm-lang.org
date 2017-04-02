@@ -217,13 +217,13 @@ view widget =
 >
 > 위와 같은 방법으로 게임을 만든다면, 서로 다른 특성만 가진 사람들로만 이루어 져도 괜찮아요. Goombas가 한쪽 작업을 하고 있을 때 Koopa Troopas는 완전 다른 일을 해요. 하지만 각각 서로의 문제들이 해결되면, 유니언 타입을 이용해서 이들을 묶을 수 있어요.
 
-## 링크트 리스트\(Linked Lists\)
+## 링크드 리스트\(Linked Lists\)
 
-> **Problem:** You are stuck on a bus speeding down the highway. If the bus slows down, it will blow up. The only way to save yourself and everyone on the bus is to reimplement linked lists in Elm. HURRY, WE ARE RUNNING OUT OF GAS!
+> **문제:** 여러분은 속도가 느려지면 터지는 버스에 같혀 있어요. 버스에 타고 있는 사람들을 구할 유일한 방법은 Elm에서 링크드 리스트를 구현하는 것 뿐이에요. 어서 서두르세요. 연료가 떨어지고 있어요!
 
-Yeah, yeah, the problem is contrived this time, but it is important to see some of the more advanced things you can do with union types!
+네네, 이번엔 문제가 좀 이상해 보이긴 하지만 그게 중요한 게 아니에요. 유니온 타입을 좀 더 급진적으로 사용해볼 거라는 게 중요해요!
 
-A [linked list](https://en.wikipedia.org/wiki/Linked_list) is a sequence of values. If you are looking at a linked list, it is either empty or it is a value and more list. That list is either empty or is a value and more list. etc. This intuitive definition works pretty directly in Elm. Let's see it for lists of integers:
+[링크드 리스트](https://en.wikipedia.org/wiki/Linked_list)는 값들이 연속적으로 있는 형태에요. 링크드 리스트는 비어있거나, 값과 리스트가 더 있을 수도 있어요. 때문에 이번에 만드는 리스트도 비어있거나 값들이 있거나 할 거에요. 자 정수로 이루어진 리스트를 봅시다.
 
 ```elm
 > type IntList = Empty | Node Int IntList
