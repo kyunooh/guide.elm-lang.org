@@ -217,13 +217,13 @@ view widget =
 >
 > 위와 같은 방법으로 게임을 만든다면, 서로 다른 특성만 가진 사람들로만 이루어 져도 괜찮아요. Goombas가 한쪽 작업을 하고 있을 때 Koopa Troopas는 완전 다른 일을 해요. 하지만 각각 서로의 문제들이 해결되면, 유니언 타입을 이용해서 이들을 묶을 수 있어요.
 
-## 링크드 리스트\(Linked Lists\)
+## 연결 리스트\(Linked Lists\)
 
-> **문제:** 여러분은 속도가 느려지면 터지는 버스에 같혀 있어요. 버스에 타고 있는 사람들을 구할 유일한 방법은 Elm에서 링크드 리스트를 구현하는 것 뿐이에요. 어서 서두르세요. 연료가 떨어지고 있어요!
+> **문제:** 여러분은 속도가 느려지면 터지는 버스에 같혀 있어요. 버스에 타고 있는 사람들을 구할 유일한 방법은 Elm에서 연결 리스트를 구현하는 것 뿐이에요. 어서 서두르세요. 연료가 떨어지고 있어요!
 
 네네, 이번엔 문제가 좀 이상해 보이긴 하지만 그게 중요한 게 아니에요. 유니온 타입을 좀 더 급진적으로 사용해볼 거라는 게 중요해요!
 
-[링크드 리스트](https://en.wikipedia.org/wiki/Linked_list)는 값들이 연속적으로 있는 형태에요. 링크드 리스트는 비어있거나, 값과 리스트가 더 있을 수도 있어요. 때문에 이번에 만드는 리스트도 비어있거나 값들이 있거나 할 거에요. 자 정수로 이루어진 리스트를 봅시다.
+[연결 리스트](https://en.wikipedia.org/wiki/Linked_list)는 값들이 연속적으로 있는 형태에요. 연결 리스트는 비어있거나, 값과 리스트가 더 있을 수도 있어요. 때문에 이번에 만드는 리스트도 비어있거나 값들이 있거나 할 거에요. 자 정수로 이루어진 리스트를 봅시다.
 
 ```elm
 > type IntList = Empty | Node Int IntList
@@ -241,14 +241,14 @@ Node 42 Empty : IntList
 Node 64 (Node 128 Empty) : IntList
 ```
 
-Now we did two new things here:
+이번엔 두가지 새로운 것이데요. 보이는
 
-1. The `Node` constructor takes _two_ arguments instead of one. This is fine. In fact, you can have them take as many arguments as you want.
-2. Our union type is _recursive_. An `IntList` may hold another `IntList`. Again, this is fine if you are using union types.
+1.  `Node` 생성자는 한개가 아닌 두개의 매개변수를 사용하지만 괜찮아요. 사실 매개변수는 원하는 만큼 사용할 수 있어요.
+2. 유니언 타입은 재귀적이에요. 유니언 타입을 사용한다면 `IntList` 안에 또다른 `IntList`를 넣어도 괜찮아요.
 
-The nice thing about our `IntList` type is that now we can only build valid linked lists. Every linked list needs to start with `Empty` and the only way to add a new value is with `Node`.
+만들어진 `IntList` 장점 중 하나는 검증된 연결 리스트만 빌드된다는 거에요. 모든 연결 리스트는 `Empty`로 시작하고, 새로운 값을 추가할 수 있는 방법은 `Node`를 사용하는 것 뿐이에요.
 
-It is equally nice to work with. Let's say we want to compute the sum of all of the numbers in a list. Just like with any other union type, we need to use a `case` and handle all possible scenarios:
+이건 리스트를 사용할 때도 좋아요. 리스트의 숫자 합계를 계산해 볼게요. 다른 유니언 타입과 마찬가지로, `case` 를 통해서 가능한 시나리오를 다룰 수 있어요.
 
 ```elm
 sum : IntList -> Int
@@ -261,7 +261,7 @@ sum numbers =
       n + sum remainingNumbers
 ```
 
-If we get an `Empty` value, the sum is 0. If we have a `Node` we add the first element to the sum of all the remaining ones. So an expression like `(sum (Node 1 (Node 2 (Node 3 Empty))))` is evaluated like this:
+만약 Empty값을 받았을 때 합계는 0이겠죠. 만약 Node라면 남아있는 값들의 합에 첫번째 요소를 더해줘요. 즉 `(sum (Node 1 (Node 2 (Node 3 Empty))))`와 같은 표현식으로 동작하는 거에요. 다음과 같이 계산되는 거죠.
 
 ```elm
   sum (Node 1 (Node 2 (Node 3 Empty)))
@@ -274,17 +274,17 @@ If we get an `Empty` value, the sum is 0. If we have a `Node` we add the first e
   6
 ```
 
-On each line, we see one evaluation step. When we call `sum` it transforms the list based on whether it is looking at a `Node` or an `Empty` value.
+각각의 라인들을 보시면, 한단계씩 계산되어지는 걸 알 수 있죠. `sum`을 호출하게 되면 값이 `Node` 인지 `Empty` 인지에 따로 변환되는 거에요.
 
-> **Note:** This is the first recursive function we have written together! Notice that `sum` calls itself to get the sum. It can be tricky to get into the mindset of writing recursive functions, so I wanted to share one weird trick. **Pretend you are already done.**
+> **더 알아보기:** 방금 처음으로 재귀함수를 작성해 보았어요! `sum`은 자기 자신을** **다시 호출하죠. 재귀 함수와 같은 사고방식을 갖는 것은 어렵지만 여러분들과 이 이상한 방법을 공유해보고 싶었어요. **그냥 이미 다 아는 척을 하세요.**
 >
-> I always start with a `case` and all of the branches listed but not filled in. From there, I solve each branch one at a time, pretending that nothing else exists. So with `sum` I'd look at `Empty ->` and say, an empty list has to sum to zero. Then I'd look at the `Node n remainingNumbers ->` branch and think, well, I know I have a number, a list, and a `sum` function that definitely already exists and totally works. I can just use that and add a number to it!
+> 전 항상 `case`를 작성할 때 모든 경우들을 한번에 채우지 않고, 각각의 경우를 하나씩 처리해요. `sum`을 보면 `Emtpy ->` 를 먼저 0이겠구나 생각한 뒤 `Node n remainingNumbers ->` 의 경우를 살펴보고 생각해봐요. 숫자와 리스트 `sum` 함수가 완벽하게 동작한다는 걸 알게 되면, 이제 그냥 숫자를 추가해서 사용할 수 있게 되죠.
 
-## Generic Data Structures
+## 제네릭 데이터 구조\(Generic Data Structures\)
 
-> **Problem:** The last section showed linked lists that only worked for integers. That is pretty lame. How can we make linked lists that hold any kind of value?
+> **문제: **방금은 정수에 대해서만 동작하는 연결 리스트를 봤었는데요. 사실 반쪽짜리 리스트라고 할 수 있죠. 모드 종류의 값에 대응하는 연결 리스트는 어떻게 만들 수 있을까요?
 
-Everything is going to be pretty much the same, except we are going to introduce a _type variable_ in our definition of lists:
+자 정의 할 때 _타입 변수\(type variable\)_이 들어간다는 것 빼곤 모든게 비슷해요.
 
 ```elm
 > type List a = Empty | Node a (List a)
@@ -301,6 +301,8 @@ Node "hi" Empty : List String
 > Node 1.618 (Node 6.283 Empty)
 Node 1.618 (Node 6.283 Empty) : List Float
 ```
+
+
 
 The fancy part comes in the `Node` constructor. Instead of pinning the data to `Int` and `IntList`, we say that it can hold `a` and `List a`. Basically, you can add a value as long as it is the same type of value as everything else in the list.
 
