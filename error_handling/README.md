@@ -1,5 +1,7 @@
 # 에러 핸들링과 태스크\(Error Handling and Tasks\)
 
+Elm에선 Runtime 에러를 볼 수 없다는 걸 보장할 수 있어요. NoRedInk는 1년동안 Elm을 사용해봤지만 한번도 Runtime 에러가 난 적이 없어요! Elm이란 기반 설계가 잘 되어 있기 때문이에애. 이번엔 Elm이 실제로 어떻게 데이터 등의 에러에 대한 힌트를 주는
+
 One of the guarantees of Elm is that you will not see runtime errors in practice. NoRedInk has been using Elm in production for about a year now, and they still have not had one! Like all guarantees in Elm, this comes down to fundamental language design choices. In this case, we are helped by the fact that **Elm treats errors as data.** \(Have you noticed we make things data a lot here?\)
 
 This section is going to walk through three data structures that help you handle errors in a couple different ways.
