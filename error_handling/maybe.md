@@ -1,4 +1,4 @@
-# Maybe
+Maybe
 
 Maybe를 정의하면서 시작하는 게 제일 좋아요. [여기](../types/union_types.md)에서 본 예제와 마찬가지로 모두 유니언 타입이에요. 다음과 같이 정의되죠.
 
@@ -51,7 +51,7 @@ tom =
   { name = "Tom", age = Just 24 }
 ```
 
-이제 그는 
+이제 그는
 
 Great, that will be nice on his birthday. But more importantly, Tom is part of a valuable demographic! The advertisers will be pleased.
 
