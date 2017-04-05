@@ -1,38 +1,36 @@
-# 에러 핸들링과 태스크\(Error Handling and Tasks\)
+# 오류 처리와 태스크\(Error Handling and Tasks\)
 
-Elm에선 Runtime 에러를 볼 수 없다는 걸 보장할 수 있어요. NoRedInk는 1년동안 Elm을 사용해봤지만 한번도 Runtime 에러가 난 적이 없어요! Elm이란 기반 설계가 잘 되어 있기 때문이에애. 이번엔 Elm이 실제로 어떻게 데이터 등의 에러에 대한 힌트를 주는
+Elm에선 Runtime 에러를 볼 수 없다는 걸 보장할 수 있어요. NoRedInk는 1년동안 Elm을 사용해봤지만 한번도 Runtime 에러가 난 적이 없어요! Elm의 기반 설계가 잘 되어 있기 때문이죠. Elm은 에러를 데이터로 처리하는 데 이것이 왜 우리에게 도움이 되는 지 알아볼 거에요. \(벌써 눈치채신분도 있을요?\)
 
-One of the guarantees of Elm is that you will not see runtime errors in practice. NoRedInk has been using Elm in production for about a year now, and they still have not had one! Like all guarantees in Elm, this comes down to fundamental language design choices. In this case, we are helped by the fact that **Elm treats errors as data.** \(Have you noticed we make things data a lot here?\)
-
-This section is going to walk through three data structures that help you handle errors in a couple different ways.
+이 단원에서는 각각 다른 방법으로 오류를 처리하는 세 가지 데이터 구조를 살펴볼 것입니다.
 
 * `Maybe`
 * `Result`
 * `Task`
 
-Now some of you probably want to jump right to tasks, but trust me that going in order will help here! You can think of these three data structures as a progression that slowly address crazier and crazier situations. So if you jump in at the end, it will be a lot to figure out all at once.
+아마 몇몇 분들은 바로 Task 로 넘어가고 싶어 하시겠지만, 순서대로 하는 게 도움이 될테니 절 한번 믿어보세요! 여러분은 이 과정이 미친듯이 느리게 진행된다고 생각할 수도 있어요. 하지만 여러분이 끝까지 해내신다면, 한번에 많은 것을 얻을 수 있을 거에요.
 
-## Some Historical Context
+## 집고 넘어갈 역사에 대한 맥락
 
-There are two popular language features that consistently cause unexpected problems. If you have used Java or C or JavaScript or Python or Ruby, you have almost certainly had your code crash because of `null` values or surprise exceptions from someone else's code.
+예기치 않은 문제에 대해 처리하는 방법으로 언어들이 사용하는 많이 사용하는 두가지 특징이 있는데요. 여러분이 Java, C, Javascript, Python, Ruby등을 사용해보셨다면, 분명히 `null` 값이나 다른 사람들의 코드에서 예외 때문에 코드에 문제가 발생한 적이 있을거에요.
 
-Now these things are extremely familiar to folks, but that does not mean they are good!
+이제 이런 경우는 익숙하지만, 그렇다고 해서 그게 좋다는 걸 의미하는 건 아니죠!
 
 ### Null
 
-Any time you think you have a `String` you just might have a `null` instead. Should you check? Did the person giving you the value check? Maybe it will be fine? Maybe it will crash your servers? I guess we will find out later!
+`String`을 사용할 때마다 이 값이 `null`일 수 있다는 생각을 하게 되죠. `null` 체크를 해봐야 할까요? 아니면 이미 다른사람이 값을 체크 하지 않았을까요? 정말 괜찮은 걸까요? 혹시 이것 때문에 서버가 멈춰버리는 건 아닐까요? 그리고 나중에 이걸 알게 될 거라고 생각하죠!
 
-The inventor, Tony Hoare, has this to say about it:
+Null을 고안한 Nony Hoare는 다음과 같이 얘기 했어요.
 
-> I call it my billion-dollar mistake. It was the invention of the null reference in 1965. At that time, I was designing the first comprehensive type system for references in an object oriented language \(ALGOL W\). My goal was to ensure that all use of references should be absolutely safe, with checking performed automatically by the compiler. But I couldn't resist the temptation to put in a null reference, simply because it was so easy to implement. This has led to innumerable errors, vulnerabilities, and system crashes, which have probably caused a billion dollars of pain and damage in the last forty years.
+> \(널 포인터는\) 내 10억 달러짜리 실수였다. 1965년 당시, 나는 ALGOL W라는 객체 지향 언어에 쓰기 위해 포괄적인 타입 시스템을 설계하고 있었다. 내 원래 목표는 어떤 데이터를 읽든 항상 안전하도록 컴파일러가 자동으로 확인해 주는 것이었다. 그러나 나는 널 포인터를 집어넣으려는 유혹을 이길 수가 없었다. 그렇게 하는 게 훨씬 쉬웠기 때문이다. 이 결정은 셀 수도 없는 오류와 보안 버그, 시스템 다운을 낳았다. 지난 40년 동안 이러한 문제들 때문에 입은 고통과 손해는 10억 달러는 될 것이다. \([번역참고](http://pgr21.com/pb/pb.php?id=freedom&no=57633)\)
 
-As we will see soon, the point of `Maybe` is to avoid this problem in a pleasant way.
+그리고 Maybe 가 이 문제를 피하는 좋은 
 
-### Exceptions
+### 예외\(Exceptions\)
 
-Joel Spolsky outlined the issues with exceptions pretty nicely [in the year 2003](http://www.joelonsoftware.com/items/2003/10/13.html). Essentially, code that _looks_ fine may actually crash at runtime. Surprise!
+Joel Spolsky는 [2003년에](http://www.joelonsoftware.com/items/2003/10/13.html) 대략적으로 예외에 대한 문제점을 얘기했어요. 괜찮아 보이는 코드가 실제로는 런타임중에 깨져버려서 놀라는 상황이 발생한다는 것이죠!
 
-The point of `Result` is to make the possibility of failure clear and make sure it is handled appropriately.
+Result의 요점은 실패 가능성에 대해 명확하게 알고, 그것을 처리하는 거에요.
 
-The point of `Task` is pretty much the same, but it also works when we have code that runs asynchronously. Your error handling mechanism shouldn't totally fall apart just because you make an HTTP request!
+Task의 요점도 거의 비슷하지만 비동기 작업을 할 때도 동작해요.  HTTP 요청과 오류 처리 메커니즘이 완벽하게 떨어지면 안되겠죠!
 

@@ -19,7 +19,7 @@
   * [타입 읽어보기\(Reading Types\)](types/reading_types.md)
   * [타입 별명\(Type Aliases\)](types/type_aliases.md)
   * [유니온 타입\(Union Types\)](types/union_types.md)
-* [에러 핸들링과 태스크\(Error Handling and Tasks\)](error_handling/README.md)
+* [오류 처리와 태스크\(Error Handling and Tasks\)](error_handling/README.md)
   * [Maybe](error_handling/maybe.md)
   * [Result](error_handling/result.md)
   * [Task](error_handling/task.md)
