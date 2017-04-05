@@ -1,4 +1,4 @@
-Maybe
+# Maybe
 
 Maybe를 정의하면서 시작하는 게 제일 좋아요. [여기](../types/union_types.md)에서 본 예제와 마찬가지로 모두 유니언 타입이에요. 다음과 같이 정의되죠.
 
@@ -51,11 +51,9 @@ tom =
   { name = "Tom", age = Just 24 }
 ```
 
-이제 그는
+그는 생일에 축하받을 수 있을 거에요. 하지만 더 중요한 건, 톰이 인구 통계를 낼 때 속하는 사람중 한명이란 거죠! 광고주들이 분명 좋아할 거에요.
 
-Great, that will be nice on his birthday. But more importantly, Tom is part of a valuable demographic! The advertisers will be pleased.
-
-Alright, so now that we have some users, how can we market alcohol to them without breaking any laws? People would probably be mad if we market to people under 21, so let's check for that:
+좋아요, 이제 우린 어느정도 사용자를 확보했어요. 자 어떻게하면 법을 위반하지 않고 술을 판매할 수 있을까요? 21살 이하의 사람들에게 술을 판다면 사람들은 화를 낼 거에요. 자 다음과 같이 확인해 보죠.
 
 ```elm
 canBuyAlcohol : User -> Bool
@@ -68,15 +66,15 @@ canBuyAlcohol user =
       age >= 21
 ```
 
-Now the cool thing is that we are forced to use a `case` to pattern match on the users age. It is actually impossible to write code where you forget that users may not have an age. Elm can make sure of it. Now we can advertise alcohol confident that we are not influencing minors directly! Only their older peers.
+자 이제  `case` 를 이용해 사용자 나이에 대해 패턴 매칭을 할 수 있어요. Elm에선 "유저의 나이가 만약 없을 수도 있다"라는 생각을 하면서 코드를 짤 필요가 없는 거죠. 미성년자들에겐 절대 직접 영향을 끼치지 않을 거에요! 술을 마실 수 있는 사람한테만 광고가 가겠죠.
 
 ## Partial Functions
 
-Sometimes you want a function that gives an answer sometimes, but just does not in other cases.
+때로는 답변을 주는 함수를 원하지만, 아닌 경우도 있죠.
 
-Let's say Mountain Dew wants to do some ad buys for people ages 13 to 18. Honestly, it is better to start kids on Mountain Dew younger than that, but it is illegal for kids under 13 to be on our site.
+마운틴 듀가 13살에서 18살 사이의 사람들에 구매 광고를 한다고 가정해 볼게요. 솔직히 더 어린 아이들이 들어와도 상관 없지만 13살 미만의 어린이가 들어오는 건 불법이에요.
 
-So let's say we want to write a function that will tell us a user's age, but only if they are between 13 and 18:
+자 이제 나이를 받는 함수를 작성할 건데요. 대신 13살에서 18살 사이여야만 해요.
 
 ```elm
 getTeenAge : User -> Maybe Int
@@ -93,9 +91,9 @@ getTeenAge user =
         Nothing
 ```
 
-Again, we are reminded that users may not have an age, but if they do, we only want to return it if it is between 13 and 18. Now Elm can guarantee that anyone who calls `getTeenAge` will have to handle the possibility that the age is out of range.
+다시 한번 상기시켜 드리자면, 사용자들의 나이 항목이 없을 수도 있습니다. 그리고 나이 항목이 있다면 13살에서 18살 사이에 사이만 받아 보고 싶은 거에요. 누가 getTeenAge를 호출하는 지 상관없이, Elm은 범위를 벗어나는 모든 가능성에 대해서 다루고 있다고 보장할 수 있어요.
 
-This gets pretty cool when you start combining it with library functions like [`List.filterMap`](http://package.elm-lang.org/packages/elm-lang/core/latest/List#filterMap) that help you process more data. For example, maybe we want to figure out the distribution of ages between 13 and 18. We could do it like this:
+이건[`List.filterMap`](https://www.gitbook.com/book/kyunooh/elm/edit#)와 같은 라이브러리의 함수를 사용할 때, 데이터를 다루기 편하도록 도와줘요. 예를 들어 13살에서 18살 사이에 있는 사용자들의 나이만 가져오고 싶다면, 다음과 같이 할 수 있죠.
 
 ```elm
 > alice = User "Alice" (Just 14)
@@ -111,5 +109,5 @@ This gets pretty cool when you start combining it with library functions like [`
 [14,16] : List Int
 ```
 
-We end up with only the ages we care about. Now we can feed our `List Int` into a function that figures out the distributions of each number.
+우리가 신경쓰고 있는 나이만 추출 되었네요. 이제 `List Int` 를 함수에 집어넣어서 각 나이에 따른 분포도를 알아내거나 할 수도 있겠죠!
 
