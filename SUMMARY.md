@@ -22,7 +22,7 @@
 * [오류 처리와 태스크\(Error Handling and Tasks\)](error_handling/README.md)
   * [Maybe](error_handling/maybe.md)
   * [Result](error_handling/result.md)
-  * [Task](error_handling/task.md)
+  * [태스크\(Task\)](error_handling/task.md)
 * [Interop](interop/README.md)
   * [JSON](interop/json.md)
   * [JavaScript](interop/javascript.md)
