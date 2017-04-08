@@ -23,7 +23,7 @@
   * [Maybe](error_handling/maybe.md)
   * [Result](error_handling/result.md)
   * [태스크\(Task\)](error_handling/task.md)
-* [Interop](interop/README.md)
+* [상호 운용성\(Interop\)](interop/README.md)
   * [JSON](interop/json.md)
   * [JavaScript](interop/javascript.md)
 * [Scaling The Elm Architecture](reuse/README.md)
