@@ -12,16 +12,6 @@
 
 
 
-
-
-This is just a historical fact. A huge part of why C++ was so successful was that it was easy to migrate a massive C codebase. If you look at the JVM, you see Scala and Clojure carving out pretty big niches for themselves thanks to their nice interop story with Java. For industrial users, there is no point in having an amazing language with great guarantees if there is no way to slowly introduce it into an existing codebase. It is exactly the same in browsers too.
-
-This section focuses on the major kinds of interop that you need when working in browsers.
-
-1. How to communicate with external services using JSON.
-2. How to embed Elm programs in existing HTML or React apps.
-3. How to communicate with existing JavaScript code.
-
 Each of these types of interop are guided by the self-imposed constraints that \(1\) there must be a clear way to introduce Elm gradually into diverse environments and \(2\) Elm should not have to sacrifice its core design principles. In other words, **Elm should be great **_**and**_** it should be possible to use Elm at work.**
 
 ## Advice on Introducing Elm
