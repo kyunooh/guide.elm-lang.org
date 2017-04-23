@@ -10,12 +10,11 @@
 2. 이미 존재하는 HTML 또는 리액트 앱에 Elm 프로그램을 사용하는 방법
 3. 이미 존재하는 자바스크립트 코드와 같이 사용하는 방법
 
-이런 상호 운용에 관해선 다음과 같은 원칙은 지켜야 해요.  
-Each of these types of interop are guided by the self-imposed constraints that \(1\) there must be a clear way to introduce Elm gradually into diverse environments and \(2\) Elm should not have to sacrifice its core design principles. In other words, **Elm should be great **_**and**_** it should be possible to use Elm at work.**
+이런 상호 운용에 관해선 다음과 같은 원칙을 고려해봐야요. 첫번째로는 Elm을 적용할 다양한 환경에서 점진적으로 개선할 방법이 있어야하고, 두번째로는 Elm의 핵심 설계원칙에 영향이 없어야해요. 즉,** Elm을 훌륭하게 사용해야 실무에서 사용할 수 있다는 거에요.**
 
-## Advice on Introducing Elm
+## Elm을 도입하기 위한 조언
 
-The correct path is to first use Elm in a small experiment. If the experiment goes bad, stop it! If it goes great, expand the experiment a bit more. Then just repeat this process until you are using Elm or not! History seems to suggest that there is no realistic way to translate an existing project into a new language all at once. You have to evolve gradually!
+올바른 방법은 Elm을 작은 부분부터 사용해보는 거에요. 그러고 나서 나쁘게 느껴진다면 작업을 멈추세요! 좋게 느껴진다면 조금씩 더 사용해 보세요. 이 과정을 계속 반복해나가면서 Elm을 사용해하세요. 과거를 생각해보면 한번에 다른 언어로 전부 변경하는 건 현실적으로 없는 것 같아요. 조금씩 변경해 나가죠!
 
-Every company I know of that introduced Elm into an existing codebase did it gradually. You need to make sure it is worth it. You probably need to do some pairing or mentorship to get your teammates comfortable. You may even want to use React as a stepping stone if you are on something before that. Basically, anything you can do to minimize risk and make the process feel gradual will improve your odds. Now none of this is as fun as just switching, but it has the great benefit of actually working out in practice.
+제가 알고있는 Elm을 도입한 모든 회사들은 전부 코드베이스를 점직적으로 개선 했어요. 여러분은 이게 정말 가치 있는지 생각해봐야 해요. 적절한 멘토링 등을 통해서 팀원들 이 전부 편하게 받아드릴 수 있어야 하죠. 제대로 사용하기 전에 React 와 같은 것들을 디딤돌로 사용 하는 것도 방법이에요. 기본적으로, 위험을 최소화 하고 점진적으로 향상시키는 게 좋아요. 물론 그냥 바로 전환하는 게 재밌긴 하겠지만, 실제로 사용할 수 있게 된다는 이점이 있어요.
 
