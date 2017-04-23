@@ -10,8 +10,7 @@
 2. 이미 존재하는 HTML 또는 리액트 앱에 Elm 프로그램을 사용하는 방법
 3. 이미 존재하는 자바스크립트 코드와 같이 사용하는 방법
 
-
-
+이런 상호 운용에 관해선 다음과 같은 원칙은 지켜야 해요.  
 Each of these types of interop are guided by the self-imposed constraints that \(1\) there must be a clear way to introduce Elm gradually into diverse environments and \(2\) Elm should not have to sacrifice its core design principles. In other words, **Elm should be great **_**and**_** it should be possible to use Elm at work.**
 
 ## Advice on Introducing Elm
