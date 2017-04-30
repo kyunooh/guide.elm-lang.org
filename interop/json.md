@@ -2,13 +2,13 @@
 
 # JSON
 
-여러분은 프로그램에서 JSON을 많이 전송하실 텐데요. [`Json.Decode` 라이브러리](http://package.elm-lang.org/packages/elm-lang/core/latest/Json-Decode)를 이용해서 이상한 형태의 JSON을 잘 구조화된 Elm 값으로 변환 할 수 있어요. 
+여러분은 프로그램에서 JSON을 많이 전송하실 텐데요. [`Json.Decode` 라이브러리](http://package.elm-lang.org/packages/elm-lang/core/latest/Json-Decode)를 이용해서 이상한 형태의 JSON을 잘 구조화된 Elm 값으로 변환 할 수 있어요.
 
 JSON을 사용하여 작업할 때 핵심적인 개념은 바로 **디코더\(decoder\)**에요. 디코드는 JSON 값을 Elm값으로 해석해줘요. 이제 기본적인 디코더를 살펴보고, 어떻게 복잡한 상황에서도 다룰 수 있는지도 살펴 볼게요.
 
 ## 원시형 디코더\(Primitive Decoders\)
 
-Here are the type signatures for a couple primitive decoders:
+다음은 몇 가지의 원시형 디코더들이에요.
 
 ```elm
 string : Decoder String
@@ -17,13 +17,13 @@ float : Decoder Float
 bool : Decoder Bool
 ```
 
-These become useful when paired with the `decodeString` function:
+이것들을 `decodeString` 같이 쓸 때 유용하게 사용할 수 있어
 
 ```elm
 decodeString : Decoder a -> String -> Result String a
 ```
 
-This means we can do stuff like this:
+이 의미는 다음과 같이 사용한다는 거에요.
 
 ```elm
 > import Json.Decode exposing (..)
