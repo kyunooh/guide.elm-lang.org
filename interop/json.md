@@ -41,13 +41,15 @@ Ok True : Result String Bool
 Err "Expecting an Int but instead got: true" : Result String Int
 ```
 
-So our little decoders let us turn strings of JSON values into a `Result` telling us how the conversion went.
+이 작은 디코더들 JSON 문자열 값을 `Result` 값으로 변환시켜줍니다.
+
+간단한 JSON 값들을 다루어 보았는데요. 배열과 객체같은 복잡한 것들은 어떻게 처리해야 할까요?
 
 Now that we can handle the simplest JSON values, how can we deal with more complex things like arrays and objects?
 
-## Combining Decoders
+## 디코더 조합하기\(Combining Decoders\)
 
-The cool thing about decoders is that they snap together like building blocks. So if we want to handle a list of values, we would reach for the [`list`](http://package.elm-lang.org/packages/elm-lang/core/latest/Json-Decode#list) function:
+The cool thing about decoders isto that they snap together like building blocks. So if we want to handle a list of values, we would reach for the [`list`](http://package.elm-lang.org/packages/elm-lang/core/latest/Json-Decode#list) function:
 
 ```elm
 list : Decoder a -> Decoder (List a)
