@@ -45,17 +45,15 @@ Err "Expecting an Int but instead got: true" : Result String Int
 
 간단한 JSON 값들을 다루어 보았는데요. 배열과 객체같은 복잡한 것들은 어떻게 처리해야 할까요?
 
-Now that we can handle the simplest JSON values, how can we deal with more complex things like arrays and objects?
-
 ## 디코더 조합하기\(Combining Decoders\)
 
-The cool thing about decoders isto that they snap together like building blocks. So if we want to handle a list of values, we would reach for the [`list`](http://package.elm-lang.org/packages/elm-lang/core/latest/Json-Decode#list) function:
+디코더의 장점 중 블록처럼 분리되어 사용된다는 거에요. 값 리스트를 다루고 싶다면 [`list`](http://package.elm-lang.org/packages/elm-lang/core/latest/Json-Decode#list) 함수를 사용 할 수 있죠.
 
 ```elm
 list : Decoder a -> Decoder (List a)
 ```
 
-We can combine this with all the primitive decoders now:
+이제 원시형 디코더를 조합하여 사용할 수 있어요.
 
 ```elm
 > import Json.Decode exposing (..)
@@ -73,16 +71,18 @@ Ok [1,2,3] : Result String (List Int)
 Ok ["hi", "yo"] : Result String (List String)
 ```
 
-So now we can handle JSON arrays. If we want to get extra crazy, we can even nest lists.
+자 그럼 이제  JSON 배열도 다룰 수 있어요. 리스트를 중첩시킨, 미친듯이 복잡해보이는 데이터도 다룰 수 있어요.
 
 ```elm
 > decodeString (list (list int)) "[ [0], [1,2,3], [4,5] ]"
 Ok [[0],[1,2,3],[4,5]] : Result String (List (List Int))
 ```
 
-So that is `list`, but `Json.Decode` can handle many other data structures too. For example, [`dict`](http://package.elm-lang.org/packages/elm-lang/core/latest/Json-Decode#dict) helps you turn a JSON object into an Elm `Dict` and [`keyValuePairs`](http://package.elm-lang.org/packages/elm-lang/core/latest/Json-Decode#keyValuePairs) helps you turn a JSON object into an Elm list of keys and values.
+위에 건  `list`에요 하지만` JSON.Decode`는 다른 형태의 데이터도 다룰 수 있어요. 예를들어, [`dict`](http://package.elm-lang.org/packages/elm-lang/core/latest/Json-Decode#dict) 는  JSON 객체를 Elm의 Dict로 바꿀 수 있고, [`keyValuePairs`](http://package.elm-lang.org/packages/elm-lang/core/latest/Json-Decode#keyValuePairs)는  JSON 객체를  Elm의 키와 값 리스트로 바꿀 수 있죠.
 
-## Decoding Objects
+## 객체 디코딩\(Decoding Objects\)
+
+ JSON 객체를 [`field`](http://package.elm-lang.org/packages/elm-lang/core/latest/Json-Decode#field) 함수로 디코딩 해볼게요. `list` 와 비슷하게 진행되요
 
 We decode JSON objects with the [`field`](http://package.elm-lang.org/packages/elm-lang/core/latest/Json-Decode#field) function. It snaps together decoders just like `list`:
 
