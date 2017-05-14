@@ -88,7 +88,7 @@ JSON 객체를 [`field`](http://package.elm-lang.org/packages/elm-lang/core/late
 field : String -> Decoder a -> Decoder a
 ```
 
-자 여러분이 field `"x" int` 와 같이 작성하면, 먼저 JSON 객체를 원하는데, 이 객체는 x 라는 필드를 가져야만하고 x의 값은 정수여야 한다라는 걸 의미해요. 다음과 같이 사용하면 된답니다. 
+자 여러분이 field `"x" int` 와 같이 작성하면, 먼저 JSON 객체를 원하는데, 이 객체는 x 라는 필드를 가져야만하고 x의 값은 정수여야 한다라는 걸 의미해요. 다음과 같이 사용하면 된답니다.
 
 So when you say `field "x" int` you are saying \(1\) I want a JSON object, \(2\) it should have a field `x`, and \(3\) the value at `x` should be an integer. So using it looks like this:
 
@@ -111,7 +111,7 @@ Ok 4 : Result String Int
 map2 : (a -> b -> value) -> Decoder a -> Decoder b -> Decoder value
 ```
 
-This function takes in two different decoders. If they are both successful, it uses the given function to combine their results. So now we can put together two different decoders:
+이 함수는 두개의 다른 디코더를 인자로 사용해요. 만약 두개다 성공하면, 둘 다 성공하면 주어진 함수로 결과들을 조합해주죠. 자 그럼 이제 두개의 다른 디코더를 넣어볼게요. 
 
 ```elm
 > import Json.Decode exposing (..)
@@ -128,9 +128,13 @@ This function takes in two different decoders. If they are both successful, it u
 Ok { x = 3, y = 4 } : Result String Point
 ```
 
+자 이제 두개의 필드도 다룰 수 있네요. 하지만 세개 또는 네개는 어떨까요? 코어 라이브러리[`map3`](http://package.elm-lang.org/packages/elm-lang/core/latest/Json-Decode#map3), [`map4`](http://package.elm-lang.org/packages/elm-lang/core/latest/Json-Decode#map4) 그리고 더 큰 객체도 다룰 수 있게 제공하고 있어요.
+
+여러분이 큰 JSON 객체로 작업을 한다면, [`NoRedInk/elm-decode-pipeline`](https://www.gitbook.com/book/kyunooh/elm/edit#) 을 확인해보는 게 도움이 될 거에요. 
+
 Okay, that covers two fields, but what about three? Or four? The core library provides [`map3`](http://package.elm-lang.org/packages/elm-lang/core/latest/Json-Decode#map3), [`map4`](http://package.elm-lang.org/packages/elm-lang/core/latest/Json-Decode#map4), and others for handling larger objects.
 
-As you start working with larger JSON objects, it is worth checking out [`NoRedInk/elm-decode-pipeline`](http://package.elm-lang.org/packages/NoRedInk/elm-decode-pipeline/latest). It builds on top of the core `Json.Decode` module described here and lets you write stuff like this:
+As you start working with larger JSON objects, it is worth checking out [`NoRedInk/elm-decode-pipeline`](http://package.elm-lang.org/packages/NoRedInk/elm-decode-pipeline/latest). 여기서 설명한 `Json.Decode` 모듈을 중심으로 작성되었으며, 다음과 같이 작성할 수 있습니다.
 
 ```elm
 import Json.Decode exposing (Decoder, int)
@@ -144,6 +148,8 @@ pointDecoder =
     |> required "x" int
     |> required "y" int
 ```
+
+`optional`과 `hardcoded` 필드 사용할 수 있어요. 아주 좋은 라이브러리이니 한번 살펴보세요.
 
 You can have `optional` and `hardcoded` fields as well. It is quite a nice library, so take a look!
 
