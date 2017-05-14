@@ -78,13 +78,11 @@ Ok ["hi", "yo"] : Result String (List String)
 Ok [[0],[1,2,3],[4,5]] : Result String (List (List Int))
 ```
 
-위에 건  `list`에요 하지만` JSON.Decode`는 다른 형태의 데이터도 다룰 수 있어요. 예를들어, [`dict`](http://package.elm-lang.org/packages/elm-lang/core/latest/Json-Decode#dict) 는  JSON 객체를 Elm의 Dict로 바꿀 수 있고, [`keyValuePairs`](http://package.elm-lang.org/packages/elm-lang/core/latest/Json-Decode#keyValuePairs)는  JSON 객체를  Elm의 키와 값 리스트로 바꿀 수 있죠.
+위에 건  `list`에요 하지만`JSON.Decode`는 다른 형태의 데이터도 다룰 수 있어요. 예를들어, [`dict`](http://package.elm-lang.org/packages/elm-lang/core/latest/Json-Decode#dict) 는  JSON 객체를 Elm의 Dict로 바꿀 수 있고, [`keyValuePairs`](http://package.elm-lang.org/packages/elm-lang/core/latest/Json-Decode#keyValuePairs)는  JSON 객체를  Elm의 키와 값 리스트로 바꿀 수 있죠.
 
 ## 객체 디코딩\(Decoding Objects\)
 
- JSON 객체를 [`field`](http://package.elm-lang.org/packages/elm-lang/core/latest/Json-Decode#field) 함수로 디코딩 해볼게요. `list` 와 비슷하게 진행되요
-
-We decode JSON objects with the [`field`](http://package.elm-lang.org/packages/elm-lang/core/latest/Json-Decode#field) function. It snaps together decoders just like `list`:
+JSON 객체를 [`field`](http://package.elm-lang.org/packages/elm-lang/core/latest/Json-Decode#field) 함수로 디코딩 해볼게요. `list` 와 비슷하게 진행되요
 
 ```elm
 field : String -> Decoder a -> Decoder a
