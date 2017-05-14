@@ -88,6 +88,8 @@ JSON 객체를 [`field`](http://package.elm-lang.org/packages/elm-lang/core/late
 field : String -> Decoder a -> Decoder a
 ```
 
+it
+
 So when you say `field "x" int` you are saying \(1\) I want a JSON object, \(2\) it should have a field `x`, and \(3\) the value at `x` should be an integer. So using it looks like this:
 
 ```elm
