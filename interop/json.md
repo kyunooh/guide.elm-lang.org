@@ -88,7 +88,7 @@ JSON 객체를 [`field`](http://package.elm-lang.org/packages/elm-lang/core/late
 field : String -> Decoder a -> Decoder a
 ```
 
-자 여러분이 field `"x" int` 와 같이 작성하면, 먼저 JSON 객체를 원하는데, 이 객체는 x 라는 필드를 가져야만하고 x의 값은 정수여야 한다라는 걸 의미해요.
+자 여러분이 field `"x" int` 와 같이 작성하면, 먼저 JSON 객체를 원하는데, 이 객체는 x 라는 필드를 가져야만하고 x의 값은 정수여야 한다라는 걸 의미해요. 다음과 같이 사용하면 된답니다. 
 
 So when you say `field "x" int` you are saying \(1\) I want a JSON object, \(2\) it should have a field `x`, and \(3\) the value at `x` should be an integer. So using it looks like this:
 
@@ -105,7 +105,7 @@ Ok 3 : Result String Int
 Ok 4 : Result String Int
 ```
 
-Notice that the `field "x" int` decoder only cares about field `x`. The object can have other fields with other content. That is all separate. But what happens when you want to get information from _many_ fields? Well, we just need to put together many decoders. This is possible with functions like [`map2`](http://package.elm-lang.org/packages/elm-lang/core/latest/Json-Decode#map2):
+`field "x" int` 디코더는 오직 `x`에 관해서만 신경써요. 객체는 다른 내용을 가진 다른 필드들을 가질 수도 있습니다. 각각 모두 별개에요. 하지만 많은 필드로 부터 정보들을 가져오고 싶으면 어떻게 할까요? 그냥 많은 디코더를 조합하시면 돼요. 이건  [`map2`](http://package.elm-lang.org/packages/elm-lang/core/latest/Json-Decode#map2)같은 함수를 이용하면 가능해요.
 
 ```elm
 map2 : (a -> b -> value) -> Decoder a -> Decoder b -> Decoder value
