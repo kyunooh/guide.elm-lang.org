@@ -111,7 +111,7 @@ Ok 4 : Result String Int
 map2 : (a -> b -> value) -> Decoder a -> Decoder b -> Decoder value
 ```
 
-이 함수는 두개의 다른 디코더를 인자로 사용해요. 만약 두개다 성공하면, 둘 다 성공하면 주어진 함수로 결과들을 조합해주죠. 자 그럼 이제 두개의 다른 디코더를 넣어볼게요. 
+이 함수는 두개의 다른 디코더를 인자로 사용해요. 만약 두개다 성공하면, 둘 다 성공하면 주어진 함수로 결과들을 조합해주죠. 자 그럼 이제 두개의 다른 디코더를 넣어볼게요.
 
 ```elm
 > import Json.Decode exposing (..)
@@ -130,7 +130,7 @@ Ok { x = 3, y = 4 } : Result String Point
 
 자 이제 두개의 필드도 다룰 수 있네요. 하지만 세개 또는 네개는 어떨까요? 코어 라이브러리[`map3`](http://package.elm-lang.org/packages/elm-lang/core/latest/Json-Decode#map3), [`map4`](http://package.elm-lang.org/packages/elm-lang/core/latest/Json-Decode#map4) 그리고 더 큰 객체도 다룰 수 있게 제공하고 있어요.
 
-여러분이 큰 JSON 객체로 작업을 한다면, [`NoRedInk/elm-decode-pipeline`](https://www.gitbook.com/book/kyunooh/elm/edit#) 을 확인해보는 게 도움이 될 거에요. 
+여러분이 큰 JSON 객체로 작업을 한다면, [`NoRedInk/elm-decode-pipeline`](https://www.gitbook.com/book/kyunooh/elm/edit#) 을 확인해보는 게 도움이 될 거에요.
 
 Okay, that covers two fields, but what about three? Or four? The core library provides [`map3`](http://package.elm-lang.org/packages/elm-lang/core/latest/Json-Decode#map3), [`map4`](http://package.elm-lang.org/packages/elm-lang/core/latest/Json-Decode#map4), and others for handling larger objects.
 
@@ -149,9 +149,7 @@ pointDecoder =
     |> required "y" int
 ```
 
-`optional`과 `hardcoded` 필드 사용할 수 있어요. 아주 좋은 라이브러리이니 한번 살펴보세요.
-
-You can have `optional` and `hardcoded` fields as well. It is quite a nice library, so take a look!
+`optional`과 `hardcoded` 필드 사용할 수 있어요. 아주 좋은 라이브러리이니 한번 살펴보세요!
 
 > ## Broader Context
 >
