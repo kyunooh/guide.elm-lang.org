@@ -88,7 +88,7 @@ JSON 객체를 [`field`](http://package.elm-lang.org/packages/elm-lang/core/late
 field : String -> Decoder a -> Decoder a
 ```
 
-it
+자 여러분이 field `"x" int` 와 같이 작성하면, 먼저 JSON 객체를 원하는데, 이 객체는 x 라는 필드를 가져야만하고 x의 값은 정수여야 한다라는 걸 의미해요.
 
 So when you say `field "x" int` you are saying \(1\) I want a JSON object, \(2\) it should have a field `x`, and \(3\) the value at `x` should be an integer. So using it looks like this:
 
