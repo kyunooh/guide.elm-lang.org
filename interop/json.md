@@ -151,11 +151,15 @@ pointDecoder =
 
 `optional`과 `hardcoded` 필드 사용할 수 있어요. 아주 좋은 라이브러리이니 한번 살펴보세요!
 
-> ## Broader Context
+> ## 깊게 들어가기
 >
-> By now you have seen a pretty big chunk of the actual `Json.Decode` API, so I want to give some additional context about how this fits into the broader world of Elm and web apps.
+> 지금까지 Json.Decode API의 많은 부분들을 봐왔으니, Elm 웹앱에서 발생할 다양한 경우에 어떻게 적용되는지 얘기해보려 해요.
 >
-> ### Validating Server Data
+>
+>
+> ### 서버 데이터 검증하기
+>
+>
 >
 > The conversion from JSON to Elm doubles as a validation phase. You are not just converting from JSON, you are also making sure that JSON conforms to a particular structure.
 >
